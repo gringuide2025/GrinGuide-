@@ -74,6 +74,7 @@ jobs:
             echo "Triggering Night Habits..."
             node scheduler.js --task=habits --type=night_routine
           else
-            echo "Manual Trigger / Unknown Slot - Running Smoke Test"
-            node scheduler.js --task=personal
+            echo "Manual Trigger / Unknown Slot - Running Smoke Test for test user"
+            # Target the specific test UID provided by the user
+            node scheduler.js --task=habits --type=morning_routine --target_uid=RaMKCOnYtPVnUbiwVQ41BDmrcK32
           fi

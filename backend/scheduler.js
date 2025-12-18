@@ -5,17 +5,19 @@ const args = minimist(process.argv.slice(2));
 const habitsTask = require('./tasks/daily_habits');
 const foodTask = require('./tasks/daily_food');
 const personalTask = require('./tasks/personal_reminders');
+const reportTask = require('./tasks/weekly_report');
 
 async function run() {
     const taskName = args.task;
+    const targetUid = args.target_uid;
 
-    console.log(`🚀 Starting Scheduler Task: ${taskName || 'NONE'}`);
+    console.log(`🚀 Starting Scheduler Task: ${taskName || 'NONE'}${targetUid ? ' (Targeting: ' + targetUid + ')' : ''}`);
 
     try {
         switch (taskName) {
             case 'habits':
                 // Usage: node scheduler.js --task=habits --type=brush_morning
-                await habitsTask.run(args.type);
+                await habitsTask.run(args.type, null, targetUid);
                 break;
 
             case 'food':
