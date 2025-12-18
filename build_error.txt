@@ -1,0 +1,58 @@
+Running Gradle task 'assembleDebug'...                          
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+lib/main.dart:75:10: Error: Can't have modifier 'const' here.
+Try removing 'const'.
+  runApp(const ProviderScope(child: GrinGuideApp()));
+         ^^^^^
+lib/main.dart:75:10: Error: Function-typed parameters can't specify 'const', 'final' or 'var' in place of a return type.
+Try replacing the keyword with a return type.
+  runApp(const ProviderScope(child: GrinGuideApp()));
+         ^^^^^
+lib/main.dart:75:35: Error: Non-optional parameters can't have a default value.
+Try removing the default value or making the parameter optional.
+  runApp(const ProviderScope(child: GrinGuideApp()));
+                                  ^
+lib/main.dart:75:53: Error: Expected a function body or '=>'.
+Try adding {}.
+  runApp(const ProviderScope(child: GrinGuideApp()));
+                                                    ^
+lib/main.dart:76:1: Error: Expected a declaration, but got '}'.
+}
+^
+lib/main.dart:58:16: Error: The argument type 'ProviderScope' can't be assigned to the parameter type 'dynamic Function(dynamic)'.
+ - 'ProviderScope' is from 'package:flutter_riverpod/src/framework.dart' ('/C:/Users/Sabari/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_riverpod-2.6.1/lib/src/framework.dart').
+  runApp(const ProviderScope(child: GrinGuideApp()));
+               ^
+lib/main.dart:75:37: Error: Constant expression expected.
+Try inserting 'const'.
+  runApp(const ProviderScope(child: GrinGuideApp()));
+                                    ^^^^^^^^^^^^
+Target kernel_snapshot_program failed: Exception
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileFlutterBuildDebug'.
+> Process 'command 'E:\flutter\flutter\bin\flutter.bat'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 44s
+Running Gradle task 'assembleDebug'...                             49.5s
+Gradle task assembleDebug failed with exit code 1

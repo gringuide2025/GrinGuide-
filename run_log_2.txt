@@ -1,0 +1,37 @@
+Launching lib\main.dart on sdk gphone16k x86 64 in debug mode...
+Running Gradle task 'assembleDebug'...                          
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+lib/features/dashboard/report_screen.dart:237:39: Error: The argument type 'Context' can't be assigned to the parameter type 'BuildContext'.
+ - 'Context' is from 'package:pdf/src/widgets/widget.dart' ('/C:/Users/Sabari/AppData/Local/Pub/Cache/hosted/pub.dev/pdf-3.11.3/lib/src/widgets/widget.dart').
+ - 'BuildContext' is from 'package:flutter/src/widgets/framework.dart' ('/E:/flutter/flutter/packages/flutter/lib/src/widgets/framework.dart').
+                        a.time.format(context) // Warning: formatting TimeOfDay in PDF might need custom string
+                                      ^
+Target kernel_snapshot_program failed: Exception
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileFlutterBuildDebug'.
+> Process 'command 'E:\flutter\flutter\bin\flutter.bat'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 27s
+Running Gradle task 'assembleDebug'...                             28.1s
+Error: Gradle task assembleDebug failed with exit code 1

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>774047884808-kueo42d5uugeu9q6grk1nt3459maou3i.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.774047884808-kueo42d5uugeu9q6grk1nt3459maou3i</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>774047884808-p56n4dt98oc8bfi6htluhneoil2ulimd.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCdLzqfckCwCjrE2Y0AXMcl1WGHxSIFm-k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>774047884808</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.harishkanna.GrinGuide</string>
+	<key>PROJECT_ID</key>
+	<string>gringuide2025-f265c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gringuide2025-f265c.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:774047884808:ios:d074e9e6323df9fa8053bd</string>
+	<key>DATABASE_URL</key>
+	<string>https://gringuide2025-f265c-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

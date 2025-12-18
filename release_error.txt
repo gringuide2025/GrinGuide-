@@ -1,0 +1,71 @@
+Running Gradle task 'assembleRelease'...                        
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+lib/features/dashboard/dashboard_screen.dart:284:11: Error: The getter 'mounted' isn't defined for the type '_DailyChecklistTab'.
+ - '_DailyChecklistTab' is from 'package:grin_guide/features/dashboard/dashboard_screen.dart' ('lib/features/dashboard/dashboard_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'mounted'.
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Location services are disabled.')));
+          ^^^^^^^
+lib/features/dashboard/dashboard_screen.dart:284:41: Error: The getter 'context' isn't defined for the type '_DailyChecklistTab'.
+ - '_DailyChecklistTab' is from 'package:grin_guide/features/dashboard/dashboard_screen.dart' ('lib/features/dashboard/dashboard_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'context'.
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Location services are disabled.')));
+                                        ^^^^^^^
+lib/features/dashboard/dashboard_screen.dart:294:13: Error: The getter 'mounted' isn't defined for the type '_DailyChecklistTab'.
+ - '_DailyChecklistTab' is from 'package:grin_guide/features/dashboard/dashboard_screen.dart' ('lib/features/dashboard/dashboard_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'mounted'.
+        if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Location permissions are denied')));
+            ^^^^^^^
+lib/features/dashboard/dashboard_screen.dart:294:43: Error: The getter 'context' isn't defined for the type '_DailyChecklistTab'.
+ - '_DailyChecklistTab' is from 'package:grin_guide/features/dashboard/dashboard_screen.dart' ('lib/features/dashboard/dashboard_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'context'.
+        if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Location permissions are denied')));
+                                          ^^^^^^^
+lib/features/dashboard/dashboard_screen.dart:301:11: Error: The getter 'mounted' isn't defined for the type '_DailyChecklistTab'.
+ - '_DailyChecklistTab' is from 'package:grin_guide/features/dashboard/dashboard_screen.dart' ('lib/features/dashboard/dashboard_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'mounted'.
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Location permissions are permanently denied.')));
+          ^^^^^^^
+lib/features/dashboard/dashboard_screen.dart:301:41: Error: The getter 'context' isn't defined for the type '_DailyChecklistTab'.
+ - '_DailyChecklistTab' is from 'package:grin_guide/features/dashboard/dashboard_screen.dart' ('lib/features/dashboard/dashboard_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'context'.
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Location permissions are permanently denied.')));
+                                        ^^^^^^^
+lib/features/dashboard/dashboard_screen.dart:307:9: Error: The getter 'mounted' isn't defined for the type '_DailyChecklistTab'.
+ - '_DailyChecklistTab' is from 'package:grin_guide/features/dashboard/dashboard_screen.dart' ('lib/features/dashboard/dashboard_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'mounted'.
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Getting your location...')));
+        ^^^^^^^
+lib/features/dashboard/dashboard_screen.dart:307:39: Error: The getter 'context' isn't defined for the type '_DailyChecklistTab'.
+ - '_DailyChecklistTab' is from 'package:grin_guide/features/dashboard/dashboard_screen.dart' ('lib/features/dashboard/dashboard_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'context'.
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Getting your location...')));
+                                      ^^^^^^^
+Target kernel_snapshot_program failed: Exception
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileFlutterBuildRelease'.
+> Process 'command 'E:\flutter\flutter\bin\flutter.bat'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1m 41s
+Running Gradle task 'assembleRelease'...                          102.1s
+Gradle task assembleRelease failed with exit code 1

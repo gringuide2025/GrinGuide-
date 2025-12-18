@@ -1,0 +1,32 @@
+[
+    {
+        "category": "Pedodontics",
+        "question": "When should my child visit the dentist for the first time?",
+        "answer": "The American Academy of Pediatric Dentistry recommends a child's first dental visit should occur within six months of the eruption of the first tooth or by their first birthday."
+    },
+    {
+        "category": "Pedodontics",
+        "question": "How often should my child brush their teeth?",
+        "answer": "Children should brush their teeth twice a day: once in the morning and once before bed. Use a pea-sized amount of fluoride toothpaste for children aged 3-6."
+    },
+    {
+        "category": "Orthodontics",
+        "question": "At what age should my child see an orthodontist?",
+        "answer": "It is recommended that children have an orthodontic check-up by age 7. By this age, the first adult molars have erupted, establishing the back bite."
+    },
+    {
+        "category": "Oral Medicine",
+        "question": "What causes mouth ulcers in children?",
+        "answer": "Mouth ulcers can be caused by trauma (biting cheek), stress, or viral infections. If an ulcer persists for more than 2 weeks, consult a dentist."
+    },
+    {
+        "category": "General",
+        "question": "Is thumb sucking bad for teeth?",
+        "answer": "Prolonged thumb sucking after age 4 can cause issues with tooth alignment and the roof of the mouth. Most children stop on their own between ages 2 and 4."
+    },
+    {
+        "category": "Pedodontics",
+        "question": "What is baby bottle tooth decay?",
+        "answer": "It is decay in infants caused by frequent exposure to liquids containing sugars, like milk or juice, especially when put to bed with a bottle."
+    }
+]

@@ -1,0 +1,47 @@
+﻿Analyzing GrinGuide...                                          
+
+warning - Unused import: 'package:firebase_auth/firebase_auth.dart' - lib\features\auth\auth_controller.dart:2:8 - unused_import
+warning - The value of the local variable 'logDocId' isn't used - lib\features\dashboard\dashboard_repository.dart:40:11 - unused_local_variable
+   info - Don't invoke 'print' in production code - lib\features\dashboard\dashboard_repository.dart:80:9 - avoid_print
+warning - Unused import: '../profile/profile_repository.dart' - lib\features\dashboard\dashboard_screen.dart:10:8 - unused_import
+warning - Unused import: '../../core/localization/app_localizations.dart' - lib\features\dashboard\dashboard_screen.dart:24:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\dashboard\dashboard_screen.dart:215:57 - deprecated_member_use
+   info - 'Table.fromTextArray' is deprecated and shouldn't be used. Use TableHelper.fromTextArray() instead - lib\features\dashboard\dashboard_screen.dart:300:15 - deprecated_member_use
+warning - The declaration '_openMapUrl' isn't referenced - lib\features\dashboard\dashboard_screen.dart:333:16 - unused_element
+   info - 'surfaceVariant' is deprecated and shouldn't be used. Use surfaceContainerHighest instead. This feature was deprecated after v3.18.0-0.1.pre - lib\features\dashboard\dashboard_screen.dart:363:50 - deprecated_member_use
+   info - Constructors in '@immutable' classes should be declared as 'const' - lib\features\dashboard\insights_screen.dart:5:3 - prefer_const_constructors_in_immutables
+warning - Unused import: 'package:cloud_firestore/cloud_firestore.dart' - lib\features\dashboard\models\daily_checklist_model.dart:1:8 - unused_import
+warning - Duplicate import - lib\features\dashboard\report_screen.dart:9:8 - duplicate_import
+warning - Unused import: 'models/dental_appointment_model.dart' - lib\features\dashboard\report_screen.dart:13:8 - unused_import
+   info - 'Table.fromTextArray' is deprecated and shouldn't be used. Use TableHelper.fromTextArray() instead - lib\features\dashboard\report_screen.dart:237:15 - deprecated_member_use
+   info - 'Table.fromTextArray' is deprecated and shouldn't be used. Use TableHelper.fromTextArray() instead - lib\features\dashboard\report_screen.dart:264:17 - deprecated_member_use
+   info - 'Table.fromTextArray' is deprecated and shouldn't be used. Use TableHelper.fromTextArray() instead - lib\features\dashboard\report_screen.dart:289:17 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\dashboard\report_screen.dart:339:33 - deprecated_member_use
+   info - 'Table.fromTextArray' is deprecated and shouldn't be used. Use TableHelper.fromTextArray() instead - lib\features\dashboard\vaccine_screen.dart:57:15 - deprecated_member_use
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:135:28 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:136:34 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:137:34 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:138:35 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:139:35 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:140:35 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:141:35 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:142:35 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:143:35 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:144:35 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:145:19 - curly_braces_in_flow_control_structures
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\dashboard\vaccine_screen.dart:155:64 - deprecated_member_use
+warning - Unused import: 'package:firebase_auth/firebase_auth.dart' - lib\features\onboarding\splash_screen.dart:3:8 - unused_import
+warning - Unused import: 'package:shared_preferences/shared_preferences.dart' - lib\features\onboarding\splash_screen.dart:4:8 - unused_import
+   info - Missing type annotation - lib\features\onboarding\splash_screen.dart:20:3 - strict_top_level_inference
+   info - Don't use 'BuildContext's across async gaps, guarded by an unrelated 'mounted' check - lib\features\profile\child_edit_screen.dart:176:53 - use_build_context_synchronously
+warning - Unused import: '../auth/auth_repository.dart' - lib\features\profile\parent_edit_screen.dart:4:8 - unused_import
+warning - Unused import: 'models/parent_model.dart' - lib\features\profile\parent_edit_screen.dart:6:8 - unused_import
+warning - The value of the field '_formKey' isn't used - lib\features\profile\parent_edit_screen.dart:20:9 - unused_field
+warning - The value of the local variable 'email' isn't used - lib\features\profile\parent_edit_screen.dart:33:14 - unused_local_variable
+warning - Unused import: 'models/child_model.dart' - lib\features\profile\profile_screen.dart:5:8 - unused_import
+   info - Unnecessary use of multiple underscores - lib\features\profile\profile_screen.dart:68:27 - unnecessary_underscores
+warning - Unused import: '../profile/models/child_model.dart' - lib\features\reports\weekly_reports_screen.dart:5:8 - unused_import
+warning - Unused import: 'package:onesignal_flutter/onesignal_flutter.dart' - lib\main.dart:5:8 - unused_import
+warning - The value of the local variable 'doneAction' isn't used - lib\shared\services\notification_service.dart:31:37 - unused_local_variable
+warning - The value of the local variable 'notDoneAction' isn't used - lib\shared\services\notification_service.dart:37:37 - unused_local_variable
+

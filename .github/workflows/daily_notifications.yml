@@ -1,0 +1,79 @@
+name: GrinGuide Daily Notifications
+
+on:
+  schedule:
+    # --- TIME CONVERSION (+05:30 IST to UTC) ---
+    # 7:00 AM IST  -> 01:30 UTC
+    # 8:00 AM IST  -> 02:30 UTC
+    # 8:05 AM IST  -> 02:35 UTC
+    # 8:10 AM IST  -> 02:40 UTC
+    # 10:00 AM IST -> 04:30 UTC
+    # 9:00 PM IST  -> 15:30 UTC
+    
+    - cron: '30 1 * * *'  # Morning Habits (7:00 AM IST)
+    - cron: '30 2 * * *'  # Daily Food (8:00 AM IST)
+    - cron: '35 2 * * *'  # Vaccine Reminders (8:05 AM IST)
+    - cron: '40 2 * * *'  # Dental Reminders (8:10 AM IST)
+    - cron: '30 4 * * 0'  # Weekly Report (10:00 AM IST - Sundays)
+    - cron: '30 15 * * *' # Night Habits (9:00 PM IST)
+    
+  workflow_dispatch: # Allows manual trigger for testing
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: './backend/package-lock.json'
+
+      - name: Install Dependencies
+        working-directory: ./backend
+        run: npm install
+
+      # --- TASK EXECUTION LOGIC ---
+      # We check the time/cron to decide which task to run 
+      # since multiple crons trigger the same job.
+      
+      - name: Run Scheduled Task
+        working-directory: ./backend
+        env:
+          ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
+          ONESIGNAL_REST_KEY: ${{ secrets.ONESIGNAL_REST_KEY }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          HOUR=$(date +%H)
+          MINUTE=$(date +%M)
+          DAY=$(date +%u) # 7 is Sunday
+          
+          echo "Current UTC Time: $HOUR:$MINUTE"
+          
+          if [[ "$HOUR" == "01" ]]; then
+            echo "Triggering Morning Habits..."
+            node scheduler.js --task=habits --type=morning_routine
+          elif [[ "$HOUR" == "02" && "$MINUTE" == "3"* ]]; then
+            echo "Triggering Daily Food..."
+            node scheduler.js --task=food
+          elif [[ "$HOUR" == "02" && "$MINUTE" == "35" ]]; then
+            echo "Triggering Vaccine Reminders..."
+            node scheduler.js --task=personal --category=vaccine
+          elif [[ "$HOUR" == "02" && "$MINUTE" == "40" ]]; then
+            echo "Triggering Dental Reminders..."
+            node scheduler.js --task=personal --category=dental
+          elif [[ "$HOUR" == "04" && "$DAY" == "7" ]]; then
+            echo "Triggering Weekly Report..."
+            node scheduler.js --task=weekly
+          elif [[ "$HOUR" == "15" ]]; then
+            echo "Triggering Night Habits..."
+            node scheduler.js --task=habits --type=night_routine
+          else
+            echo "Manual Trigger / Unknown Slot - Running Smoke Test"
+            node scheduler.js --task=personal
+          fi

@@ -1,0 +1,233 @@
+﻿Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.64 (1.3.65 available)
+  characters 1.4.0 (1.4.1 available)
+  cloud_firestore 6.1.0 (6.1.1 available)
+  cloud_firestore_platform_interface 7.0.4 (7.0.5 available)
+  cloud_firestore_web 5.1.0 (5.1.1 available)
+  firebase_auth 6.1.2 (6.1.3 available)
+  firebase_auth_platform_interface 8.1.4 (8.1.5 available)
+  firebase_auth_web 6.1.0 (6.1.1 available)
+  firebase_core 4.2.1 (4.3.0 available)
+  firebase_core_web 3.3.0 (3.3.1 available)
+  flutter_launcher_icons 0.13.1 (0.14.4 available)
+  flutter_local_notifications 18.0.1 (19.5.0 available)
+  flutter_local_notifications_linux 5.0.0 (6.0.0 available)
+  flutter_local_notifications_platform_interface 8.0.0 (9.1.0 available)
+  flutter_riverpod 2.6.1 (3.0.3 available)
+  flutter_timezone 3.0.1 (5.0.1 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.7 available)
+  google_sign_in_ios 5.9.0 (6.2.4 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.0 available)
+  image 4.5.4 (4.6.0 available)
+  matcher 0.12.17 (0.12.18 available)
+  material_color_utilities 0.11.1 (0.13.0 available)
+  package_info_plus 8.3.1 (9.0.0 available)
+  riverpod 2.6.1 (3.0.3 available)
+  test_api 0.7.7 (0.7.8 available)
+Got dependencies!
+27 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Running Gradle task 'assembleRelease'...                        
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+flutter : 
+lib/main.dart:46:9: 
+Error: Can't find 
+'}' to match '{'.
+At line:1 char:1
++ flutter build apk 
+--release > 
+release_error.log 
+2>&1
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (lib/mai   
+ n.dart:4...' to     
+match '{'.:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+    try {
+        ^
+lib/main.dart:19:7: 
+Error: Can't find 
+'}' to match '{'.
+  try {
+      ^
+lib/main.dart:13:19: 
+Error: Can't find 
+'}' to match '{'.
+void main() async {
+                  ^
+lib/main.dart:56:1: 
+Error: 'class' can't 
+be used as an 
+identifier because 
+it's a keyword.
+Try renaming this to 
+be an identifier 
+that isn't a keyword.
+class GrinGuideApp 
+extends 
+ConsumerWidget {
+^^^^^
+lib/main.dart:56:1: 
+Error: Expected ';' 
+after this.
+class GrinGuideApp 
+extends 
+ConsumerWidget {
+^^^^^
+lib/main.dart:56:1: 
+Error: Undefined 
+name 'class'.
+class GrinGuideApp 
+extends 
+ConsumerWidget {
+^^^^^
+lib/main.dart:56:7: 
+Error: Expected ';' 
+after this.
+class GrinGuideApp 
+extends 
+ConsumerWidget {
+      ^^^^^^^^^^^^
+lib/main.dart:56:7: 
+Error: Undefined 
+name 'GrinGuideApp'.
+class GrinGuideApp 
+extends 
+ConsumerWidget {
+      ^^^^^^^^^^^^
+lib/main.dart:56:20: 
+Error: 'extends' 
+can't be used as an 
+identifier because 
+it's a keyword.
+Try renaming this to 
+be an identifier 
+that isn't a keyword.
+class GrinGuideApp 
+extends 
+ConsumerWidget {
+                   
+^^^^^^^
+lib/main.dart:56:20: 
+Error: Expected ';' 
+after this.
+class GrinGuideApp 
+extends 
+ConsumerWidget {
+                   
+^^^^^^^
+lib/main.dart:56:20: 
+Error: Undefined 
+name 'extends'.
+class GrinGuideApp 
+extends 
+ConsumerWidget {
+                   
+^^^^^^^
+lib/main.dart:56:28: 
+Error: Expected ';' 
+after this.
+class GrinGuideApp 
+extends 
+ConsumerWidget {
+                     
+      ^^^^^^^^^^^^^^
+lib/main.dart:57:23: 
+Error: Expected 
+identifier, but got 
+'super'.
+  const GrinGuideApp(
+{super.key});
+                     
+ ^^^^^
+lib/main.dart:57:9: 
+Error: Couldn't find 
+constructor 
+'GrinGuideApp'.
+  const GrinGuideApp(
+{super.key});
+        ^^^^^^^^^^^^
+lib/main.dart:46:5: 
+Error: A try block 
+must be followed by 
+an 'on', 'catch', or 
+'finally' clause.
+Try adding either a 
+catch or finally 
+clause, or remove 
+the try statement.
+    try {
+    ^^^
+lib/main.dart:19:3: 
+Error: A try block 
+must be followed by 
+an 'on', 'catch', or 
+'finally' clause.
+Try adding either a 
+catch or finally 
+clause, or remove 
+the try statement.
+  try {
+  ^^^
+Target kernel_snapsho
+t_program failed: 
+Exception
+
+
+FAILURE: Build 
+failed with an 
+exception.
+
+* What went wrong:
+Execution failed for 
+task ':app:compileFlu
+tterBuildRelease'.
+> Process 'command 'E
+:\flutter\flutter\bin
+\flutter.bat'' 
+finished with 
+non-zero exit value 1
+
+* Try:
+> Run with 
+--stacktrace option 
+to get the stack 
+trace.
+> Run with --info or 
+--debug option to 
+get more log output.
+> Run with --scan to 
+get full insights.
+> Get more help at ht
+tps://help.gradle.org
+.
+
+BUILD FAILED in 31s
+Running Gradle task 'assembleRelease'...                           32.2s
+Gradle task 
+assembleRelease 
+failed with exit 
+code 1

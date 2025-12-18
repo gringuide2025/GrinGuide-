@@ -1,0 +1,168 @@
+const axios = require('axios');
+const config = require('../config');
+
+const API_URL = "https://onesignal.com/api/v1/notifications";
+
+async function sendNotification(payload) {
+    if (!config.oneSignal.restKey) {
+        throw new Error("Missing ONESIGNAL_REST_KEY env variable");
+    }
+
+    const headers = {
+        "Content-Type": "application/json; charset=utf-8",
+        "Authorization": `Basic ${config.oneSignal.restKey}`
+    };
+
+    // Add App ID if not present
+    if (!payload.app_id) {
+        payload.app_id = config.oneSignal.appId;
+    }
+
+    // Ensure Deep Link to Dashboard
+    if (!payload.data) payload.data = {};
+    if (!payload.data.page) payload.data.page = "/dashboard";
+
+    try {
+        const response = await axios.post(API_URL, payload, { headers });
+        console.log(`✅ Push Sent (Scheduled: ${payload.delivery_time_of_day || 'Now'}): ${response.data.id}`);
+        return response.data;
+    } catch (error) {
+        console.error("❌ Push Failed:", error.response ? error.response.data : error.message);
+        throw error;
+    }
+}
+
+async function broadcast(title, body) {
+    return sendNotification({
+        included_segments: ["Total Subscriptions"],
+        headings: { "en": title },
+        contents: { "en": body }
+    });
+}
+
+async function sendToUser(userId, title, body) {
+    // Targeting via External User ID (which should match Firebase UID)
+    return sendNotification({
+        include_external_user_ids: [userId],
+        headings: { "en": title },
+        contents: { "en": body }
+    });
+}
+
+// Helper to send targeted batches for sounds
+async function sendWithSoundSegments(basePayload) {
+    const sounds = ['sound_chime', 'sound_magic', 'sound_pop', 'sound_bird', 'sound_power'];
+    const results = [];
+
+    // 1. Send for each Custom Sound
+    for (const sound of sounds) {
+        // Clone payload
+        const p = { ...basePayload };
+        // Deep copy data/buttons/headings if needed, but shallow is okay for top level
+        // Ideally deep clone to be safe:
+        p.data = { ...basePayload.data };
+        if (basePayload.buttons) p.buttons = [...basePayload.buttons];
+        if (basePayload.headings) p.headings = { ...basePayload.headings };
+        if (basePayload.contents) p.contents = { ...basePayload.contents };
+
+        p.filters = [
+            { "field": "tag", "key": "notification_sound", "relation": "=", "value": sound }
+        ];
+        p.android_channel_id = sound; // Crucial: Plays the sound!
+
+        // Remove included_segments if we use filters
+        delete p.included_segments;
+
+        try {
+            const res = await sendNotification(p);
+            results.push(res);
+        } catch (e) {
+            console.error(`Failed to send batch for ${sound}`, e.message);
+        }
+    }
+
+    // 2. Default Batch (Everyone Else)
+    const pDefault = { ...basePayload };
+    pDefault.data = { ...basePayload.data };
+    if (basePayload.buttons) pDefault.buttons = [...basePayload.buttons];
+    if (basePayload.headings) pDefault.headings = { ...basePayload.headings };
+    if (basePayload.contents) pDefault.contents = { ...basePayload.contents };
+
+    pDefault.filters = [
+        { "field": "tag", "key": "notification_sound", "relation": "exists" }
+        // Logic: Actually we want "NOT EXISTS" or "Default".
+        // OneSignal "NOT EXISTS" is tricky.
+        // Easier: "notification_sound" != "sound_magic" AND != "sound_pop"... OneSignal filters limit is low.
+        // Alternative: Just send to "Total Subscriptions" and exclude others? Complex.
+        // BEST: Just send to users WTIHOUT the tag.
+        // { "field": "tag", "key": "notification_sound", "relation": "not_exists" } is not standard API?
+        // Standard API: relation: "not_exists" IS valid.
+    ];
+    pDefault.filters = [
+        { "field": "tag", "key": "notification_sound", "relation": "=", "value": "sound_chime" }, // Wait, sound_chime is handled above.
+        // Actually, users who NEVER set a sound won't have the tag.
+        { "field": "tag", "key": "notification_sound", "relation": "not_exists" }
+    ];
+    // Re-add default sound logic? 
+    // If they have NO tag, we want them to hear 'sound_chime' (the default).
+    pDefault.android_channel_id = 'sound_chime';
+    delete pDefault.included_segments;
+
+    try {
+        const res = await sendNotification(pDefault);
+        results.push(res);
+    } catch (e) { console.error("Failed default batch", e.message); }
+
+    return results;
+}
+
+async function broadcastWithButtons(title, body, taskType) {
+    const taskMap = {
+        'brush_morning': 'brushMorning',
+        'floss_morning': 'flossMorning',
+        'brush_night': 'brushNight',
+        'floss_night': 'flossNight'
+    };
+
+    const basePayload = {
+        included_segments: ["Total Subscriptions"], // Will be removed by helper
+        headings: { "en": title },
+        contents: { "en": body },
+        buttons: [
+            { "id": "done", "text": "Done ✓" },
+            { "id": "not_done", "text": "Not Done" }
+        ],
+        data: {
+            task: taskMap[taskType] || taskType,
+            page: "/dashboard"
+        }
+    };
+
+    return sendWithSoundSegments(basePayload);
+}
+
+async function broadcastDailyFood(foodName, foodBenefit, scheduleTime) {
+    const payload = {
+        included_segments: ["Total Subscriptions"],
+        headings: { "en": `🥗 Today's Super Food: ${foodName}` },
+        contents: { "en": `${foodBenefit} \nDid you eat it today?` },
+        buttons: [
+            { "id": "done", "text": "I Ate It! 😋" },
+            { "id": "dismiss", "text": "Dismiss" }
+        ],
+        data: {
+            task: 'healthyFood',
+            foodItem: foodName,
+            page: "/dashboard"
+        }
+    };
+
+    if (scheduleTime) {
+        payload.delayed_option = "timezone";
+        payload.delivery_time_of_day = scheduleTime;
+    }
+
+    return sendWithSoundSegments(payload);
+}
+
+module.exports = { sendNotification, broadcast, sendToUser, broadcastWithButtons, broadcastDailyFood };

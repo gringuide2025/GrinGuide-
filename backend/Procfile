@@ -1,0 +1,1 @@
+worker: node daily_master.js

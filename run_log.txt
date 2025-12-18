@@ -1,0 +1,463 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.64 (1.3.65 available)
+  audioplayers 5.2.1 (6.5.1 available)
+  audioplayers_android 4.0.3 (5.2.1 available)
+  audioplayers_darwin 5.0.2 (6.3.0 available)
+  audioplayers_linux 3.1.0 (4.2.1 available)
+  audioplayers_platform_interface 6.1.0 (7.1.1 available)
+  audioplayers_web 4.1.0 (5.1.1 available)
+  audioplayers_windows 3.1.0 (4.2.1 available)
+  characters 1.4.0 (1.4.1 available)
+  cloud_firestore 6.1.0 (6.1.1 available)
+  cloud_firestore_platform_interface 7.0.4 (7.0.5 available)
+  cloud_firestore_web 5.1.0 (5.1.1 available)
+  firebase_auth 6.1.2 (6.1.3 available)
+  firebase_auth_platform_interface 8.1.4 (8.1.5 available)
+  firebase_auth_web 6.1.0 (6.1.1 available)
+  firebase_core 4.2.1 (4.3.0 available)
+  firebase_core_web 3.3.0 (3.3.1 available)
+  flutter_launcher_icons 0.13.1 (0.14.4 available)
+  flutter_local_notifications 18.0.1 (19.5.0 available)
+  flutter_local_notifications_linux 5.0.0 (6.0.0 available)
+  flutter_local_notifications_platform_interface 8.0.0 (9.1.0 available)
+  flutter_riverpod 2.6.1 (3.0.3 available)
+  flutter_timezone 3.0.1 (5.0.1 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.7 available)
+  google_sign_in_ios 5.9.0 (6.2.4 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.0 available)
+  image 4.5.4 (4.6.0 available)
+  js 0.6.7 (0.7.2 available)
+  matcher 0.12.17 (0.12.18 available)
+  material_color_utilities 0.11.1 (0.13.0 available)
+  package_info_plus 8.3.1 (9.0.0 available)
+  riverpod 2.6.1 (3.0.3 available)
+  syncfusion_flutter_core 31.2.18 (32.1.19 available)
+  syncfusion_flutter_pdf 31.2.18 (32.1.19 available)
+  syncfusion_flutter_pdfviewer 31.2.18 (32.1.19 available)
+  syncfusion_flutter_signaturepad 31.2.18 (32.1.19 available)
+  syncfusion_pdfviewer_linux 31.2.18 (32.1.19 available)
+  syncfusion_pdfviewer_macos 31.2.18 (32.1.19 available)
+  syncfusion_pdfviewer_platform_interface 31.2.18 (32.1.19 available)
+  syncfusion_pdfviewer_web 31.2.18 (32.1.19 available)
+  syncfusion_pdfviewer_windows 31.2.18 (32.1.19 available)
+  test_api 0.7.7 (0.7.8 available)
+Got dependencies!
+44 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Launching lib\main.dart on SM M356B in debug mode...
+Running Gradle task 'assembleDebug'...                          
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+lib/features/dashboard/insights_screen.dart:3:8: Error: Error when reading 'lib/features/repositories/dental_awareness_repository.dart': The system cannot find the path specified.
+
+import '../repositories/dental_awareness_repository.dart';
+       ^
+lib/features/dashboard/insight_detail_screen.dart:2:8: Error: Error when reading 'lib/features/repositories/dental_awareness_repository.dart': The system cannot find the path specified.
+
+import '../repositories/dental_awareness_repository.dart';
+       ^
+lib/features/dashboard/insights_screen.dart:4:8: Error: Error when reading 'lib/features/models/dental_topic_model.dart': The system cannot find the path specified.
+
+import '../models/dental_topic_model.dart';
+       ^
+lib/features/dashboard/insight_detail_screen.dart:3:8: Error: Error when reading 'lib/features/models/dental_topic_model.dart': The system cannot find the path specified.
+
+import '../models/dental_topic_model.dart';
+       ^
+lib/features/dashboard/repositories/dental_awareness_repository.dart:3:8: Error: Error when reading 'lib/features/core/constants/insights_data.dart': The system cannot find the path specified.
+
+import '../../core/constants/insights_data.dart';
+       ^
+lib/features/dashboard/insights_screen.dart:16:8: Error: Type 'DentalTopicModel' not found.
+  List<DentalTopicModel> _searchResults = [];
+       ^^^^^^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:5:35: Error: Type 'StatefulWidget' not found.
+class InsightDetailScreen extends StatefulWidget {
+                                  ^^^^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:26:3: Error: Type 'State' not found.
+  State<InsightDetailScreen> createState() => _InsightDetailScreenState();
+  ^^^^^
+lib/features/dashboard/insight_detail_screen.dart:29:41: Error: Type 'State' not found.
+class _InsightDetailScreenState extends State<InsightDetailScreen> {
+                                        ^^^^^
+lib/features/dashboard/insight_detail_screen.dart:34:3: Error: Type 'Widget' not found.
+  Widget build(BuildContext context) {
+  ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:34:16: Error: Type 'BuildContext' not found.
+  Widget build(BuildContext context) {
+               ^^^^^^^^^^^^
+lib/router/app_router.dart:84:28: Error: A value of type 'InsightDetailScreen' can't be returned from a function with return type 'Widget'.
+ - 'InsightDetailScreen' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+ - 'Widget' is from 'package:flutter/src/widgets/framework.dart' ('/E:/flutter/flutter/packages/flutter/lib/src/widgets/framework.dart').
+                    return InsightDetailScreen(title: extra['title']!, contentId: extra['contentId']!);
+                           ^
+lib/features/dashboard/insights_screen.dart:14:23: Error: Method not found: 'DentalAwarenessRepository'.
+  final _repository = DentalAwarenessRepository();
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:31:23: Error: Method not found: 'DentalAwarenessRepository'.
+  final _repository = DentalAwarenessRepository();
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+lib/features/dashboard/dashboard_screen.dart:260:21: Error: The method 'InsightsBody' isn't defined for the type '_DashboardScreenState'.
+ - '_DashboardScreenState' is from 'package:grin_guide/features/dashboard/dashboard_screen.dart' ('lib/features/dashboard/dashboard_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'InsightsBody'.
+                    InsightsBody(),
+                    ^^^^^^^^^^^^
+lib/features/dashboard/dashboard_screen.dart:295:22: Error: The method 'InsightsBody' isn't defined for the type '_DashboardScreenState'.
+ - '_DashboardScreenState' is from 'package:grin_guide/features/dashboard/dashboard_screen.dart' ('lib/features/dashboard/dashboard_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'InsightsBody'.
+      case 3: return InsightsBody();
+                     ^^^^^^^^^^^^
+lib/features/dashboard/insights_screen.dart:16:8: Error: 'DentalTopicModel' isn't a type.
+  List<DentalTopicModel> _searchResults = [];
+       ^^^^^^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:34:16: Error: 'BuildContext' isn't a type.
+  Widget build(BuildContext context) {
+               ^^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:44:35: Error: Not a constant expression.
+        body: const Center(child: Text("Content not found or loading..."))
+                                  ^^^^
+lib/features/dashboard/insight_detail_screen.dart:44:21: Error: Not a constant expression.
+        body: const Center(child: Text("Content not found or loading..."))
+                    ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:54:61: Error: Not a constant expression.
+              const Text("TA", style: TextStyle(fontWeight: FontWeight.bold)),
+                                                            ^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:54:39: Error: Not a constant expression.
+              const Text("TA", style: TextStyle(fontWeight: FontWeight.bold)),
+                                      ^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:54:21: Error: Not a constant expression.
+              const Text("TA", style: TextStyle(fontWeight: FontWeight.bold)),
+                    ^^^^
+lib/features/dashboard/insight_detail_screen.dart:58:17: Error: Not a constant expression.
+          const SizedBox(width: 10),
+                ^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:64:26: Error: Couldn't find constructor 'EdgeInsets.all'.
+          padding: const EdgeInsets.all(16),
+                         ^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:66:45: Error: Not a constant expression.
+          separatorBuilder: (c, i) => const SizedBox(height: 12),
+                                            ^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:93:35: Error: Not a constant expression.
+                      fontWeight: FontWeight.bold, 
+                                  ^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:94:30: Error: Not a constant expression.
+                      color: Color(0xFF4A148C),
+                             ^^^^^
+lib/features/dashboard/insight_detail_screen.dart:92:34: Error: Not a constant expression.
+                    style: const TextStyle(
+                                 ^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:100:38: Error: Couldn't find constructor 'EdgeInsets.fromLTRB'.
+                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                                     ^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:102:40: Error: Couldn't find constructor 'EdgeInsets.all'.
+                        padding: const EdgeInsets.all(12),
+                                       ^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:113:48: Error: Couldn't find constructor 'EdgeInsets.only'.
+                                padding: const EdgeInsets.only(bottom: 12),
+                                               ^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:125:49: Error: Couldn't find constructor 'EdgeInsets.only'.
+                                 padding: const EdgeInsets.only(top: 12),
+                                                ^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:133:53: Error: Not a constant expression.
+                                   icon: const Icon(Icons.video_library),
+                                                    ^^^^^
+lib/features/dashboard/insight_detail_screen.dart:133:48: Error: Not a constant expression.
+                                   icon: const Icon(Icons.video_library),
+                                               ^^^^
+lib/features/dashboard/insight_detail_screen.dart:134:49: Error: Not a constant expression.
+                                   label: const Text("Watch Video 📺"),
+                                                ^^^^
+lib/features/dashboard/insight_detail_screen.dart:37:21: Error: The getter 'widget' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'widget'.
+    final subject = widget.contentId;
+                    ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:42:14: Error: The method 'Scaffold' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Scaffold'.
+      return Scaffold(
+             ^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:43:17: Error: The method 'AppBar' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'AppBar'.
+        appBar: AppBar(title: Text(widget.title)), 
+                ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:43:31: Error: The method 'Text' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Text'.
+        appBar: AppBar(title: Text(widget.title)), 
+                              ^^^^
+lib/features/dashboard/insight_detail_screen.dart:43:36: Error: The getter 'widget' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'widget'.
+        appBar: AppBar(title: Text(widget.title)), 
+                                   ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:48:12: Error: The method 'Scaffold' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Scaffold'.
+    return Scaffold(
+           ^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:49:15: Error: The method 'AppBar' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'AppBar'.
+      appBar: AppBar(
+              ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:50:16: Error: The method 'Text' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Text'.
+        title: Text(widget.title),
+               ^^^^
+lib/features/dashboard/insight_detail_screen.dart:50:21: Error: The getter 'widget' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'widget'.
+        title: Text(widget.title),
+                    ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:52:11: Error: The method 'Row' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Row'.
+          Row(
+          ^^^
+lib/features/dashboard/insight_detail_screen.dart:55:15: Error: The method 'Switch' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Switch'.
+              Switch(value: _isTamil, onChanged: (val) => setState(() => _isTamil = val)),
+              ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:55:59: Error: The method 'setState' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'setState'.
+              Switch(value: _isTamil, onChanged: (val) => setState(() => _isTamil = val)),
+                                                          ^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:61:13: Error: The method 'Container' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Container'.
+      body: Container(
+            ^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:62:16: Error: The getter 'Colors' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Colors'.
+        color: Colors.grey.shade50,
+               ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:63:16: Error: The getter 'ListView' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'ListView'.
+        child: ListView.separated(
+               ^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:79:20: Error: The method 'Card' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Card'.
+            return Card(
+                   ^^^^
+lib/features/dashboard/insight_detail_screen.dart:81:22: Error: The method 'RoundedRectangleBorder' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'RoundedRectangleBorder'.
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                     ^^^^^^^^^^^^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:81:59: Error: The getter 'BorderRadius' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'BorderRadius'.
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                                                          ^^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:82:29: Error: The getter 'Clip' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Clip'.
+              clipBehavior: Clip.antiAlias,
+                            ^^^^
+lib/features/dashboard/insight_detail_screen.dart:83:22: Error: The method 'Theme' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Theme'.
+              child: Theme(
+                     ^^^^^
+lib/features/dashboard/insight_detail_screen.dart:84:23: Error: The getter 'Theme' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Theme'.
+                data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                      ^^^^^
+lib/features/dashboard/insight_detail_screen.dart:84:64: Error: The getter 'Colors' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Colors'.
+                data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                                                               ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:85:24: Error: The method 'ExpansionTile' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'ExpansionTile'.
+                child: ExpansionTile(
+                       ^^^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:86:45: Error: The getter 'Colors' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Colors'.
+                  collapsedBackgroundColor: Colors.white,
+                                            ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:87:36: Error: The getter 'Colors' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Colors'.
+                  backgroundColor: Colors.purple.shade50,
+                                   ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:88:30: Error: The getter 'Colors' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Colors'.
+                  iconColor: Colors.purple,
+                             ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:89:39: Error: The getter 'Colors' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Colors'.
+                  collapsedIconColor: Colors.purple.shade300,
+                                      ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:90:26: Error: The method 'Text' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Text'.
+                  title: Text(
+                         ^^^^
+lib/features/dashboard/insight_detail_screen.dart:99:21: Error: The method 'Padding' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Padding'.
+                    Padding(
+                    ^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:101:30: Error: The method 'Container' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Container'.
+                      child: Container(
+                             ^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:103:37: Error: The method 'BoxDecoration' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'BoxDecoration'.
+                        decoration: BoxDecoration(
+                                    ^^^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:104:34: Error: The getter 'Colors' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Colors'.
+                          color: Colors.white,
+                                 ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:105:41: Error: The getter 'BorderRadius' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'BorderRadius'.
+                          borderRadius: BorderRadius.circular(8),
+                                        ^^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:106:35: Error: The getter 'Border' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Border'.
+                          border: Border.all(color: Colors.purple.shade100),
+                                  ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:106:53: Error: The getter 'Colors' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Colors'.
+                          border: Border.all(color: Colors.purple.shade100),
+                                                    ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:108:32: Error: The method 'Column' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Column'.
+                        child: Column(
+                               ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:109:47: Error: The getter 'CrossAxisAlignment' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'CrossAxisAlignment'.
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                                              ^^^^^^^^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:112:31: Error: The method 'Padding' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Padding'.
+                              Padding(
+                              ^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:114:40: Error: The method 'ClipRRect' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'ClipRRect'.
+                                child: ClipRRect(
+                                       ^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:115:49: Error: The getter 'BorderRadius' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'BorderRadius'.
+                                  borderRadius: BorderRadius.circular(8),
+                                                ^^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:116:42: Error: The getter 'Image' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Image'.
+                                  child: Image.asset(img, fit: BoxFit.cover),
+                                         ^^^^^
+lib/features/dashboard/insight_detail_screen.dart:116:64: Error: The getter 'BoxFit' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'BoxFit'.
+                                  child: Image.asset(img, fit: BoxFit.cover),
+                                                               ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:119:29: Error: The method 'Text' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Text'.
+                            Text(
+                            ^^^^
+lib/features/dashboard/insight_detail_screen.dart:121:38: Error: The method 'TextStyle' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'TextStyle'.
+                              style: TextStyle(fontSize: 15, height: 1.6, color: Colors.grey.shade800),
+                                     ^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:121:82: Error: The getter 'Colors' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Colors'.
+                              style: TextStyle(fontSize: 15, height: 1.6, color: Colors.grey.shade800),
+                                                                                 ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:124:32: Error: The method 'Padding' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Padding'.
+                               Padding(
+                               ^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:126:41: Error: The getter 'ElevatedButton' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'ElevatedButton'.
+                                 child: ElevatedButton.icon(
+                                        ^^^^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:135:43: Error: The getter 'ElevatedButton' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'ElevatedButton'.
+                                   style: ElevatedButton.styleFrom(
+                                          ^^^^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:136:55: Error: The getter 'Colors' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Colors'.
+                                     backgroundColor: Colors.red.shade50,
+                                                      ^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:137:55: Error: The getter 'Colors' isn't defined for the type '_InsightDetailScreenState'.
+ - '_InsightDetailScreenState' is from 'package:grin_guide/features/dashboard/insight_detail_screen.dart' ('lib/features/dashboard/insight_detail_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Colors'.
+                                     foregroundColor: Colors.red,
+                                                      ^^^^^^
+lib/features/dashboard/repositories/dental_awareness_repository.dart:31:20: Error: The getter 'InsightData' isn't defined for the type 'DentalAwarenessRepository'.
+ - 'DentalAwarenessRepository' is from 'package:grin_guide/features/dashboard/repositories/dental_awareness_repository.dart' ('lib/features/dashboard/repositories/dental_awareness_repository.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'InsightData'.
+      final data = InsightData.content;
+                   ^^^^^^^^^^^
+lib/features/dashboard/insight_detail_screen.dart:7:16: Error: Final field 'subject' is not initialized.
+Try to initialize the field in the declaration or in every constructor.
+  final String subject; // "Dental Tips", "Pedodontics", etc.
+               ^^^^^^^
+Target kernel_snapshot_program failed: Exception
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileFlutterBuildDebug'.
+> Process 'command 'E:\flutter\flutter\bin\flutter.bat'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 39s
+Running Gradle task 'assembleDebug'...                             39.7s
+Error: Gradle task assembleDebug failed with exit code 1

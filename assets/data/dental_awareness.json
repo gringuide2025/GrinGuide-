@@ -1,0 +1,1316 @@
+[
+    {
+        "subject": "Pedodontics",
+        "topic": "Teething Pain",
+        "display_questions": [
+            "How to soothe teething pain?",
+            "Baby crying due to teeth coming",
+            "Teething gels safe?"
+        ],
+        "search_phrases": [
+            "teething relief",
+            "baby tooth pain",
+            "teething gel safety",
+            "painful gums baby"
+        ],
+        "intent_keywords": [
+            "teething",
+            "soothe",
+            "pain",
+            "gel",
+            "cry"
+        ],
+        "qa": {
+            "question_en": "How can I relieve my baby's teething pain?",
+            "answer_en": "Gently rubbing the gums with a clean finger or a chilled (not frozen) teething ring can help. Avoid over-the-counter numbing gels unless advised by a doctor.",
+            "question_ta": "குழந்தையின் பல் முளைக்கும் வலியை எப்படி குறைப்பது?",
+            "answer_ta": "சுத்தமான விரலால் ஈறுகளை மசாஜ் செய்யலாம் அல்லது குளிர்ந்த டீத்தர் கொடுக்கலாம். மருத்துவர் சொல்லாமல் ஜெல் பயன்படுத்த வேண்டாம்."
+        },
+        "chatbot_answer_short": {
+            "en": "Try a chilled teething ring or gentle gum massage. Avoid numbing gels.",
+            "ta": "குளிர்ந்த டீத்தர் அல்லது ஈறு மசாஜ் செய்யவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "fever > 100F",
+            "diarrhea",
+            "rash"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "Early Milk Tooth Loss",
+        "display_questions": [
+            "Milk tooth fell out too early",
+            "Baby tooth lost before time",
+            "Empty space in baby teeth"
+        ],
+        "search_phrases": [
+            "milk tooth early loss",
+            "premature tooth loss",
+            "space maintainer need"
+        ],
+        "intent_keywords": [
+            "early",
+            "fall",
+            "lost",
+            "space",
+            "premature"
+        ],
+        "qa": {
+            "question_en": "What if a milk tooth falls out early?",
+            "answer_en": "If a milk tooth is lost before the permanent one is ready, the nearby teeth might shift and close the space. A 'Space Maintainer' may be needed.",
+            "question_ta": "பால் பல் சீக்கிரம் விழுந்தால் என்ன செய்வது?",
+            "answer_ta": "முன்கூட்டியே பல் விழுந்தால், அந்த இடைவெளியை பாதுகாக்க 'Space Maintainer' தேவைப்படலாம்."
+        },
+        "chatbot_answer_short": {
+            "en": "You might need a Space Maintainer to keep the gap open for the adult tooth.",
+            "ta": "இடைவெளியை காக்க Space Maintainer தேவைப்படலாம்."
+        },
+        "suggest_doctor_visit_if": [
+            "tooth knocked out",
+            "pain",
+            "bleeding"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "Natal Teeth",
+        "display_questions": [
+            "Baby born with tooth",
+            "Tooth present at birth",
+            "Neonatal tooth"
+        ],
+        "search_phrases": [
+            "born with teeth",
+            "natal teeth",
+            "tooth at birth",
+            "baby born having tooth"
+        ],
+        "intent_keywords": [
+            "born",
+            "birth",
+            "natal",
+            "neonatal",
+            "extra"
+        ],
+        "qa": {
+            "question_en": "My baby was born with a tooth. Is this normal?",
+            "answer_en": "Natal teeth are rare but happen. If it is loose (risk of swallowing) or hurts while breastfeeding, a dentist might remove it. Otherwise, it can stay.",
+            "question_ta": "பிறக்கும்போதே குழந்தைக்கு பல் இருந்தால் என்ன செய்வது?",
+            "answer_ta": "இது அரிதானது. பல் ஆடுகிறது அல்லது பாலூட்டும்போது காயம் ஏற்படுகிறது என்றால் மருத்துவர் அதை எடுப்பார்."
+        },
+        "chatbot_answer_short": {
+            "en": "It's rare. Consult a dentist to check if it's loose or interferes with feeding.",
+            "ta": "ஆடுகிறதா அல்லது பால் குடிப்பதில் சிரமமா என்று மருத்துவரிடம் காட்டுங்கள்."
+        },
+        "suggest_doctor_visit_if": [
+            "loose tooth",
+            "tongue ulcer",
+            "feeding issue"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "Milk Bottle Caries",
+        "display_questions": [
+            "Black teeth in toddlers",
+            "Nursing bottle decay",
+            "Front teeth rotting baby"
+        ],
+        "search_phrases": [
+            "nursing bottle caries",
+            "baby bottle tooth decay",
+            "black front teeth",
+            "rotting milk teeth"
+        ],
+        "intent_keywords": [
+            "bottle",
+            "nursing",
+            "rot",
+            "black",
+            "decay"
+        ],
+        "qa": {
+            "question_en": "Why are my toddler's front teeth turning black?",
+            "answer_en": "This is likely 'Nursing Bottle Caries' caused by sleeping with a milk bottle. Sugar pools around teeth causing rapid decay. Stop night feeding and see a dentist.",
+            "question_ta": "குழந்தையின் முன் பற்கள் ஏன் கருப்பாகின்றன?",
+            "answer_ta": "பாட்டில் பால் குடித்துக்கொண்டே தூங்குவதால் இது வரலாம். இரவு பாட்டில் கொடுப்பதை தவிர்க்கவும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Sleeping with a bottle causes this. It needs immediate treatment to save the teeth.",
+            "ta": "பாட்டில் பால் குடித்து தூங்குவதை தவிர்க்கவும். உடனே மருத்துவரை பார்க்கவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "pain",
+            "swelling",
+            "difficulty eating"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "Fluoride Safety",
+        "display_questions": [
+            "Is fluoride safe for kids?",
+            "When to start fluoride toothpaste?",
+            "Fluoride toxicity"
+        ],
+        "search_phrases": [
+            "fluoride safe",
+            "toothpaste age",
+            "fluoride poisoning",
+            "kids toothpaste"
+        ],
+        "intent_keywords": [
+            "fluoride",
+            "safe",
+            "paste",
+            "toxic",
+            "poison"
+        ],
+        "qa": {
+            "question_en": "Is fluoride toothpaste safe for children?",
+            "answer_en": "Yes, in small amounts. Use a 'smear' (rice grain size) for under 3 years, and a 'pea-size' for 3-6 years. Make sure they spit it out.",
+            "question_ta": "குழந்தைகளுக்கு ஃப்ளோரைடு பற்பசை பாதுகாப்பானதா?",
+            "answer_ta": "ஆம், குறைந்த அளவில் பாதுகாப்பானது. 3 வயது வரை அரிசி அளவு பயன்படுத்தவும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Yes, use a rice-grain amount for toddlers and pea-size for kids. Teach them to spit.",
+            "ta": "ஆம், மிகக்குறைந்த அளவு பயன்படுத்தவும். துப்ப கற்றுக்கொடுக்கவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "swallows large amount",
+            "white spots on teeth"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "Thumb Sucking",
+        "display_questions": [
+            "How to stop thumb sucking?",
+            "Does thumb sucking cause buck teeth?",
+            "Finger sucking habit"
+        ],
+        "search_phrases": [
+            "thumb sucking",
+            "finger sucking",
+            "buck teeth",
+            "habit breaking"
+        ],
+        "intent_keywords": [
+            "thumb",
+            "finger",
+            "suck",
+            "habit",
+            "stop"
+        ],
+        "qa": {
+            "question_en": "When should my child stop thumb sucking?",
+            "answer_en": "Most stop by age 4. If it continues as permanent teeth erupt, it can push teeth forward. Gentle reminders or a dental appliance can help.",
+            "question_ta": "விரல் சூப்பும் பழக்கத்தை எப்போது நிறுத்த வேண்டும்?",
+            "answer_ta": "4 வயதுக்குள் நிறுத்த வேண்டும். இல்லையெனில் பற்கள் எகிறிவிடும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Try to stop by age 4. Persistent sucking can change tooth alignment.",
+            "ta": "4 வயதுக்குள் நிறுத்துவது நல்லது. இது பற்களை பாதிக்கும்."
+        },
+        "suggest_doctor_visit_if": [
+            "habit past age 5",
+            "teeth sticking out"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "Night Grinding",
+        "display_questions": [
+            "Child grinding teeth at night",
+            "Bruxism in kids",
+            "Teeth noise while sleeping"
+        ],
+        "search_phrases": [
+            "grinding teeth",
+            "bruxism",
+            "sleep grinding",
+            "teeth noise"
+        ],
+        "intent_keywords": [
+            "grind",
+            "sleep",
+            "noise",
+            "bruxism",
+            "night"
+        ],
+        "qa": {
+            "question_en": "Why does my child grind teeth while sleeping?",
+            "answer_en": "It is common in kids due to new teeth erupting, stress, or airway issues. Usually, they outgrow it, but check if teeth are wearing down.",
+            "question_ta": "குழந்தை ஏன் தூக்கத்தில் பல் கடிக்கிறது?",
+            "answer_ta": "இது சாதாரணம். பல் முளைக்கும் போது அல்லது மன அழுத்தத்தால் ஏற்படலாம்."
+        },
+        "chatbot_answer_short": {
+            "en": "Common and often temporary. Consult if teeth look worn down.",
+            "ta": "இது சகஜம். பற்கள் தேய்கிறதா என்று கவனிக்கவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "worn teeth",
+            "jaw pain",
+            "headache"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "First Dental Visit",
+        "display_questions": [
+            "When should be the first dental visit?",
+            "Age for first dentist appointment",
+            "Infant dental checkup"
+        ],
+        "search_phrases": [
+            "first dental visit",
+            "dentist age",
+            "baby first checkup"
+        ],
+        "intent_keywords": [
+            "first",
+            "visit",
+            "age",
+            "checkup",
+            "start"
+        ],
+        "qa": {
+            "question_en": "When should I take my child to the dentist for the first time?",
+            "answer_en": "The rule is 'First visit by First Birthday'. Early visits help prevent cavities and get the child used to the dentist.",
+            "question_ta": "குழந்தையை முதல் முறையாக எப்போது பல் மருத்துவரிடம் அழைத்துச் செல்ல வேண்டும்?",
+            "answer_ta": "முதல் பிறந்தநாளுக்கு முன் அழைத்துச் செல்வது சிறந்தது."
+        },
+        "chatbot_answer_short": {
+            "en": "By their 1st birthday! Early prevention is key.",
+            "ta": "முதல் பிறந்தநாளுக்குள் ஒருமுறை காட்டவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "spots on teeth",
+            "pain",
+            "trauma"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "Sealants",
+        "display_questions": [
+            "What are dental sealants?",
+            "Preventing cavities in molars",
+            "Protective coating for teeth"
+        ],
+        "search_phrases": [
+            "sealants",
+            "pit and fissure",
+            "prevent cavity",
+            "tooth coating"
+        ],
+        "intent_keywords": [
+            "sealant",
+            "coat",
+            "prevent",
+            "molar",
+            "protect"
+        ],
+        "qa": {
+            "question_en": "What are sealants and do kids need them?",
+            "answer_en": "Sealants are thin coatings painted on the chewing surfaces of back teeth to prevent food from sticking. They are highly recommended for permanent molars.",
+            "question_ta": "சீலண்ட்ஸ் (Sealants) என்றால் என்ன?",
+            "answer_ta": "இது கடவாய் பற்களின் மேல் பூசப்படும் ஒரு பாதுகாப்பு உறை. இது சொத்தை வராமல் தடுக்கும்."
+        },
+        "chatbot_answer_short": {
+            "en": "They are protective shields for molars against cavities. Highly recommended.",
+            "ta": "இது பற்களை சொத்தையில் இருந்து காக்கும் கவசம்."
+        },
+        "suggest_doctor_visit_if": [
+            "deep grooves in teeth",
+            "high cavity risk"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "Double Teeth (Shark Teeth)",
+        "display_questions": [
+            "New tooth came behind old one",
+            "Shark teeth in kids",
+            "Two rows of teeth"
+        ],
+        "search_phrases": [
+            "shark teeth",
+            "double teeth",
+            "tooth behind tooth",
+            "permanent behind milk"
+        ],
+        "intent_keywords": [
+            "shark",
+            "behind",
+            "double",
+            "row",
+            "two"
+        ],
+        "qa": {
+            "question_en": "My child has a permanent tooth growing behind the milk tooth. Is this normal?",
+            "answer_en": "This is called 'Shark Teeth'. Often the milk tooth falls out on its own. If it stays firm for weeks, a dentist might extract it.",
+            "question_ta": "பால் பல்லுக்கு பின்னால் புதிய பல் வருகிறது, இது இயல்பா?",
+            "answer_ta": "இதை 'Shark Teeth' என்பர். பால் பல் தானாக விழவில்லை என்றால் மருத்துவர் அதை எடுப்பார்."
+        },
+        "chatbot_answer_short": {
+            "en": "Commonly called 'Shark Teeth'. Encourage the child to wiggle the baby tooth.",
+            "ta": "பழைய பல்லை ஆட்டச் சொல்லுங்கள். விழவில்லை என்றால் மருத்துவரை பார்க்கவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "baby tooth firm > 2 weeks",
+            "pain",
+            "gum swollen"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "Lip Biting",
+        "display_questions": [
+            "Child biting lip habit",
+            "Swollen lip chewing",
+            "Lip sucking"
+        ],
+        "search_phrases": [
+            "lip biting",
+            "lip sucking",
+            "swollen lip habit"
+        ],
+        "intent_keywords": [
+            "lip",
+            "bite",
+            "suck",
+            "habit"
+        ],
+        "qa": {
+            "question_en": "Causes and effects of lip biting?",
+            "answer_en": "Lip biting (usually lower lip) can push upper teeth forward and lower teeth back. It also causes chapped, red lips.",
+            "question_ta": "உதடு கடிக்கும் பழக்கத்தால் என்ன ஆகும்?",
+            "answer_ta": "இது பற்கள் எகிற காரணமாகலாம். உதட்டில் புண் ஏற்படலாம்."
+        },
+        "chatbot_answer_short": {
+            "en": "It can affect tooth alignment and damage the lip skin.",
+            "ta": "இது பற்களின் வரிசையை மாற்றலாம்."
+        },
+        "suggest_doctor_visit_if": [
+            "teeth moving",
+            "lip infection"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "Tongue Tie",
+        "display_questions": [
+            "Child cannot lift tongue",
+            "Speech issues tongue tie",
+            "Ankyloglossia"
+        ],
+        "search_phrases": [
+            "tongue tie",
+            "speech problem",
+            "short tongue string",
+            "ankyloglossia"
+        ],
+        "intent_keywords": [
+            "tongue",
+            "tie",
+            "speech",
+            "lift",
+            "string"
+        ],
+        "qa": {
+            "question_en": "How do I know if my child has a tongue tie?",
+            "answer_en": "If the tongue looks heart-shaped when lifted or the child has trouble speaking/eating, it might be a tongue tie. A simple release procedure helps.",
+            "question_ta": "நாக்கு ஒட்டியிருந்தால் (Tongue Tie) எப்படி கண்டுபிடிப்பது?",
+            "answer_ta": "நாக்கை தூக்க முடியாவிட்டால் அல்லது பேச சிரமப்பட்டால் மருத்துவரை அணுகவும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Look for a heart-shaped tongue tip or speech difficulty.",
+            "ta": "பேசுவதில் சிரமம் இருந்தால் கவனிக்கவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "speech delay",
+            "difficulty nursing",
+            "gap in lower teeth"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "Broken Tooth (Trauma)",
+        "display_questions": [
+            "Child broke front tooth",
+            "Chipped tooth fall",
+            "Ellis class fracture"
+        ],
+        "search_phrases": [
+            "broken tooth",
+            "chipped tooth",
+            "tooth fracture",
+            "fell and broke tooth"
+        ],
+        "intent_keywords": [
+            "break",
+            "chip",
+            "broke",
+            "fall",
+            "fracture"
+        ],
+        "qa": {
+            "question_en": "What to do if a child breaks a permanent tooth?",
+            "answer_en": "Find the broken piece, keep it in milk, and go to the dentist immediately. Re-attaching the piece is often possible.",
+            "question_ta": "குழந்தையின் பல் உடைந்தால் உடனே என்ன செய்ய வேண்டும்?",
+            "answer_ta": "உடைந்த துண்டை பாலில் போட்டு உடனே மருத்துவரிடம் செல்லவும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Keep the piece in milk and rush to a dentist. Time matters!",
+            "ta": "உடைந்த துண்டை பாலில் வைத்து உடனே செல்லவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "bleeding",
+            "nerve exposed",
+            "sharp edge"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "Avulsed Tooth (Knocked Out)",
+        "display_questions": [
+            "Tooth knocked out completely",
+            "Put tooth back in?",
+            "Saved knocked out tooth"
+        ],
+        "search_phrases": [
+            "knocked out tooth",
+            "avulsion",
+            "tooth fell out trauma",
+            "save tooth"
+        ],
+        "intent_keywords": [
+            "knock",
+            "out",
+            "avulse",
+            "root",
+            "socket"
+        ],
+        "qa": {
+            "question_en": "A permanent tooth got knocked out! What now?",
+            "answer_en": "Hold it by the CROWN (white part), rinse gently with water (don't scrub), and try to put it back in the socket. If not, store in MILK and see a dentist in 60 mins.",
+            "question_ta": "பல் வேரோடு விழுந்துவிட்டால் என்ன செய்வது?",
+            "answer_ta": "பல்லின் வெள்ளை பகுதியை மட்டும் தொடவும். பாலில் போட்டு 1 மணி நேரத்திற்குள் மருத்துவரிடம் செல்லவும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Time critical! Put back in socket or store in milk. Dentist < 60 mins.",
+            "ta": "மிக அவசரம்! பாலில் போட்டு உடனே ஓடுங்கள்."
+        },
+        "suggest_doctor_visit_if": [
+            "always - emergency"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "Discolored Teeth",
+        "display_questions": [
+            "Yellow teeth in kids",
+            "Antibiotic stain teeth",
+            "Fluorosis"
+        ],
+        "search_phrases": [
+            "yellow teeth",
+            "stain on teeth",
+            "fluorosis",
+            "antibiotic stain"
+        ],
+        "intent_keywords": [
+            "yellow",
+            "stain",
+            "color",
+            "fluorosis",
+            "antibiotic"
+        ],
+        "qa": {
+            "question_en": "Why are my child's teeth removing yellow/brown?",
+            "answer_en": "Causes include poor brushing, iron supplements, excess fluoride (fluorosis), or early antibiotics. A dentist can identify the cause.",
+            "question_ta": "பற்கள் ஏன் மஞ்சள் அல்லது பழுப்பு நிறமாகின்றன?",
+            "answer_ta": "சரியாக துலக்காதது, இரும்பு சத்து மருந்து அல்லது ஃப்ளோரைடு காரணமாக இருக்கலாம்."
+        },
+        "chatbot_answer_short": {
+            "en": "Could be staining, fluorosis, or plaque. Professional cleaning helps.",
+            "ta": "மருத்துவரிடம் காட்டி சுத்தம் செய்யவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "pitting on surface",
+            "aesthetic concern"
+        ]
+    },
+    {
+        "subject": "Pedodontics",
+        "topic": "Space Maintainers",
+        "display_questions": [
+            "Does my child need a spacer?",
+            "Prevent crooked teeth after extraction",
+            "Gap holder"
+        ],
+        "search_phrases": [
+            "space maintainer",
+            "spacer",
+            "gap holder",
+            "extraction follow up"
+        ],
+        "intent_keywords": [
+            "spacer",
+            "maintainer",
+            "gap",
+            "hold",
+            "extraction"
+        ],
+        "qa": {
+            "question_en": "When is a space maintainer recommended?",
+            "answer_en": "If a primary molar is lost early, a spacer holds the gap so the permanent tooth has room to erupt without crowding.",
+            "question_ta": "Space Maintainer எப்போது தேவை?",
+            "answer_ta": "கடவாய் பல் சீக்கிரம் விழுந்தால், அந்த இடத்தை காக்க இது அவசியம்."
+        },
+        "chatbot_answer_short": {
+            "en": "Essential if a back baby tooth is lost early to prevent crowding.",
+            "ta": "பின் பல் விழுந்தால் இது அவசியம்."
+        },
+        "suggest_doctor_visit_if": [
+            "tooth extracted early"
+        ]
+    },
+    {
+        "subject": "Orthodontics",
+        "topic": "Ideal Age for Braces",
+        "display_questions": [
+            "Best age for clips",
+            "When to start orthodontics",
+            "Age 7 dental check"
+        ],
+        "search_phrases": [
+            "braces age",
+            "ortho age",
+            "when to put clips",
+            "straighten teeth age"
+        ],
+        "intent_keywords": [
+            "age",
+            "when",
+            "start",
+            "braces",
+            "clip"
+        ],
+        "qa": {
+            "question_en": "What is the right age for braces?",
+            "answer_en": "First ortho checkup at age 7. Treatment usually begins between 10-14 years when most permanent teeth are present.",
+            "question_ta": "கிளிப் போட சரியான வயது என்ன?",
+            "answer_ta": "7 வயதில் பரிசோதனை செய்யவும். கிளிப் போடுவது 10-14 வயதில் தொடங்கும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Checkup at 7, treatment usually 10-14.",
+            "ta": "7 வயதில் பரிசோதிக்கவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "jaw sticking out",
+            "crowding"
+        ]
+    },
+    {
+        "subject": "Orthodontics",
+        "topic": "Invisalign vs Braces",
+        "display_questions": [
+            "Clear aligners vs metal braces",
+            "Is Invisalign good for kids?",
+            "Invisible braces cost"
+        ],
+        "search_phrases": [
+            "invisalign vs braces",
+            "clear aligners",
+            "metal braces",
+            "which is better"
+        ],
+        "intent_keywords": [
+            "invisalign",
+            "aligner",
+            "metal",
+            "clear",
+            "better"
+        ],
+        "qa": {
+            "question_en": "Are clear aligners (Invisalign) better than metal braces?",
+            "answer_en": "Aligners are invisible and removable but require discipline (wear 22hrs/day). Metal braces are fixed and often work faster for complex cases.",
+            "question_ta": "கண்ணாடி கிளிப் (Aligners) அல்லது மெட்டல் கிளிப் - எது சிறந்தது?",
+            "answer_ta": "Aligners வெளியே தெரியாது, ஆனால் கழற்றி மாட்ட வேண்டும். மெட்டல் கிளிப் சிக்கலான பற்களுக்கு சிறந்தது."
+        },
+        "chatbot_answer_short": {
+            "en": "Aligners look better; Braces often work faster. Depends on discipline.",
+            "ta": "அழகிற்கு அலைனர்ஸ். வேகத்திற்கு மெட்டல் கிளிப்."
+        },
+        "suggest_doctor_visit_if": [
+            "aesthetic concern"
+        ]
+    },
+    {
+        "subject": "Orthodontics",
+        "topic": "Pain with Braces",
+        "display_questions": [
+            "Do braces hurt?",
+            "Pain after tightening braces",
+            "Ulcers from braces wires"
+        ],
+        "search_phrases": [
+            "braces pain",
+            "wire hurting",
+            "tightening pain",
+            "ortho pain"
+        ],
+        "intent_keywords": [
+            "pain",
+            "hurt",
+            "tight",
+            "wire",
+            "sore"
+        ],
+        "qa": {
+            "question_en": "Do braces hurt?",
+            "answer_en": "You may feel soreness for 3-4 days after adjustments. Use orthodontic wax on poking wires and eat soft foods.",
+            "question_ta": "கிளிப் போட்டால் வலிக்குமா?",
+            "answer_ta": "டைட் செய்த பிறகு 2-3 நாட்கள் வலி இருக்கலாம். மென்மையான உணவு சாப்பிடவும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Mild soreness is normal. Use wax for poking wires.",
+            "ta": "லேசான வலி இருக்கும். பயப்பட வேண்டாம்."
+        },
+        "suggest_doctor_visit_if": [
+            "wire cutting cheek",
+            "unbearable pain"
+        ]
+    },
+    {
+        "subject": "Orthodontics",
+        "topic": "Retainers",
+        "display_questions": [
+            "Why do I need a retainer?",
+            "Lost my retainer",
+            "Teeth moved after braces"
+        ],
+        "search_phrases": [
+            "retainer importance",
+            "lost retainer",
+            "teeth shifting",
+            "wear retainer forever"
+        ],
+        "intent_keywords": [
+            "retainer",
+            "lost",
+            "moved",
+            "shift",
+            "wear"
+        ],
+        "qa": {
+            "question_en": "How long must I wear retainers?",
+            "answer_en": "Forever! (Night time mainly). Teeth have a memory and will drift back if retainers are stopped.",
+            "question_ta": "ரிடைனர் (Retainer) எவ்வளவு நாள் போட வேண்டும்?",
+            "answer_ta": "வாழ்நாள் முழுவதும் இரவு நேரத்தில் போடுவது நல்லது. இல்லையெனில் பற்கள் பழைய நிலைக்கே திரும்பும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Wear them nightly forever to keep teeth straight.",
+            "ta": "தினமும் இரவில் போடுவது முக்கியம்."
+        },
+        "suggest_doctor_visit_if": [
+            "retainer lost",
+            "retainer tight/broken"
+        ]
+    },
+    {
+        "subject": "Orthodontics",
+        "topic": "Midline Diastema (Gap)",
+        "display_questions": [
+            "Gap between front two teeth",
+            "Frenectomy needed?",
+            "Closing front gap"
+        ],
+        "search_phrases": [
+            "midline diastema",
+            "front tooth gap",
+            "frenectomy",
+            "close gap"
+        ],
+        "intent_keywords": [
+            "gap",
+            "front",
+            "diastema",
+            "frenum"
+        ],
+        "qa": {
+            "question_en": "How to close the gap between front teeth?",
+            "answer_en": "It can be closed with braces. Sometimes a thick gum muscle (frenum) causes it, requiring a small surgery (Frenectomy) before closing.",
+            "question_ta": "முன் பல் இடைவெளியை எப்படி அடைப்பது?",
+            "answer_ta": "கிளிப் போட்டு சரி செய்யலாம். சில சமயங்களில் சிறிய அறுவை சிகிச்சை தேவைப்படலாம்."
+        },
+        "chatbot_answer_short": {
+            "en": "Braces can close it. Check for high frenum attachment.",
+            "ta": "கிளிப் மூலம் சரி செய்யலாம்."
+        },
+        "suggest_doctor_visit_if": [
+            "gap increasing",
+            "speech lisp"
+        ]
+    },
+    {
+        "subject": "Periodontics",
+        "topic": "Bleeding Gums",
+        "display_questions": [
+            "Blood comes when brushing",
+            "Gums bleeding easily",
+            "Pink toothbrush"
+        ],
+        "search_phrases": [
+            "bleeding gums",
+            "blood spit",
+            "gingivitis",
+            "swollen gums"
+        ],
+        "intent_keywords": [
+            "bleed",
+            "blood",
+            "gum",
+            "gingivitis"
+        ],
+        "qa": {
+            "question_en": "Why do my gums bleed when I brush?",
+            "answer_en": "This is likely Gingivitis (gum inflammation) caused by plaque. Don't stop brushing! Brush gently and floss to clear the infection.",
+            "question_ta": "பல் துலக்கும்போது ஈறில் ரத்தம் வருவது ஏன்?",
+            "answer_ta": "ஈறுகளில் உள்ள அழுக்கால் (Plaque) இது வருகிறது. பயப்படாமல் மெதுவாக தொடர்ந்து துலக்கவும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Sign of Gingivitis. Brush and floss more, not less!",
+            "ta": "ஈறு வீக்கம். தொடர்ந்து சுத்தம் செய்யவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "loose teeth",
+            "bad breath",
+            "pain"
+        ]
+    },
+    {
+        "subject": "Periodontics",
+        "topic": "Bad Breath (Halitosis)",
+        "display_questions": [
+            "Cure for bad breath",
+            "Smelly mouth reason",
+            "Tongue cleaning"
+        ],
+        "search_phrases": [
+            "bad breath",
+            "halitosis",
+            "mouth smell",
+            "stinky breath"
+        ],
+        "intent_keywords": [
+            "breath",
+            "smell",
+            "stink",
+            "odor",
+            "halitosis"
+        ],
+        "qa": {
+            "question_en": "How to get rid of bad breath?",
+            "answer_en": "Clean your tongue daily, floss to remove food between teeth, and stay hydrated. Chronic bad breath may signal gum disease.",
+            "question_ta": "வாய் துர்நாற்றத்தை போக்குவது எப்படி?",
+            "answer_ta": "தினமும் நாக்கை சுத்தம் செய்யவும். தண்ணீர் அதிகம் குடிக்கவும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Clean tongue, floss, and drink water. Check for gum disease.",
+            "ta": "நாக்கை சுத்தம் செய்து தண்ணீர் அருந்தவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "smell persists after cleaning"
+        ]
+    },
+    {
+        "subject": "Periodontics",
+        "topic": "Professional Cleaning (Scaling)",
+        "display_questions": [
+            "Does scaling weaken teeth?",
+            "Is dental cleaning harmful?",
+            "Removing tartar"
+        ],
+        "search_phrases": [
+            "scaling side effects",
+            "cleaning weaken teeth",
+            "tartar removal",
+            "ultrasonic cleaning"
+        ],
+        "intent_keywords": [
+            "scaling",
+            "cleaning",
+            "weaken",
+            "harm",
+            "tartar"
+        ],
+        "qa": {
+            "question_en": "Does professional cleaning (Scaling) weaken teeth?",
+            "answer_en": "Myth! Scaling uses vibrations to remove tartar (hardened dirt) that brushes can't remove. It strengthens gum support, not weakens teeth.",
+            "question_ta": "பல் சுத்தம் செய்தால் (Scaling) பற்கள் பலவீனம் ஆகுமா?",
+            "answer_ta": "இல்லை! இது பற்களைச் சுற்றியுள்ள கெட்டி அழுக்கை நீக்கி, பல்லுக்கு பலம் சேர்க்கும்."
+        },
+        "chatbot_answer_short": {
+            "en": "No, it removes harmful tartar and keeps gums healthy.",
+            "ta": "இல்லை, இது ஈறுகளை பாதுகாக்கும்."
+        },
+        "suggest_doctor_visit_if": [
+            "calculus buildup",
+            "bleeding gums"
+        ]
+    },
+    {
+        "subject": "Periodontics",
+        "topic": "Receding Gums",
+        "display_questions": [
+            "Gums moving down",
+            "Longer looking teeth",
+            "Root exposed sensitivity"
+        ],
+        "search_phrases": [
+            "receding gums",
+            "gum regression",
+            "sensitive roots",
+            "long teeth"
+        ],
+        "intent_keywords": [
+            "recede",
+            "shrunk",
+            "root",
+            "exposed",
+            "long"
+        ],
+        "qa": {
+            "question_en": "Can receding gums grow back?",
+            "answer_en": "Gums cannot grow back naturally once lost. You can prevent further recession by using a soft brush and not scrubbing hard.",
+            "question_ta": "சுருங்கிய ஈறுகள் மீண்டும் வளருமா?",
+            "answer_ta": "ஈறுகள் மீண்டும் வளராது. மேலும் சுருங்காமல் இருக்க மென்மையான பிரஷ் பயன்படுத்தவும்."
+        },
+        "chatbot_answer_short": {
+            "en": "They don't grow back. Switch to a soft brush immediately.",
+            "ta": "மீண்டும் வளராது. மென்மையான பிரஷ் பயன்படுத்தவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "sensitivity",
+            "loose teeth"
+        ]
+    },
+    {
+        "subject": "Periodontics",
+        "topic": "Loose Teeth (Mobile)",
+        "display_questions": [
+            "Adult tooth shaking",
+            "Loose tooth gum disease",
+            "Splinting teeth"
+        ],
+        "search_phrases": [
+            "loose permanent tooth",
+            "shaking tooth",
+            "periodontitis",
+            "mobile tooth"
+        ],
+        "intent_keywords": [
+            "loose",
+            "shake",
+            "mobile",
+            "move"
+        ],
+        "qa": {
+            "question_en": "Why is my permanent tooth loose?",
+            "answer_en": "Loose adult teeth are mainly caused by advanced gum disease (bone loss) or trauma. See a specialist to possibly save it.",
+            "question_ta": "நிரந்தர பல் ஏன் ஆடுகிறது?",
+            "answer_ta": "ஈறு நோய் முற்றியதால் எலும்பு தேய்ந்து பல் ஆடலாம். உடனே மருத்துவரை அணுகவும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Serious sign of bone loss or trauma. See a dentist ASAP.",
+            "ta": "ஆபத்தான அறிகுறி. உடனே மருத்துவரை பார்க்கவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "any permanent tooth mobility"
+        ]
+    },
+    {
+        "subject": "Oral Medicine",
+        "topic": "Mouth Ulcers",
+        "display_questions": [
+            "Painful white sores",
+            "Canker sore remedy",
+            "Recurrent ulcers"
+        ],
+        "search_phrases": [
+            "mouth ulcer",
+            "canker sore",
+            "aphthous",
+            "mouth stress sore"
+        ],
+        "intent_keywords": [
+            "ulcer",
+            "sore",
+            "pain",
+            "white"
+        ],
+        "qa": {
+            "question_en": "Why do I keep getting mouth ulcers?",
+            "answer_en": "Stress, vitamin deficiency (B12, Iron), or sharp teeth/braces are common causes. Most heal in 7-10 days.",
+            "question_ta": "வாய் புண் அடிக்கடி வருவது ஏன்?",
+            "answer_ta": "மன அழுத்தம் அல்லது சத்து குறைபாட்டால் வரலாம். 7-10 நாட்களில் குணமாகும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Stress or vitamins. Avoid spicy food; it heals in a week.",
+            "ta": "காரம் தவிர்க்கவும். ஒரு வாரத்தில் குணமாகும்."
+        },
+        "suggest_doctor_visit_if": [
+            "lasts > 2 weeks",
+            "difficulty eating"
+        ]
+    },
+    {
+        "subject": "Oral Medicine",
+        "topic": "Candidiasis (Thrush)",
+        "display_questions": [
+            "White coating on tongue",
+            "Fungal infection mouth",
+            "Oral thrush symptoms"
+        ],
+        "search_phrases": [
+            "oral thrush",
+            "candidiasis",
+            "white tongue scrape",
+            "fungal mouth"
+        ],
+        "intent_keywords": [
+            "thrush",
+            "fungus",
+            "white",
+            "coat"
+        ],
+        "qa": {
+            "question_en": "White patch on tongue that scrapes off leaving red area?",
+            "answer_en": "This is likely Oral Thrush (Fungal infection). Common in babies, elderly, or steroid inhaler users. Requires antifungal drops.",
+            "question_ta": "நாக்கில் வெள்ளை படலம் (Thrush) இருந்தால் என்ன செய்வது?",
+            "answer_ta": "இது பூஞ்சை தொற்று. மருத்துவரிடம் மருந்து வாங்கி பயன்படுத்தவும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Likely fungal infection. See a doctor for drops.",
+            "ta": "பூஞ்சை தொற்று. மருத்துவரை பார்க்கவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "pain",
+            "bleeding",
+            "difficulty swallowing"
+        ]
+    },
+    {
+        "subject": "Oral Medicine",
+        "topic": "Geographic Tongue",
+        "display_questions": [
+            "Map like pattern on tongue",
+            "Red patches moving on tongue",
+            "Burning tongue"
+        ],
+        "search_phrases": [
+            "geographic tongue",
+            "map tongue",
+            "migratory glossitis",
+            "tongue pattern"
+        ],
+        "intent_keywords": [
+            "geographic",
+            "map",
+            "pattern",
+            "patch"
+        ],
+        "qa": {
+            "question_en": "My tongue looks like a map with red patches. Is it cancer?",
+            "answer_en": "No, it's 'Geographic Tongue'. Harmless and benign. It may burn with spicy food but needs no treatment.",
+            "question_ta": "நாக்கில் வரைபடம் போல திட்டுக்கள் உள்ளன, இது ஆபத்தா?",
+            "answer_ta": "இல்லை, இது 'Geographic Tongue'. பயப்பட தேவையில்லை. காரம் பட்டால் எரியும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Harmless condition. Avoid spicy foods if it burns.",
+            "ta": "ஆபத்தில்லை. காரம் தவிர்க்கவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "constant pain"
+        ]
+    },
+    {
+        "subject": "Oral Medicine",
+        "topic": "Fever Blisters (Herpes)",
+        "display_questions": [
+            "Cold sore on lip",
+            "Blister near mouth",
+            "Is herpes contagious?"
+        ],
+        "search_phrases": [
+            "cold sore",
+            "fever blister",
+            "herpes labialis",
+            "lip blister"
+        ],
+        "intent_keywords": [
+            "herpes",
+            "blister",
+            "cold sore",
+            "lip"
+        ],
+        "qa": {
+            "question_en": "Fluid-filled blister on the lip?",
+            "answer_en": "Likely a Cold Sore (Herpes). It is contagious! Don't touch it or share cups. Use antiviral creams early.",
+            "question_ta": "உதட்டில் நீர் கட்டி (Cold Sore) வந்தால் என்ன செய்வது?",
+            "answer_ta": "இது பரவக்கூடியது. அதை தொடாதீர்கள், மற்றவர்களுடன் பாத்திரம் பகிராதீர்கள்."
+        },
+        "chatbot_answer_short": {
+            "en": "Contagious cold sore. Don't touch or share items.",
+            "ta": "தொற்றக்கூடியது. கவனமாக இருக்கவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "lasts > 2 weeks",
+            "frequent outbreaks"
+        ]
+    },
+    {
+        "subject": "Endodontics",
+        "topic": "Root Canal Treatment (RCT)",
+        "display_questions": [
+            "Is root canal painful?",
+            "Removing tooth nerve",
+            "Saving infected tooth"
+        ],
+        "search_phrases": [
+            "root canal pain",
+            "rct",
+            "nerve removal",
+            "dead tooth"
+        ],
+        "intent_keywords": [
+            "root canal",
+            "rct",
+            "nerve",
+            "pain"
+        ],
+        "qa": {
+            "question_en": "Does a Root Canal Treatment hurt?",
+            "answer_en": "Modern RCT is painless (done under anesthesia) regarding the procedure. It actually RELIEVES the pain caused by infection.",
+            "question_ta": "வேர் சிகிச்சை (Root Canal) வலிக்குமா?",
+            "answer_ta": "இல்லை, மறுத்துப்போகும் ஊசி போடுவதால் வலிக்காது. உண்மையில் இது பல் வலியை போக்கும்."
+        },
+        "chatbot_answer_short": {
+            "en": "No, it relieves pain! It's done under anesthesia.",
+            "ta": "வலிக்காது. இது வலியை போக்கும் சிகிச்சை."
+        },
+        "suggest_doctor_visit_if": [
+            "night pain",
+            "swelling"
+        ]
+    },
+    {
+        "subject": "Endodontics",
+        "topic": "Dental Abscess",
+        "display_questions": [
+            "Pimple on gum",
+            "Pus draining from gum",
+            "Swollen face toothache"
+        ],
+        "search_phrases": [
+            "abscess",
+            "gum boil",
+            "pus gum",
+            "swollen face"
+        ],
+        "intent_keywords": [
+            "abscess",
+            "pus",
+            "swelling",
+            "boil"
+        ],
+        "qa": {
+            "question_en": "I see a pimple on my gum with pus. What is it?",
+            "answer_en": "It is a Dental Abscess (infection). It's dangerous as infection can spread. Do not pop it! See a dentist immediately.",
+            "question_ta": "ஈறில் சீழ் கட்டி வந்தால் என்ன செய்வது?",
+            "answer_ta": "இது பல் சீழ் (Abscess). ஆபத்தானது, உடனே மருத்துவரை பார்க்கவும். ஊசி போட்டு உடைக்க வேண்டாம்."
+        },
+        "chatbot_answer_short": {
+            "en": "Serious infection. See a dentist IMMEDIATELY.",
+            "ta": "ஆபத்தான தொற்று. உடனே மருத்துவரை காணவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "always - emergency"
+        ]
+    },
+    {
+        "subject": "Prosthodontics",
+        "topic": "Implants vs Bridges",
+        "display_questions": [
+            "Best way to replace missing tooth",
+            "Dental implant cost/benefit",
+            "Bridge vs Implant"
+        ],
+        "search_phrases": [
+            "implant vs bridge",
+            "replace missing tooth",
+            "best artificial tooth"
+        ],
+        "intent_keywords": [
+            "implant",
+            "bridge",
+            "missing",
+            "replace"
+        ],
+        "qa": {
+            "question_en": "Which is better: Bridge or Implant?",
+            "answer_en": "Implants are better as they don't damage neighboring teeth. Bridges require cutting innocent side teeth for support.",
+            "question_ta": "இம்பிளான்ட் (Implant) அல்லது பிரிட்ஜ் (Bridge) - எது சிறந்தது?",
+            "answer_ta": "இம்பிளான்ட் சிறந்தது, ஏனெனில் இது பக்கத்து பற்களை பாதிக்காது."
+        },
+        "chatbot_answer_short": {
+            "en": "Implant is usually best as it spares other teeth.",
+            "ta": "இம்பிளான்ட் சிறந்தது."
+        },
+        "suggest_doctor_visit_if": [
+            "missing tooth"
+        ]
+    },
+    {
+        "subject": "Prosthodontics",
+        "topic": "Denture Care",
+        "display_questions": [
+            "How to clean dentures?",
+            "Sleeping with dentures",
+            "Loose dentures"
+        ],
+        "search_phrases": [
+            "denture cleaning",
+            "sleep with denture",
+            "false teeth care"
+        ],
+        "intent_keywords": [
+            "denture",
+            "false teeth",
+            "clean",
+            "sleep"
+        ],
+        "qa": {
+            "question_en": "Can I sleep with my dentures on?",
+            "answer_en": "No. Remove them at night to let your gums breathe and prevent fungal infections. Store them in water.",
+            "question_ta": "பல் செட் போட்டுக்கொண்டு தூங்கலாமா?",
+            "answer_ta": "கூடாது. இரவில் கழற்றி தண்ணீரில் வைக்கவும். ஈறுகளுக்கு ஓய்வு தேவை."
+        },
+        "chatbot_answer_short": {
+            "en": "No, remove them at night to prevent infection.",
+            "ta": "இரவில் கழற்றி வைக்கவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "denture causes ulcer",
+            "loose fit"
+        ]
+    },
+    {
+        "subject": "Oral Surgery",
+        "topic": "Wisdom Teeth",
+        "display_questions": [
+            "When do wisdom teeth come?",
+            "Pain in back of jaw",
+            "Impacted wisdom tooth"
+        ],
+        "search_phrases": [
+            "wisdom tooth pain",
+            "third molar",
+            "impacted tooth",
+            "jaw pain back"
+        ],
+        "intent_keywords": [
+            "wisdom",
+            "third molar",
+            "back",
+            "jaw",
+            "pain"
+        ],
+        "qa": {
+            "question_en": "Do all wisdom teeth need removal?",
+            "answer_en": "Not all. Only if they are stack (impacted), causing pain, infection, or damaging the adjacent tooth.",
+            "question_ta": "ஞானப் பல்லை (Wisdom Tooth) கண்டிப்பாக எடுக்க வேண்டுமா?",
+            "answer_ta": "வலி அல்லது தொந்தரவு இருந்தால் மட்டும் எடுத்தால் போதும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Only if they cause pain or are stuck (impacted).",
+            "ta": "வலி இருந்தால் மட்டும் எடுக்கவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "pain",
+            "swelling",
+            "mouth opening reduced"
+        ]
+    },
+    {
+        "subject": "Oral Surgery",
+        "topic": "Dry Socket",
+        "display_questions": [
+            "Severe pain after tooth extraction",
+            "Empty socket pain",
+            "Dry socket treatment"
+        ],
+        "search_phrases": [
+            "dry socket",
+            "extraction pain",
+            "clot dislodged",
+            "severe post op pain"
+        ],
+        "intent_keywords": [
+            "dry socket",
+            "extraction",
+            "pain",
+            "clot"
+        ],
+        "qa": {
+            "question_en": "What is Dry Socket?",
+            "answer_en": "It happens when the blood clot dislodges after extraction, exposing bone. It causes severe throbbing pain 3-4 days later.",
+            "question_ta": "Dry Socket என்றால் என்ன?",
+            "answer_ta": "பல் எடுத்த இடத்தில் ரத்தம் உறையாமல் போனால் இது வரும். தாங்க முடியாத வலி இருக்கும்."
+        },
+        "chatbot_answer_short": {
+            "en": "Very painful condition where clot is lost. See dentist for dressing.",
+            "ta": "மிகவும் வலிக்கும். மருத்துவரிடம் மருந்து வைக்கவும்."
+        },
+        "suggest_doctor_visit_if": [
+            "severe pain 3 days after extraction"
+        ]
+    },
+    {
+        "subject": "General",
+        "topic": "X-Rays Safety",
+        "display_questions": [
+            "Are dental X-rays safe?",
+            "Radiation from dental xray",
+            "Xray during pregnancy"
+        ],
+        "search_phrases": [
+            "xray safety",
+            "dental radiation",
+            "pregnant xray"
+        ],
+        "intent_keywords": [
+            "xray",
+            "radiation",
+            "safe",
+            "pregnant"
+        ],
+        "qa": {
+            "question_en": "Are dental X-rays safe?",
+            "answer_en": "Yes, digital dental X-rays have very low radiation (less than a flight trip). Lead aprons make them safe even during pregnancy if urgent.",
+            "question_ta": "பல் X-Ray பாதுகாப்பானதா?",
+            "answer_ta": "ஆம், இதில் கதிர்வீச்சு மிகக் குறைவு. பயப்பட தேவையில்லை."
+        },
+        "chatbot_answer_short": {
+            "en": "Yes, extremely low radiation. Safe for all ages.",
+            "ta": "ஆம், மிகவும் பாதுகாப்பானது."
+        },
+        "suggest_doctor_visit_if": [
+            "always safe"
+        ]
+    }
+]

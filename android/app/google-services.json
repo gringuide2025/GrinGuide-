@@ -1,0 +1,48 @@
+{
+    "project_info": {
+        "project_number": "774047884808",
+        "firebase_url": "https://gringuide2025-f265c-default-rtdb.firebaseio.com",
+        "project_id": "gringuide2025-f265c",
+        "storage_bucket": "gringuide2025-f265c.firebasestorage.app"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:774047884808:android:64813356fd7170ac8053bd",
+                "android_client_info": {
+                    "package_name": "com.harishkanna.GrinGuide"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "774047884808-p56n4dt98oc8bfi6htluhneoil2ulimd.apps.googleusercontent.com",
+                    "client_type": 1,
+                    "android_info": {
+                        "package_name": "com.harishkanna.GrinGuide",
+                        "certificate_hash": "11914fa289fe89d198c5492ab56c296666aaa8d2"
+                    }
+                },
+                {
+                    "client_id": "774047884808-cj8u0770l0q0fsu6kjml0fsdhf7f5g55.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyDg335EbgJaaOs7JdagvXeQmzVFrVHiCPo"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "774047884808-cj8u0770l0q0fsu6kjml0fsdhf7f5g55.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}
