@@ -43,12 +43,6 @@ async function run(type, scheduleTime) {
         const parentId = data.parentId;
         if (!parentId) continue;
 
-        // --- PRODUCTION FILTER ---
-        // Only send to the specified user as requested
-        if (parentId !== "RaMKCOnYtPVnUbiwVQ41BDmrcK32") {
-            continue;
-        }
-
         const childId = doc.id;
         const childName = data.name || "Kiddo";
 
