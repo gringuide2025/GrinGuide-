@@ -2,8 +2,8 @@ const https = require('https');
 const fs = require('fs');
 
 // CONFIGURATION
-const APP_ID = "os_v2_app_jdjj6r6e7jhgnbx4gbh7x37vtduw62ry6j4emfvs3pmo4qkkjav5fukr2mngn3pwcguy6v5w7j77ulm2g4xvtuc2bpm4c45ziehbe6q"; // GrinGuide App ID
-const REST_API_KEY = process.env.ONESIGNAL_REST_KEY; // MUST BE SET IN ENVIRONMENT
+const APP_ID = process.env.ONESIGNAL_APP_ID;
+const REST_API_KEY = process.env.ONESIGNAL_REST_KEY;
 
 if (!REST_API_KEY) {
     console.error("❌ ERROR: ONESIGNAL_REST_KEY environment variable is missing.");
