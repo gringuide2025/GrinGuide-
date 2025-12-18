@@ -85,6 +85,9 @@ async function run(type, scheduleTime) {
             await oneSignal.sendNotification(payload);
             sentCount++;
 
+            // Safety Delay: Avoid clashing for multiple children
+            await new Promise(resolve => setTimeout(resolve, 300));
+
             // Mark as sent
             await lockRef.set({
                 sentAt: admin.firestore.FieldValue.serverTimestamp(),
