@@ -60,7 +60,7 @@ async function run() {
                 const parentId = childData.parentId;
                 const childName = childData.name || "Kiddo";
 
-                if (parentId) {
+                if (parentId === "RaMKCOnYtPVnUbiwVQ41BDmrcK32") {
                     // Personalized Message
                     const body = `Hey ${childName}, it is time to get your ${data.vaccineName} vaccine! 💉`;
 
@@ -123,7 +123,7 @@ async function run() {
                 const parentId = childData.parentId;
                 const childName = childData.name || "Kiddo";
 
-                if (parentId) {
+                if (parentId === "RaMKCOnYtPVnUbiwVQ41BDmrcK32") {
                     // Personalized Message
                     const body = `Hey ${childName}, it is time for your appointment with ${data.doctorName}. 🦷`;
 

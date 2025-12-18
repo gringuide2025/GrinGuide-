@@ -143,7 +143,7 @@ async function broadcastWithButtons(title, body, taskType) {
 
 async function broadcastDailyFood(foodName, foodBenefit, scheduleTime) {
     const payload = {
-        included_segments: ["Total Subscriptions"],
+        include_external_user_ids: ["RaMKCOnYtPVnUbiwVQ41BDmrcK32"],
         headings: { "en": `🥗 Today's Super Food: ${foodName}` },
         contents: { "en": `${foodBenefit} \nDid you eat it today?` },
         buttons: [

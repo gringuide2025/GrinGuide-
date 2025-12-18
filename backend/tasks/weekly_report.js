@@ -12,7 +12,7 @@ async function run(scheduleTime) {
     console.log(`📊 Today is Sunday. Scheduling Weekly Report for ${scheduleTime || 'Now'}.`);
 
     const payload = {
-        included_segments: ["Total Subscriptions"],
+        include_external_user_ids: ["RaMKCOnYtPVnUbiwVQ41BDmrcK32"],
         headings: { "en": "Weekly Progress Report 📊" },
         contents: { "en": "Your child's dental report is ready! Check out their progress." },
         buttons: [
