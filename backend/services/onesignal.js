@@ -12,10 +12,14 @@ async function sendNotification(payload) {
     }
 
     // Diagnostic info (Safe: only length and prefix)
-    const cleanKey = config.oneSignal.restKey.trim();
+    // CRITICAL: Strip quotes if user accidentally pasted them
+    const cleanKey = config.oneSignal.restKey.trim().replace(/^['"]|['"]$/g, '');
     const keyPrefix = cleanKey.substring(0, 4);
     const keyLength = cleanKey.length;
+
+    // Log Key Type AND App ID to check for mismatches
     console.log(`📡 Preparing Push (Key: ${keyPrefix}... Len: ${keyLength} Type: Basic)`);
+    console.log(`📱 Target App ID: ${payload.app_id || config.oneSignal.appId}`);
 
     const headers = {
         "Content-Type": "application/json; charset=utf-8",
