@@ -6,6 +6,7 @@ class VaccineModel {
   final String? doctorName;
   final bool isDone;
   final String childId;
+  final String parentId;
 
   VaccineModel({
     required this.id,
@@ -14,6 +15,7 @@ class VaccineModel {
     this.actualDate,
     this.isDone = false,
     required this.childId,
+    required this.parentId,
     this.doctorName,
   });
 
@@ -25,6 +27,7 @@ class VaccineModel {
       'actualDate': actualDate?.toIso8601String(),
       'isDone': isDone,
       'childId': childId,
+      'parentId': parentId,
       'doctorName': doctorName,
     };
   }
@@ -37,6 +40,7 @@ class VaccineModel {
       actualDate: map['actualDate'] != null ? DateTime.parse(map['actualDate']) : null,
       isDone: map['isDone'] ?? false,
       childId: map['childId'] ?? '',
+      parentId: map['parentId'] ?? '',
       doctorName: map['doctorName'],
     );
   }
@@ -49,6 +53,7 @@ class VaccineModel {
       actualDate: actualDate ?? this.actualDate,
       isDone: isDone ?? this.isDone,
       childId: childId,
+      parentId: parentId,
       doctorName: doctorName ?? this.doctorName,
     );
   }

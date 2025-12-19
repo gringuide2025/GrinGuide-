@@ -9,10 +9,12 @@ class DentalAppointmentModel {
   final DateTime? reminderDate;
   final bool isDone;
   final String? notes;
+  final String parentId;
 
   DentalAppointmentModel({
     required this.id,
     required this.childId,
+    required this.parentId,
     required this.purpose,
     required this.doctorName,
     required this.appointmentDate,
@@ -33,6 +35,7 @@ class DentalAppointmentModel {
       'reminderDate': reminderDate?.toIso8601String(),
       'isDone': isDone,
       'notes': notes,
+      'parentId': parentId,
     };
   }
 
@@ -46,6 +49,7 @@ class DentalAppointmentModel {
       reminderDate: map['reminderDate'] != null ? DateTime.parse(map['reminderDate']) : null,
       isDone: map['isDone'] ?? false,
       notes: map['notes'],
+      parentId: map['parentId'] ?? '',
     );
   }
 }

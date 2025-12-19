@@ -81,6 +81,7 @@ class DentalRepository {
           notes: "Routine 6-month Checkup (Age ${nextMonths/12} years)",
           purpose: "Routine Checkup (Default)",
           isDone: false,
+          parentId: child.parentId,
         );
         await _firestore.collection('dental_appointments').doc(defaultId).set(newAppt.toMap());
       }
@@ -95,6 +96,7 @@ class DentalRepository {
         notes: "Routine 6-month Checkup (Age ${nextMonths/12} years)",
         purpose: "Routine Checkup (Default)",
         isDone: false,
+        parentId: child.parentId,
       );
       await _firestore.collection('dental_appointments').doc(defaultId).set(appt.toMap());
     }
@@ -345,6 +347,7 @@ class _DentalBodyState extends ConsumerState<DentalBody> {
                      appointmentDate: selectedDate,
                      isDone: existing?.isDone ?? false,
                      notes: existing?.notes,
+                     parentId: widget.child.parentId,
                    );
                    // Create/Update use the same set() with merge usually, but repository has standard add.
                    // Let's use addAppointment which does set().

@@ -98,7 +98,8 @@ class VaccineRepository {
           id: '${idPrefix}_$safeName',
           vaccineName: name, 
           scheduledDate: dob, 
-          childId: child.id
+          childId: child.id,
+          parentId: child.parentId,
         );
       }
       
@@ -113,7 +114,8 @@ class VaccineRepository {
         id: '${idPrefix}_$safeName',
         vaccineName: name, 
         scheduledDate: date, 
-        childId: child.id
+        childId: child.id,
+        parentId: child.parentId,
       );
     }
     

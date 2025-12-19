@@ -373,7 +373,7 @@ class _DailyChecklistTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final checklistAsync = ref.watch(dailyChecklistProvider(child.id));
+    final checklistAsync = ref.watch(dailyChecklistProvider(child));
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),

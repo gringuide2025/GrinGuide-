@@ -14,8 +14,8 @@ class DashboardRepository {
 
   String get _currentDate => DateFormat('yyyy-MM-dd').format(DateTime.now());
 
-  Stream<DailyChecklistModel> getDailyChecklist(String childId) {
-    final docId = '${childId}_$_currentDate';
+  Stream<DailyChecklistModel> getDailyChecklist(ChildModel child) {
+    final docId = '${child.id}_$_currentDate';
     return _firestore.collection('daily_checklist').doc(docId).snapshots().map((doc) {
       if (doc.exists) {
         return DailyChecklistModel.fromMap(doc.data()!);
@@ -23,7 +23,8 @@ class DashboardRepository {
         // Return default empty model if not exists (UI should handle init)
         return DailyChecklistModel(
           date: _currentDate, 
-          childId: childId, 
+          childId: child.id, 
+          parentId: child.parentId,
           healthyFoodItem: _getDailyHealthyFood()
         );
       }
@@ -95,6 +96,6 @@ class DashboardRepository {
   }
 }
 
-final dailyChecklistProvider = StreamProvider.family<DailyChecklistModel, String>((ref, childId) {
-  return ref.watch(dashboardRepositoryProvider).getDailyChecklist(childId);
+final dailyChecklistProvider = StreamProvider.family<DailyChecklistModel, ChildModel>((ref, child) {
+  return ref.watch(dashboardRepositoryProvider).getDailyChecklist(child);
 });

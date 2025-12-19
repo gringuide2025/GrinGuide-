@@ -8,10 +8,12 @@ class DailyChecklistModel {
   final bool flossNight;
   final bool healthyFood;
   final String healthyFoodItem;
+  final String parentId;
 
   DailyChecklistModel({
     required this.date,
     required this.childId,
+    required this.parentId,
     this.brushMorning = false,
     this.brushNight = false,
     this.flossMorning = false,
@@ -30,6 +32,7 @@ class DailyChecklistModel {
       'flossNight': flossNight,
       'healthyFood': healthyFood,
       'healthyFoodItem': healthyFoodItem,
+      'parentId': parentId,
     };
   }
 
@@ -43,6 +46,7 @@ class DailyChecklistModel {
       flossNight: map['flossNight'] ?? false,
       healthyFood: map['healthyFood'] ?? false,
       healthyFoodItem: map['healthyFoodItem'] ?? 'Banana',
+      parentId: map['parentId'] ?? '',
     );
   }
   
@@ -62,6 +66,7 @@ class DailyChecklistModel {
       flossMorning: flossMorning ?? this.flossMorning,
       flossNight: flossNight ?? this.flossNight,
       healthyFood: healthyFood ?? this.healthyFood,
+      parentId: parentId,
     );
   }
 }
