@@ -16,8 +16,8 @@ async function run() {
     try {
         switch (taskName) {
             case 'habits':
-                // Usage: node scheduler.js --task=habits --type=brush_morning
-                await habitsTask.run(args.type, null, targetUid);
+                // Usage: node scheduler.js --task=habits --type=brush_morning [--force=true]
+                await habitsTask.run(args.type, null, targetUid, args.force === 'true' || args.force === true);
                 break;
 
             case 'food':

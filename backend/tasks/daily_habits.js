@@ -16,7 +16,7 @@ const MESSAGES = {
     brush_morning: { title: "Morning Brush ☀️", baseBody: "Time to shine!", task: "brushMorning" }
 };
 
-async function run(type, scheduleTime, targetUid) {
+async function run(type, scheduleTime, targetUid, force = false) {
     // 1. Init Firebase (if not already)
     const admin = init();
     const db = admin.firestore();
@@ -27,7 +27,7 @@ async function run(type, scheduleTime, targetUid) {
         return;
     }
 
-    console.log(`📢 Starting Personalized Broadcast for: ${config.title}${targetUid ? ' (Targeting: ' + targetUid + ')' : ''}`);
+    console.log(`📢 Starting Personalized Broadcast for: ${config.title}${targetUid ? ' (Targeting: ' + targetUid + ')' : ''} ${force ? '[FORCE MODE]' : ''}`);
 
     // 2. Fetch All Parents (Users)
     // We actually need children to know names.
@@ -56,8 +56,8 @@ async function run(type, scheduleTime, targetUid) {
         const lockRef = db.collection('scheduled_tasks').doc(lockId);
 
         const lockDoc = await lockRef.get();
-        if (lockDoc.exists && !targetUid) {
-            // Already sent for this child today (Skipped ONLY for non-test runs)
+        if (lockDoc.exists && !targetUid && !force) {
+            console.log(`⏭️ Skipping ${childName} (Already sent today)`);
             continue;
         }
 

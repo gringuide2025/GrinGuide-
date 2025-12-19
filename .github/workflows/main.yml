@@ -69,9 +69,15 @@ jobs:
           
           echo "Clock: $HOUR:$MINUTE UTC | Manual: $MANUAL"
           
-          if [[ "$MANUAL" == "morning_habits" || "$HOUR" == "01" ]]; then
+          if [[ "$MANUAL" == "morning_habits" ]]; then
+            echo "Triggering Morning Habits (Manual Force)..."
+            node scheduler.js --task=habits --type=morning_routine --force=true
+          elif [[ "$HOUR" == "01" ]]; then
             echo "Triggering Morning Habits..."
             node scheduler.js --task=habits --type=morning_routine
+          elif [[ "$MANUAL" == "night_habits" ]]; then
+            echo "Triggering Night Habits (Manual Force)..."
+            node scheduler.js --task=habits --type=night_routine --force=true
           elif [[ "$MANUAL" == "food" || ("$HOUR" == "02" && "$MINUTE" == "30") ]]; then
             echo "Triggering Daily Food..."
             node scheduler.js --task=food
