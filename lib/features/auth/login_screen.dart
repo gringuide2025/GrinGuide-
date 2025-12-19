@@ -163,7 +163,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Image.asset('assets/images/login logo.png', height: 120),
+                Image.asset('assets/images/logo.png', height: 120),
                 const SizedBox(height: 20),
                 Text(
                   "Welcome Back! ✨",
@@ -229,6 +229,24 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     TextButton(
                       onPressed: () => context.go('/signup'),
                       child: const Text('Sign Up'),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 32),
+                Column(
+                  children: [
+                    Text(
+                      "Crafted with ❤️ by",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey.shade600,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Image.asset(
+                      'assets/images/login logo.png',
+                      height: 40,
                     ),
                   ],
                 ),
