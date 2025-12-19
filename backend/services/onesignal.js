@@ -12,16 +12,14 @@ async function sendNotification(payload) {
     }
 
     // Diagnostic info (Safe: only length and prefix)
-    const keyPrefix = config.oneSignal.restKey.substring(0, 4);
-    const keyLength = config.oneSignal.restKey.length;
-    const isNewKey = config.oneSignal.restKey.startsWith('os_');
-    const authPrefix = isNewKey ? 'Bearer' : 'Basic';
-
-    console.log(`📡 Preparing Push (Key: ${keyPrefix}... Len: ${keyLength} Type: ${authPrefix})`);
+    const cleanKey = config.oneSignal.restKey.trim();
+    const keyPrefix = cleanKey.substring(0, 4);
+    const keyLength = cleanKey.length;
+    console.log(`📡 Preparing Push (Key: ${keyPrefix}... Len: ${keyLength} Type: Basic)`);
 
     const headers = {
         "Content-Type": "application/json; charset=utf-8",
-        "Authorization": `${authPrefix} ${config.oneSignal.restKey}`
+        "Authorization": `Basic ${cleanKey}`
     };
 
     // Add App ID if not present
@@ -111,16 +109,6 @@ async function sendWithSoundSegments(basePayload) {
     if (basePayload.headings) pDefault.headings = { ...basePayload.headings };
     if (basePayload.contents) pDefault.contents = { ...basePayload.contents };
 
-    pDefault.filters = [
-        { "field": "tag", "key": "notification_sound", "relation": "exists" }
-        // Logic: Actually we want "NOT EXISTS" or "Default".
-        // OneSignal "NOT EXISTS" is tricky.
-        // Easier: "notification_sound" != "sound_magic" AND != "sound_pop"... OneSignal filters limit is low.
-        // Alternative: Just send to "Total Subscriptions" and exclude others? Complex.
-        // BEST: Just send to users WTIHOUT the tag.
-        // { "field": "tag", "key": "notification_sound", "relation": "not_exists" } is not standard API?
-        // Standard API: relation: "not_exists" IS valid.
-    ];
     pDefault.filters = [
         { "field": "tag", "key": "notification_sound", "relation": "not_exists" }
     ];
