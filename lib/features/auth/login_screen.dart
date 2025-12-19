@@ -233,7 +233,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ],
                 ),
                 const SizedBox(height: 32),
-                Column(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Crafted with ❤️ by",
@@ -243,10 +244,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         fontStyle: FontStyle.italic,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(width: 8),
                     Image.asset(
                       'assets/images/login logo.png',
-                      height: 40,
+                      height: 14,
                     ),
                   ],
                 ),
