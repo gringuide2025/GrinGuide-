@@ -60,7 +60,7 @@ jobs:
           if [[ "$HOUR" == "01" ]]; then
             echo "Triggering Morning Habits..."
             node scheduler.js --task=habits --type=morning_routine
-          elif [[ "$HOUR" == "02" && "$MINUTE" == "3"* ]]; then
+          elif [[ "$HOUR" == "02" && "$MINUTE" == "30" ]]; then
             echo "Triggering Daily Food..."
             node scheduler.js --task=food
           elif [[ "$HOUR" == "02" && "$MINUTE" == "35" ]]; then
