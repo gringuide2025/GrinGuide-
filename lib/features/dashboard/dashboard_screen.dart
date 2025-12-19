@@ -396,7 +396,19 @@ class _DailyChecklistTab extends ConsumerWidget {
                  children: [
                     Column(children: [Text("Height"), Text("${child.height} cm", style: const TextStyle(fontWeight: FontWeight.bold))]),
                     Column(children: [Text("Weight"), Text("${child.weight} kg", style: const TextStyle(fontWeight: FontWeight.bold))]),
-                    Column(children: [Text("BMI"), Text(child.bmi.toStringAsFixed(1), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18))]),
+                    Column(children: [
+                      Text("BMI"), 
+                      Text(
+                        child.bmi.toStringAsFixed(1), 
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold, 
+                          fontSize: 18,
+                          color: child.bmi < 18.5 
+                              ? Colors.orange 
+                              : (child.bmi <= 25.0 ? Colors.green : Colors.red),
+                        ),
+                      ),
+                    ]),
                  ],
                ),
             ),
