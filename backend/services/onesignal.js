@@ -11,19 +11,24 @@ async function sendNotification(payload) {
         throw new Error("❌ Missing ONESIGNAL_REST_KEY env variable.");
     }
 
-    // Diagnostic info (Safe: only length and prefix)
-    // CRITICAL: Strip quotes if user accidentally pasted them
+    // 🔍 SECURITY & VALIDATION
+    // 1. Strip whitespace and quotes (common copy-paste errors)
     const cleanKey = config.oneSignal.restKey.trim().replace(/^['"]|['"]$/g, '');
-    const keyPrefix = cleanKey.substring(0, 4);
+
+    // 2. Validate Key Format (Basic check)
+    // OneSignal Keys are typically 48 chars (Legacy) or start with os_ (New)
+    // But for REST API, we MUST use 'Basic' per documentation requirements.
+
+    // Diagnostic info (NEVER Log full key)
+    const keyPrefix = cleanKey.substring(0, 5);
     const keyLength = cleanKey.length;
 
-    // Log Key Type AND App ID to check for mismatches
-    console.log(`📡 Preparing Push (Key: ${keyPrefix}... Len: ${keyLength} Type: Bearer)`);
-    console.log(`📱 Target App ID: ${payload.app_id || config.oneSignal.appId}`);
+    console.log(`📡 Preparing Push (ID: ${payload.app_id || config.oneSignal.appId})`);
+    console.log(`🔑 Auth Debug: Prefix=${keyPrefix}... Length=${keyLength} Scheme=Basic`);
 
     const headers = {
         "Content-Type": "application/json; charset=utf-8",
-        "Authorization": `Bearer ${cleanKey}`
+        "Authorization": `Basic ${cleanKey}`
     };
 
     // Add App ID if not present
@@ -48,7 +53,9 @@ async function sendNotification(payload) {
         console.error("❌ OneSignal API Error:", respData);
 
         if (error.response && error.response.status === 403) {
-            console.error("💡 TIP: This usually means your ONESIGNAL_REST_KEY is invalid or the wrong type (Make sure it is NOT the User Auth Key).");
+            console.error("💡 TIP: This usually means your ONESIGNAL_REST_KEY is invalid for this App ID, or you are using the wrong key type.");
+            console.error("   - Ensure Key matches App ID: " + payload.app_id);
+            console.error("   - Rotate Key in OneSignal -> Settings -> Keys & IDs");
         }
         throw error;
     }
