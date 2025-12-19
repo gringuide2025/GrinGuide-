@@ -14,7 +14,7 @@ async function run(scheduleTime) {
     // 2. Deterministic Selection
     // This MUST match the Flutter app logic: dayOfYear % count
     const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
-    selectedFood = foods[dayOfYear % foods.length];
+    const selectedFood = foods[dayOfYear % foods.length];
 
     console.log(`🥕 Selected (Deterministic): ${selectedFood.name}`);
 

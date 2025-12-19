@@ -99,8 +99,8 @@ async function sendWithSoundSegments(basePayload) {
         // Standard API: relation: "not_exists" IS valid.
     ];
     pDefault.filters = [
-        { "field": "tag", "key": "notification_sound", "relation": "=", "value": "sound_chime" }, // Wait, sound_chime is handled above.
-        // Actually, users who NEVER set a sound won't have the tag.
+        { "field": "tag", "key": "notification_sound", "relation": "=", "value": "sound_chime" },
+        { "operator": "OR" },
         { "field": "tag", "key": "notification_sound", "relation": "not_exists" }
     ];
     // Re-add default sound logic? 
