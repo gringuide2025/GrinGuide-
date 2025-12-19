@@ -47,8 +47,18 @@ async function run() {
         else if (sDate.isSame(nextWeek)) trigger = "In 1 Week";
 
         if (trigger) {
-            // Check Idempotency (Backend Persistent)
+            // 1. Idempotency Check (PER CHILD & TYPE)
             const todayStr = today.format('YYYY-MM-DD');
+            const lockId = `${data.childId}_vaccine_${todayStr}`;
+            const lockRef = db.collection('scheduled_tasks').doc(lockId);
+            const lockDoc = await lockRef.get();
+
+            if (lockDoc.exists) {
+                console.log(`⚠️ Reminder already sent for Vaccine ${data.vaccineName} today. Skipping.`);
+                continue;
+            }
+
+            // 2. Legacy Check
             if (data.remindersSent && data.remindersSent.includes(todayStr)) {
                 continue;
             }
@@ -84,10 +94,17 @@ async function run() {
                         }
                     });
 
-                    // Mark as sent
-                    await db.collection('vaccines').doc(doc.id).update({
+                    // Mark as sent (both in doc and global lock)
+                    const updateTask = db.collection('vaccines').doc(doc.id).update({
                         remindersSent: admin.firestore.FieldValue.arrayUnion(todayStr)
                     });
+                    const lockTask = lockRef.set({
+                        sentAt: admin.firestore.FieldValue.serverTimestamp(),
+                        childId: data.childId,
+                        parentId: parentId,
+                        type: 'vaccine'
+                    });
+                    await Promise.all([updateTask, lockTask]);
 
                     vCount++;
                 }
@@ -111,8 +128,18 @@ async function run() {
         else if (sDate.isSame(nextWeek)) trigger = "In 1 Week";
 
         if (trigger) {
-            // Check Idempotency (Backend Persistent)
+            // 1. Idempotency Check (PER CHILD & TYPE)
             const todayStr = today.format('YYYY-MM-DD');
+            const lockId = `${data.childId}_dental_${todayStr}`;
+            const lockRef = db.collection('scheduled_tasks').doc(lockId);
+            const lockDoc = await lockRef.get();
+
+            if (lockDoc.exists) {
+                console.log(`⚠️ Reminder already sent for Dental Appointment today. Skipping.`);
+                continue;
+            }
+
+            // 2. Legacy Check
             if (data.remindersSent && data.remindersSent.includes(todayStr)) {
                 continue;
             }
@@ -147,9 +174,16 @@ async function run() {
                     });
 
                     // Mark as sent
-                    await db.collection('dental_appointments').doc(doc.id).update({
+                    const updateTask = db.collection('dental_appointments').doc(doc.id).update({
                         remindersSent: admin.firestore.FieldValue.arrayUnion(todayStr)
                     });
+                    const lockTask = lockRef.set({
+                        sentAt: admin.firestore.FieldValue.serverTimestamp(),
+                        childId: data.childId,
+                        parentId: parentId,
+                        type: 'dental'
+                    });
+                    await Promise.all([updateTask, lockTask]);
 
                     dCount++;
                 }

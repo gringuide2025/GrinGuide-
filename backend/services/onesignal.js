@@ -18,9 +18,10 @@ async function sendNotification(payload) {
         payload.app_id = config.oneSignal.appId;
     }
 
-    // Ensure Deep Link to Dashboard
+    // Ensure Deep Link & Channel
     if (!payload.data) payload.data = {};
     if (!payload.data.page) payload.data.page = "/dashboard";
+    if (!payload.android_channel_id) payload.android_channel_id = "sound_chime";
 
     try {
         const response = await axios.post(API_URL, payload, { headers });
@@ -102,12 +103,9 @@ async function sendWithSoundSegments(basePayload) {
         // Standard API: relation: "not_exists" IS valid.
     ];
     pDefault.filters = [
-        { "field": "tag", "key": "notification_sound", "relation": "=", "value": "sound_chime" },
-        { "operator": "OR" },
         { "field": "tag", "key": "notification_sound", "relation": "not_exists" }
     ];
-    // Re-add default sound logic? 
-    // If they have NO tag, we want them to hear 'sound_chime' (the default).
+    // Re-add default sound logic
     pDefault.android_channel_id = 'sound_chime';
     delete pDefault.included_segments;
 
