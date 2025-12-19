@@ -101,6 +101,21 @@ class NotificationService {
         onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
     );
 
+    // Create Channels with Sounds
+    final androidPlugin = flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+    if (androidPlugin != null) {
+      final sounds = ['sound_chime', 'sound_magic', 'sound_pop', 'sound_bird', 'sound_power'];
+      for (var s in sounds) {
+        await androidPlugin.createNotificationChannel(AndroidNotificationChannel(
+          s,
+          s.replaceAll('_', ' ').toUpperCase(),
+          importance: Importance.max,
+          playSound: true,
+          sound: RawResourceAndroidNotificationSound(s),
+        ));
+      }
+    }
+
     // OneSignal Click Listener
     OneSignal.Notifications.addClickListener((event) async {
       final actionId = event.result.actionId;
