@@ -1,12 +1,19 @@
-const axios = require('axios');
 const config = require('../config');
+
+// Run initial validation
+config.validate();
 
 const API_URL = "https://onesignal.com/api/v1/notifications";
 
 async function sendNotification(payload) {
     if (!config.oneSignal.restKey) {
-        throw new Error("Missing ONESIGNAL_REST_KEY env variable");
+        throw new Error("❌ Missing ONESIGNAL_REST_KEY env variable.");
     }
+
+    // Diagnostic info (Safe: only length and prefix)
+    const keyPrefix = config.oneSignal.restKey.substring(0, 4);
+    const keyLength = config.oneSignal.restKey.length;
+    console.log(`📡 Preparing Push (Key: ${keyPrefix}... Len: ${keyLength})`);
 
     const headers = {
         "Content-Type": "application/json; charset=utf-8",
@@ -28,7 +35,12 @@ async function sendNotification(payload) {
         console.log(`✅ Push Sent (Scheduled: ${payload.delivery_time_of_day || 'Now'}): ${response.data.id}`);
         return response.data;
     } catch (error) {
-        console.error("❌ Push Failed:", error.response ? error.response.data : error.message);
+        const respData = error.response ? error.response.data : error.message;
+        console.error("❌ OneSignal API Error:", respData);
+
+        if (error.response && error.response.status === 403) {
+            console.error("💡 TIP: This usually means your ONESIGNAL_REST_KEY is invalid or the wrong type (Make sure it is NOT the User Auth Key).");
+        }
         throw error;
     }
 }

@@ -10,5 +10,13 @@ module.exports = {
         // Support file-based key for local dev and JSON-string for GitHub Actions
         credentialPath: path.join(__dirname, "serviceAccountKey.json"),
         serviceAccountJson: process.env.FIREBASE_SERVICE_ACCOUNT
+    },
+    validate() {
+        if (!this.oneSignal.restKey) {
+            console.warn("⚠️ Warning: ONESIGNAL_REST_KEY is missing from environment.");
+        }
+        if (!this.firebase.serviceAccountJson && !require('fs').existsSync(this.firebase.credentialPath)) {
+            console.warn("⚠️ Warning: Firebase credentials missing (both JSON env and file).");
+        }
     }
 };
