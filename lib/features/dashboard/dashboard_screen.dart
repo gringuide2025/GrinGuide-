@@ -138,13 +138,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
       },
       child: Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            Image.asset('assets/images/logo.png', height: 32),
-            const SizedBox(width: 8),
-            const Text("GrinGuide"),
-          ],
-        ),
+        title: const Text("GrinGuide"),
         actions: [
           IconButton(
             icon: const Icon(Icons.bar_chart),
@@ -237,10 +231,12 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                        return Padding(
                          padding: const EdgeInsets.only(right: 12),
                          child: ChoiceChip(
-                           avatar: CircleAvatar(
-                             backgroundImage: getProfileImageProvider(child.profilePhotoUrl),
-                             child: child.profilePhotoUrl == null ? const Icon(Icons.face, size: 16) : null,
-                           ),
+                            avatar: CircleAvatar(
+                              backgroundImage: getProfileImageProvider(child.profilePhotoUrl),
+                              child: child.profilePhotoUrl == null 
+                                  ? Text(child.gender == 'girl' ? '👧' : '👦', style: const TextStyle(fontSize: 14)) 
+                                  : null,
+                            ),
                            label: Text(child.name),
                            selected: isSelected,
                            onSelected: (selected) {
@@ -380,10 +376,9 @@ class _DailyChecklistTab extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Row(
-            children: [
-              Text("Daily Checklist (${DateFormat('MMM d').format(DateTime.now())})", style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-            ],
+           Text(
+            "Daily Checklist (${DateFormat('MMM d').format(DateTime.now())})", 
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)
           ),
           const SizedBox(height: 10),
           // BMI Info
@@ -421,7 +416,7 @@ class _DailyChecklistTab extends ConsumerWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                _buildActionCard(context, "Timer ⏳", Colors.blue.shade100, () => context.push('/timer')),
+                _buildActionCard(context, "Timer ⏳", Colors.blue.shade100, () => context.push('/timer', extra: activeChild)),
                 const SizedBox(width: 10),
                 _buildActionCard(context, "Find Dentist 🦷", Colors.teal.shade100, () => _launchMap(context, "pediatric dentist near me")),
                 const SizedBox(width: 10),

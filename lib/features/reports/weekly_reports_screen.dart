@@ -47,7 +47,9 @@ class WeeklyReportsScreen extends ConsumerWidget {
                   child: ListTile(
                     leading: CircleAvatar(
                       backgroundImage: getProfileImageProvider(child.profilePhotoUrl),
-                      child: child.profilePhotoUrl == null ? const Icon(Icons.person) : null,
+                      child: child.profilePhotoUrl == null 
+                          ? Text(child.gender == 'girl' ? '👧' : '👦', style: const TextStyle(fontSize: 14)) 
+                          : null,
                     ),
                     title: Text(child.name),
                     subtitle: const Text("Tap to view report"),

@@ -133,7 +133,10 @@ final router = GoRouter(
         ),
         GoRoute(
           path: '/timer',
-          builder: (context, state) => const TimerScreen(),
+          builder: (context, state) {
+            final child = state.extra as ChildModel?;
+            return TimerScreen(child: child);
+          },
         ),
         GoRoute(
           path: '/chatbot',

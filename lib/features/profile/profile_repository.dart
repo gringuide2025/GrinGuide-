@@ -58,6 +58,7 @@ class ProfileRepository {
       height: child.height,
       weight: child.weight,
       profilePhotoUrl: photoUrl,
+      gender: child.gender,
     );
 
     await _firestore.collection('children').doc(child.id).set(childWithPhoto.toMap());
@@ -77,6 +78,7 @@ class ProfileRepository {
       height: child.height,
       weight: child.weight,
       profilePhotoUrl: photoUrl,
+      gender: child.gender,
     );
      await _firestore.collection('children').doc(child.id).update(updatedChild.toMap());
   }

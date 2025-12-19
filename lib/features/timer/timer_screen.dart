@@ -2,9 +2,12 @@ import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../profile/models/child_model.dart';
+import '../../shared/utils/image_helper.dart';
 
 class TimerScreen extends StatefulWidget {
-  const TimerScreen({super.key});
+  final ChildModel? child;
+  const TimerScreen({super.key, this.child});
 
   @override
   State<TimerScreen> createState() => _TimerScreenState();
@@ -136,7 +139,7 @@ class _TimerScreenState extends State<TimerScreen> with SingleTickerProviderStat
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Brushing Timer 🦷"),
+        title: Text(widget.child != null ? "${widget.child!.name}'s Timer" : "Brushing Timer 🦷"),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {

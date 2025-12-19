@@ -25,7 +25,7 @@ class _ReportScreenState extends ConsumerState<ReportScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Weekly Report - ${widget.child.name}"),
+        title: Text("${widget.child.name}'s Report"),
         actions: [
           IconButton(
             icon: const Icon(Icons.share),
