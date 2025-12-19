@@ -91,7 +91,7 @@ async function run(type, scheduleTime, targetUid) {
             sentCount++;
 
             // Safety Delay: Avoid clashing for multiple children
-            await new Promise(resolve => setTimeout(resolve, 300));
+            await new Promise(resolve => setTimeout(resolve, 1000));
 
             // Mark as sent
             await lockRef.set({

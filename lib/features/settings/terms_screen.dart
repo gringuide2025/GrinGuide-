@@ -21,7 +21,7 @@ class TermsScreen extends StatelessWidget {
               """
 GrinGuide – Terms & Conditions
 
-Last updated: December 18, 2025
+Last updated: December 19, 2025
 
 Please read these Terms & Conditions ("Terms") carefully before using the GrinGuide mobile application (the "App"). By downloading or using the App, you agree to be bound by these Terms.
 

@@ -16,7 +16,7 @@ class PrivacyScreen extends StatelessWidget {
               """
 GrinGuide – Privacy Policy
 
-Last updated: December 18, 2025
+Last updated: December 19, 2025
 
 GrinGuide ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application (the "App"). Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the application.
 
