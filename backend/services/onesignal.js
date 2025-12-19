@@ -14,11 +14,14 @@ async function sendNotification(payload) {
     // Diagnostic info (Safe: only length and prefix)
     const keyPrefix = config.oneSignal.restKey.substring(0, 4);
     const keyLength = config.oneSignal.restKey.length;
-    console.log(`📡 Preparing Push (Key: ${keyPrefix}... Len: ${keyLength})`);
+    const isNewKey = config.oneSignal.restKey.startsWith('os_');
+    const authPrefix = isNewKey ? 'Bearer' : 'Basic';
+
+    console.log(`📡 Preparing Push (Key: ${keyPrefix}... Len: ${keyLength} Type: ${authPrefix})`);
 
     const headers = {
         "Content-Type": "application/json; charset=utf-8",
-        "Authorization": `Basic ${config.oneSignal.restKey}`
+        "Authorization": `${authPrefix} ${config.oneSignal.restKey}`
     };
 
     // Add App ID if not present
