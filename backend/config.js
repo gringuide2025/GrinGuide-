@@ -12,7 +12,11 @@ module.exports = {
         // Production (GitHub Actions): Individual secrets for maximum safety
         projectId: process.env.FIREBASE_PROJECT_ID,
         clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-        privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'), // Handle escaped newlines
+        // CRITICAL: GitHub Secrets escape \n as \\n. We must unescape.
+        // It might also be double quoted.
+        privateKey: process.env.FIREBASE_PRIVATE_KEY
+            ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n').replace(/"/g, '')
+            : undefined,
     },
     validate() {
         if (!this.oneSignal.restKey) {
