@@ -12,24 +12,10 @@ module.exports = {
         // Production (GitHub Actions): Individual secrets for maximum safety
         projectId: process.env.FIREBASE_PROJECT_ID,
         clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-        privateKey: (() => {
-            const key = process.env.FIREBASE_PRIVATE_KEY;
-            if (!key) return undefined;
-
-            // 1. Remove outer quotes if present
-            let cleanKey = key.replace(/^"|"$/g, '');
-
-            // 2. Unescape newlines (handle both \\n and \n literal text)
-            cleanKey = cleanKey.replace(/\\n/g, '\n');
-
-            // 3. Debug formatting (Safe Hash / Check)
-            const len = cleanKey.length;
-            const start = cleanKey.substring(0, 10);
-            const end = cleanKey.substring(len - 10);
-            console.log(`🔑 Private Key Loaded: Len=${len}, Start='${start}...', End='...${end}'`);
-
-            return cleanKey;
-        })(),
+        // CRITICAL: GitHub Secrets escape \n as \\n. We must unescape.
+        privateKey: process.env.FIREBASE_PRIVATE_KEY
+            ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
+            : undefined,
     },
     validate() {
         if (!this.oneSignal.restKey) {
