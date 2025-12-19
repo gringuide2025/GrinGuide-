@@ -218,8 +218,8 @@ class _ReportScreenState extends ConsumerState<ReportScreen> {
   Future<void> _exportPdf(List<Map<String, dynamic>> logs) async {
     // 1. Fetch Vaccine & Dental Data
     // We use .first to get the current snapshot of the stream
-    final vaccines = await ref.read(vaccineRepositoryProvider).getVaccines(widget.child.id).first;
-    final appointments = await ref.read(dentalRepositoryProvider).getAppointments(widget.child.id).first;
+    final vaccines = await ref.read(vaccineRepositoryProvider).getVaccines(widget.child.id, widget.child.parentId).first;
+    final appointments = await ref.read(dentalRepositoryProvider).getAppointments(widget.child.id, widget.child.parentId).first;
 
     final pdf = pw.Document();
     

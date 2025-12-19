@@ -27,7 +27,10 @@ class VaccineRepository {
   Future<void> initializeVaccinesForChild(ChildModel child) async {
     debugPrint("💉 initializeVaccinesForChild called for: ${child.name} (${child.id})");
     // Check if exists
-    final snap = await _firestore.collection('vaccines').where('childId', isEqualTo: child.id).limit(1).get();
+    final snap = await _firestore.collection('vaccines')
+        .where('childId', isEqualTo: child.id)
+        .where('parentId', isEqualTo: child.parentId)
+        .limit(1).get();
     if (snap.docs.isNotEmpty) {
        debugPrint("💉 Vaccines already exist for child. Count: ${snap.docs.length}");
        return;

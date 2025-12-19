@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'models/daily_checklist_model.dart';
+import '../profile/models/child_model.dart';
 import '../../shared/constants/healthy_foods_data.dart';
 
 final dashboardRepositoryProvider = Provider((ref) => DashboardRepository(FirebaseFirestore.instance));
