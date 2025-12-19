@@ -19,6 +19,7 @@ class _ChildEditScreenState extends ConsumerState<ChildEditScreen> {
   final _weightController = TextEditingController();
   DateTime? _dob;
   String _gender = 'boy'; // Default gender
+  bool _isSaving = false;
 
   @override
   void initState() {
@@ -41,8 +42,10 @@ class _ChildEditScreenState extends ConsumerState<ChildEditScreen> {
   }
 
   Future<void> _save() async {
-    if (_nameController.text.isEmpty || _dob == null) return;
+    if (_nameController.text.isEmpty || _dob == null || _isSaving) return;
     
+    setState(() => _isSaving = true);
+    try {
     final name = _nameController.text.trim();
     final height = double.tryParse(_heightController.text) ?? 0;
     final weight = double.tryParse(_weightController.text) ?? 0;
@@ -69,13 +72,33 @@ class _ChildEditScreenState extends ConsumerState<ChildEditScreen> {
         gender: _gender,
       );
     }
-    if (mounted) context.pop();
+    if (mounted) {
+      setState(() => _isSaving = false);
+      context.pop();
+    }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isSaving = false);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error: $e")));
+      }
+    }
   }
   
   Future<void> _delete() async {
-    if (widget.child == null) return;
-    await ref.read(profileControllerProvider.notifier).deleteChild(widget.child!.id);
-    if (mounted) context.pop();
+    if (widget.child == null || _isSaving) return;
+    setState(() => _isSaving = true);
+    try {
+      await ref.read(profileControllerProvider.notifier).deleteChild(widget.child!.id);
+      if (mounted) {
+        setState(() => _isSaving = false);
+        context.pop();
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isSaving = false);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error: $e")));
+      }
+    }
   }
 
   @override
@@ -174,8 +197,10 @@ class _ChildEditScreenState extends ConsumerState<ChildEditScreen> {
             ),
             const SizedBox(height: 32),
             ElevatedButton(
-              onPressed: _save,
-              child: Text(isEditing ? "Update Child" : "Add Child"),
+              onPressed: _isSaving ? null : _save,
+              child: _isSaving 
+                ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2))
+                : Text(isEditing ? "Update Child" : "Add Child"),
             ),
              if (isEditing) ...[
               const SizedBox(height: 16),
