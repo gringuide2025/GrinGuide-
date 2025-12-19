@@ -18,12 +18,12 @@ async function sendNotification(payload) {
     const keyLength = cleanKey.length;
 
     // Log Key Type AND App ID to check for mismatches
-    console.log(`📡 Preparing Push (Key: ${keyPrefix}... Len: ${keyLength} Type: Basic)`);
+    console.log(`📡 Preparing Push (Key: ${keyPrefix}... Len: ${keyLength} Type: Bearer)`);
     console.log(`📱 Target App ID: ${payload.app_id || config.oneSignal.appId}`);
 
     const headers = {
         "Content-Type": "application/json; charset=utf-8",
-        "Authorization": `Basic ${cleanKey}`
+        "Authorization": `Bearer ${cleanKey}`
     };
 
     // Add App ID if not present
