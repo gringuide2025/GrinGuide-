@@ -46,5 +46,7 @@ app.*.map.json
 
 # Backend related
 backend/node_modules/
+backend/*.json
+backend/*.env
 serviceAccountKey.json
 .env

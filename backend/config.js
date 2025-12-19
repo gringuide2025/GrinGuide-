@@ -7,16 +7,27 @@ module.exports = {
         restKey: process.env.ONESIGNAL_REST_KEY,
     },
     firebase: {
-        // Support file-based key for local dev and JSON-string for GitHub Actions
+        // Local dev: physical file
         credentialPath: path.join(__dirname, "serviceAccountKey.json"),
-        serviceAccountJson: process.env.FIREBASE_SERVICE_ACCOUNT
+        // Production (GitHub Actions): Individual secrets for maximum safety
+        projectId: process.env.FIREBASE_PROJECT_ID,
+        clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+        privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'), // Handle escaped newlines
     },
     validate() {
         if (!this.oneSignal.restKey) {
             console.warn("⚠️ Warning: ONESIGNAL_REST_KEY is missing from environment.");
         }
-        if (!this.firebase.serviceAccountJson && !require('fs').existsSync(this.firebase.credentialPath)) {
-            console.warn("⚠️ Warning: Firebase credentials missing (both JSON env and file).");
+
+        const hasEnvAuth = this.firebase.projectId && this.firebase.clientEmail && this.firebase.privateKey;
+        const hasFileAuth = require('fs').existsSync(this.firebase.credentialPath);
+
+        if (!hasEnvAuth && !hasFileAuth) {
+            console.warn("⚠️ Warning: Firebase credentials missing (No individual secrets OR serviceAccountKey.json found).");
+        } else if (hasEnvAuth) {
+            console.log("✅ Using secure environment secrets for Firebase authentication.");
+        } else {
+            console.log("ℹ️ Using local serviceAccountKey.json for Firebase authentication.");
         }
     }
 };

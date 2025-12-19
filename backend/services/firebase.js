@@ -7,18 +7,22 @@ function init() {
     if (initialized) return admin;
 
     try {
-        let serviceAccount;
+        let credential;
 
-        if (config.firebase.serviceAccountJson) {
-            // Priority: Load from Environment Variable (for GitHub Actions)
-            serviceAccount = JSON.parse(config.firebase.serviceAccountJson);
+        if (config.firebase.projectId && config.firebase.clientEmail && config.firebase.privateKey) {
+            // Priority: Load from individual Backend Environment Variables (Production)
+            credential = admin.credential.cert({
+                projectId: config.firebase.projectId,
+                clientEmail: config.firebase.clientEmail,
+                privateKey: config.firebase.privateKey,
+            });
         } else {
-            // Fallback: Load from Local File (for local development)
-            serviceAccount = require(config.firebase.credentialPath);
+            // Fallback: Load from Local File (Local Development)
+            credential = admin.credential.cert(require(config.firebase.credentialPath));
         }
 
         admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount)
+            credential: credential
         });
         console.log("🔥 Firebase Admin Initialized");
         initialized = true;
