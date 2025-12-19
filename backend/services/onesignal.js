@@ -39,7 +39,16 @@ async function sendNotification(payload) {
     // Ensure Deep Link & Channel
     if (!payload.data) payload.data = {};
     if (!payload.data.page) payload.data.page = "/dashboard";
-    if (!payload.android_channel_id) payload.android_channel_id = "sound_chime";
+
+    // Safety: Only set android_channel_id if specifically requested or default to null (let OS decide)
+    // If 'sound_chime' doesn't exist on the DASHBOARD, this causes 400 Error.
+    // Better to strip it if not sure, or verify it exists.
+    // For now, let's omit it from the default payload to guarantee delivery.
+    // Specifying a non-existent channel ID is a fatal error in OneSignal.
+    if (!payload.android_channel_id) {
+        // payload.android_channel_id = "sound_chime"; // CAUSING 400 ERROR
+        // Removing explicit default mapping to prevent crash.
+    }
 
     try {
         const response = await axios.post(API_URL, payload, { headers });
