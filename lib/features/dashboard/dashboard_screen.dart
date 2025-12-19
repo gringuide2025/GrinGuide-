@@ -416,7 +416,7 @@ class _DailyChecklistTab extends ConsumerWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                _buildActionCard(context, "Timer ⏳", Colors.blue.shade100, () => context.push('/timer', extra: activeChild)),
+                _buildActionCard(context, "Timer ⏳", Colors.blue.shade100, () => context.push('/timer', extra: child)),
                 const SizedBox(width: 10),
                 _buildActionCard(context, "Find Dentist 🦷", Colors.teal.shade100, () => _launchMap(context, "pediatric dentist near me")),
                 const SizedBox(width: 10),

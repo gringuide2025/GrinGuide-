@@ -26,7 +26,7 @@ We utilize **Firebase** (Google) services to provide a secure and robust experie
 
 a) Personal Data (User-Provided)
 When you register or use features of the App, we may process:
-- **Identity Data:** Name, Email address, Profile Picture (via Google Sign-In).
+- **Identity Data:** Name, Email address.
 - **Health & Profile Data:** Date of birth (for age-appropriate content), brushing/flossing habits, dental appointment dates, and vaccination records.
 - **Chat Data:** Text queries you send to the Chatbot.
 
@@ -38,7 +38,7 @@ b) Device & Usage Information
 - **Push Notification Tokens:** To send you reminders via OneSignal.
 
 c) Permissions Requested
-- **Camera & Storage:** To allow you to capture or upload a profile picture.
+- **Camera & Storage:** To allow you to upload relevant health documents if needed.
 - **Location:** To help you find nearby dentists (feature dependent).
 - **Notification Access:** To send scheduled reminders for oral hygiene habits.
 
@@ -46,8 +46,6 @@ c) Permissions Requested
 
 We use the collected data for the following purposes:
 - **Account Management:** To create and manage your account via **Firebase Authentication**.
-- **Core Functionality:** To store your habits, appointments, and progress securely using **Cloud Firestore**.
-- **Media Storage:** To store your profile picture in **Firebase Storage**.
 - **Chatbot Services:** To provide instant answers using an internal database of dental topics. (Note: Queries are processed locally on your device).
 - **Notifications:** To send timely reminders for brushing, flossing, and appointments via **OneSignal**.
 - **Reports:** To generate healthy habit reports for your viewing.

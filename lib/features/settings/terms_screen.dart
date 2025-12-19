@@ -54,7 +54,7 @@ You agree NOT to:
 
 6. Intellectual Property
 - **App Content:** All rights, title, and interest in the App (excluding user-generated content) belong to GrinGuide.
-- **User Content:** You retain ownership of your profile photos. By uploading, you grant us a license to store and display them solely for your use within the App.
+- **User Content:** You retain ownership of any data you enter into the App. By using the App, you grant us a license to store and display it solely for your use within the App.
 
 7. Termination
 We reserve the right to suspend or terminate your access to the App immediately, without prior notice, for any violation of these Terms or for any other reason.
