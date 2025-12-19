@@ -62,7 +62,7 @@ class _InsightDetailScreenState extends State<InsightDetailScreen> {
       body: Container(
         color: Colors.grey.shade50,
         child: ListView.separated(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 80),
           itemCount: topics.length,
           separatorBuilder: (c, i) => const SizedBox(height: 12),
           itemBuilder: (context, index) {

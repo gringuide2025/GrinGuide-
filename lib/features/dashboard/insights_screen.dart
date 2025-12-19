@@ -94,6 +94,7 @@ class _InsightsScreenState extends State<InsightsScreen> {
       return const Center(child: Text("No results found."));
     }
     return ListView.builder(
+      padding: const EdgeInsets.only(bottom: 80),
       itemCount: _searchResults.length,
       itemBuilder: (context, index) {
         final topic = _searchResults[index];
@@ -121,7 +122,7 @@ class _InsightsScreenState extends State<InsightsScreen> {
     
     // Manual mapping for icons/descriptions if possible, or generic
     return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 80),
       itemCount: subjects.length,
       itemBuilder: (context, index) {
         final subject = subjects[index];
