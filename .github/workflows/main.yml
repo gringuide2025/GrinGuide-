@@ -17,7 +17,21 @@ on:
     - cron: '30 4 * * 0'  # Weekly Report (10:00 AM IST - Sundays)
     - cron: '30 15 * * *' # Night Habits (9:00 PM IST)
     
-  workflow_dispatch: # Allows manual trigger for testing
+  workflow_dispatch: 
+    inputs:
+      manual_override:
+        description: 'Force run a specific task'
+        required: true
+        default: 'auto'
+        type: choice
+        options:
+          - 'auto'
+          - 'morning_habits'
+          - 'night_habits'
+          - 'food'
+          - 'vaccine'
+          - 'dental'
+          - 'weekly_report'
 
 jobs:
   notify:
@@ -39,9 +53,6 @@ jobs:
         run: npm install
 
       # --- TASK EXECUTION LOGIC ---
-      # We check the time/cron to decide which task to run 
-      # since multiple crons trigger the same job.
-      
       - name: Run Scheduled Task
         working-directory: ./backend
         env:
@@ -53,30 +64,30 @@ jobs:
         run: |
           HOUR=$(date +%H)
           MINUTE=$(date +%M)
-          DAY=$(date +%u) # 7 is Sunday
+          DAY=$(date +%u)
+          MANUAL="${{ github.event.inputs.manual_override }}"
           
-          echo "Current UTC Time: $HOUR:$MINUTE"
+          echo "Clock: $HOUR:$MINUTE UTC | Manual: $MANUAL"
           
-          if [[ "$HOUR" == "01" ]]; then
+          if [[ "$MANUAL" == "morning_habits" || "$HOUR" == "01" ]]; then
             echo "Triggering Morning Habits..."
             node scheduler.js --task=habits --type=morning_routine
-          elif [[ "$HOUR" == "02" && "$MINUTE" == "30" ]]; then
+          elif [[ "$MANUAL" == "food" || ("$HOUR" == "02" && "$MINUTE" == "30") ]]; then
             echo "Triggering Daily Food..."
             node scheduler.js --task=food
-          elif [[ "$HOUR" == "02" && "$MINUTE" == "35" ]]; then
+          elif [[ "$MANUAL" == "vaccine" || ("$HOUR" == "02" && "$MINUTE" == "35") ]]; then
             echo "Triggering Vaccine Reminders..."
             node scheduler.js --task=personal --category=vaccine
-          elif [[ "$HOUR" == "02" && "$MINUTE" == "40" ]]; then
+          elif [[ "$MANUAL" == "dental" || ("$HOUR" == "02" && "$MINUTE" == "40") ]]; then
             echo "Triggering Dental Reminders..."
             node scheduler.js --task=personal --category=dental
-          elif [[ "$HOUR" == "04" && "$DAY" == "7" ]]; then
+          elif [[ "$MANUAL" == "weekly_report" || ("$HOUR" == "04" && "$DAY" == "7") ]]; then
             echo "Triggering Weekly Report..."
             node scheduler.js --task=weekly
-          elif [[ "$HOUR" == "15" ]]; then
+          elif [[ "$MANUAL" == "night_habits" || "$HOUR" == "15" ]]; then
             echo "Triggering Night Habits..."
             node scheduler.js --task=habits --type=night_routine
           else
-            echo "Manual Trigger / Unknown Slot - Running Smoke Test for test user"
-            # Target the specific test UID provided by the user
-            node scheduler.js --task=habits --type=morning_routine --target_uid=RaMKCOnYtPVnUbiwVQ41BDmrcK32
+             echo "No matching slot. Serving as Smoke Test (Morning Routine) for Admin."
+             node scheduler.js --task=habits --type=morning_routine --target_uid=RaMKCOnYtPVnUbiwVQ41BDmrcK32
           fi
