@@ -32,7 +32,10 @@ async function sendNotification(payload) {
 
     try {
         const response = await axios.post(API_URL, payload, { headers });
-        console.log(`✅ Push Sent (Scheduled: ${payload.delivery_time_of_day || 'Now'}): ${response.data.id}`);
+        console.log(`✅ Push Sent (Scheduled: ${payload.delivery_time_of_day || 'Now'}): ID=${response.data.id}, Recipients=${response.data.recipients}`);
+        if (response.data.errors) {
+            console.warn("⚠️ OneSignal Response Warnings:", response.data.errors);
+        }
         return response.data;
     } catch (error) {
         const respData = error.response ? error.response.data : error.message;

@@ -34,11 +34,14 @@ async function run(type, scheduleTime, targetUid, force = false) {
     // Efficient way: Fetch all children, group by Parent ID.
     const kidsSnap = await db.collection('children').get();
 
+    console.log(`🔎 Found ${kidsSnap.size} children in database.`);
+
     // 3. Send Notification to each Child Individually
     let sentCount = 0;
     const todayStr = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 
     for (const doc of kidsSnap.docs) {
+        // ... (existing loop logic) ...
         const data = doc.data();
         const parentId = data.parentId;
         if (!parentId) continue;
@@ -60,6 +63,8 @@ async function run(type, scheduleTime, targetUid, force = false) {
             console.log(`⏭️ Skipping ${childName} (Already sent today)`);
             continue;
         }
+
+        // ... (payload construction) ...
 
         // Construct Personalized Body for Single Child
         const personalBody = `Hey ${childName}, ${config.baseBody.toLowerCase()}`;
@@ -89,6 +94,7 @@ async function run(type, scheduleTime, targetUid, force = false) {
         try {
             await oneSignal.sendNotification(payload);
             sentCount++;
+            console.log(`✅ Sent to ${childName} (Parent: ${parentId})`);
 
             // Safety Delay: Avoid clashing for multiple children
             await new Promise(resolve => setTimeout(resolve, 1000));
@@ -107,6 +113,11 @@ async function run(type, scheduleTime, targetUid, force = false) {
     }
 
     console.log(`✅ Sent personalized habits to ${sentCount} children.`);
+
+    // FAIL if 0 sent in FORCE/TEST mode
+    if (sentCount === 0 && (force || targetUid)) {
+        throw new Error("❌ No notifications were sent! (Database empty or all skipped?)");
+    }
 }
 
 module.exports = { run };
