@@ -12,9 +12,10 @@ class VaccineRepository {
 
   VaccineRepository(this._firestore);
 
-  Stream<List<VaccineModel>> getVaccines(String childId) {
+  Stream<List<VaccineModel>> getVaccines(String childId, String parentId) {
      return _firestore.collection('vaccines')
          .where('childId', isEqualTo: childId)
+         .where('parentId', isEqualTo: parentId)
          .snapshots()
          .map((snapshot) {
            final list = snapshot.docs.map((doc) => VaccineModel.fromMap(doc.data())).toList();

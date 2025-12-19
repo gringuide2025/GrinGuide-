@@ -184,7 +184,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                        orElse: () => children.first
                      );
                      // Fetch vaccines (using a simple workaround if stream is issue)
-                     final vaccines = await ref.read(vaccineRepositoryProvider).getVaccines(activeChild.id).first;
+                     final vaccines = await ref.read(vaccineRepositoryProvider).getVaccines(activeChild.id, activeChild.parentId).first;
                      _generateVaccinePdf(activeChild, vaccines);
                  }
               },

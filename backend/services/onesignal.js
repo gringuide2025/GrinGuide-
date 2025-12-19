@@ -36,17 +36,20 @@ async function broadcast(title, body) {
     return sendNotification({
         included_segments: ["Total Subscriptions"],
         headings: { "en": title },
-        contents: { "en": body }
+        contents: { "en": body },
+        android_channel_id: 'sound_chime'
     });
 }
 
 async function sendToUser(userId, title, body) {
     // Targeting via External User ID (which should match Firebase UID)
-    return sendNotification({
+    const basePayload = {
         include_external_user_ids: [userId],
         headings: { "en": title },
-        contents: { "en": body }
-    });
+        contents: { "en": body },
+        android_channel_id: 'sound_chime' // Default channel
+    };
+    return sendNotification(basePayload);
 }
 
 // Helper to send targeted batches for sounds

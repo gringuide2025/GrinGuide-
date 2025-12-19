@@ -16,9 +16,10 @@ class DentalRepository {
   final FirebaseFirestore _firestore;
   DentalRepository(this._firestore);
 
-  Stream<List<DentalAppointmentModel>> getAppointments(String childId) {
+  Stream<List<DentalAppointmentModel>> getAppointments(String childId, String parentId) {
     return _firestore.collection('dental_appointments')
         .where('childId', isEqualTo: childId)
+        .where('parentId', isEqualTo: parentId)
         .snapshots()
         .map((snap) {
           final list = snap.docs.map((d) => DentalAppointmentModel.fromMap(d.data())).toList();
@@ -160,7 +161,7 @@ class DentalBody extends ConsumerStatefulWidget {
 class _DentalBodyState extends ConsumerState<DentalBody> {
   @override
   Widget build(BuildContext context) {
-    final appointmentsAsync = ref.watch(dentalAppointmentsProvider(widget.child.id));
+    final appointmentsAsync = ref.watch(dentalAppointmentsProvider(widget.child));
 
     // Ensure next default appointment exists
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -364,6 +365,6 @@ class _DentalBodyState extends ConsumerState<DentalBody> {
   }
 }
 
-final dentalAppointmentsProvider = StreamProvider.family((ref, String childId) {
-  return ref.watch(dentalRepositoryProvider).getAppointments(childId);
+final dentalAppointmentsProvider = StreamProvider.family((ref, ChildModel child) {
+  return ref.watch(dentalRepositoryProvider).getAppointments(child.id, child.parentId);
 });

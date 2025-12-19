@@ -26,7 +26,7 @@ class VaccineScreen extends StatelessWidget {
                 icon: const Icon(Icons.picture_as_pdf),
                 tooltip: "Generate Report",
                 onPressed: () async {
-                   final vaccines = await ref.read(vaccineRepositoryProvider).getVaccines(child.id).first;
+                   final vaccines = await ref.read(vaccineRepositoryProvider).getVaccines(child.id, child.parentId).first;
                    _generateVaccinePdf(child, vaccines);
                 },
               );
@@ -105,7 +105,7 @@ class _VaccineBodyState extends ConsumerState<VaccineBody> {
 
   @override
   Widget build(BuildContext context) {
-    final vaccinesAsync = ref.watch(vaccinesProvider(widget.child.id));
+    final vaccinesAsync = ref.watch(vaccinesProvider(widget.child));
 
     return vaccinesAsync.when(
       data: (vaccines) {
@@ -255,6 +255,6 @@ class _VaccineBodyState extends ConsumerState<VaccineBody> {
   }
 }
 
-final vaccinesProvider = StreamProvider.family((ref, String childId) {
-  return ref.watch(vaccineRepositoryProvider).getVaccines(childId);
+final vaccinesProvider = StreamProvider.family((ref, ChildModel child) {
+  return ref.watch(vaccineRepositoryProvider).getVaccines(child.id, child.parentId);
 });
