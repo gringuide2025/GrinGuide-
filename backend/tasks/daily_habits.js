@@ -16,6 +16,37 @@ const MESSAGES = {
     brush_morning: { title: "Morning Brush ☀️", baseBody: "Time to shine!", task: "brushMorning" }
 };
 
+// Helper function to calculate tomorrow's delivery time
+function calculateDeliveryTime(scheduleTime) {
+    if (!scheduleTime) return null;
+
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    // Parse time like "7:00 AM" or "9:00 PM"
+    const [time, period] = scheduleTime.split(' ');
+    let [hours, minutes] = time.split(':').map(Number);
+
+    // Convert to 24-hour format
+    if (period === 'PM' && hours !== 12) hours += 12;
+    if (period === 'AM' && hours === 12) hours = 0;
+
+    // Convert IST to UTC (IST = UTC + 5:30)
+    hours -= 5;
+    minutes -= 30;
+    if (minutes < 0) {
+        minutes += 60;
+        hours -= 1;
+    }
+    if (hours < 0) {
+        hours += 24;
+        tomorrow.setDate(tomorrow.getDate() - 1);
+    }
+
+    tomorrow.setUTCHours(hours, minutes, 0, 0);
+    return tomorrow;
+}
+
 async function run(type, scheduleTime, targetUid, force = false) {
     // 1. Init Firebase (if not already)
     const admin = init();
@@ -82,12 +113,17 @@ async function run(type, scheduleTime, targetUid, force = false) {
                 task: config.task,
                 childId: childId, // Important: Pass childId so action knows which child!
                 page: "/dashboard",
-            }
+            },
+            android_channel_id: 'sound_chime'  // ✅ FIX: Add notification sound!
         };
 
+        // Use precise scheduling with send_after instead of delayed_option
         if (scheduleTime) {
-            payload.delayed_option = "timezone";
-            payload.delivery_time_of_day = scheduleTime;
+            const deliveryTime = calculateDeliveryTime(scheduleTime);
+            if (deliveryTime) {
+                payload.send_after = deliveryTime.toISOString();
+                console.log(`   📅 Scheduled for: ${deliveryTime.toISOString()} (${scheduleTime} IST)`);
+            }
         }
 
         // Send via OneSignal

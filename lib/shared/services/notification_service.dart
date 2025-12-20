@@ -170,53 +170,41 @@ class NotificationService {
     }
   }
 
-  // Handle Map (OneSignal + Local)
   Future<void> handleDoneActionMap(Map<String, dynamic> data) async {
     try {
+      debugPrint("🔔 Notification Action Received");
+      debugPrint("   Data: $data");
+      
       String? childId = data['childId'];
       final String? task = data['task']; 
 
       if (task == null) {
-        debugPrint("Cannot mark done: Task missing in payload.");
+        debugPrint("❌ Cannot mark done: Task missing in payload.");
         return;
       }
 
-      // If childId is missing (broadcast notification), get the first child
+      // All notifications now include childId
       if (childId == null) {
-        debugPrint("Child ID missing in payload. Fetching first child...");
-        try {
-          final user = FirebaseAuth.instance.currentUser;
-          if (user == null) {
-            debugPrint("No user logged in");
-            return;
-          }
-          
-          final childrenSnapshot = await FirebaseFirestore.instance
-              .collection('children')
-              .where('parentId', isEqualTo: user.uid)
-              .limit(1)
-              .get();
-          
-          if (childrenSnapshot.docs.isEmpty) {
-            debugPrint("No children found for user");
-            return;
-          }
-          
-          childId = childrenSnapshot.docs.first.id;
-          debugPrint("Using first child: $childId");
-        } catch (e) {
-          debugPrint("Error fetching child: $e");
-          return;
-        }
+        debugPrint("❌ Child ID missing in payload - this shouldn't happen!");
+        debugPrint("   Data received: $data");
+        return;
       }
+      
+      debugPrint("✓ Processing action for child: $childId, task: $task");
 
       final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
       final docId = '${childId}_$today';
       
       final docRef = FirebaseFirestore.instance.collection('daily_checklist').doc(docId);
       
-      await FirebaseFirestore.instance.runTransaction((transaction) async {
-        final snapshot = await transaction.get(docRef);
+      // Use transaction with retry for better reliability
+      int retryCount = 0;
+      const maxRetries = 3;
+      
+      while (retryCount < maxRetries) {
+        try {
+          await FirebaseFirestore.instance.runTransaction((transaction) async {
+            final snapshot = await transaction.get(docRef);
         
         // Prepare update data based on task type
         Map<String, dynamic> updateData = {};
@@ -276,9 +264,29 @@ class NotificationService {
            transaction.update(docRef, updateData);
         }
       });
-      debugPrint("Action Done: $task for $childId");
+      
+      // If transaction succeeded, break the retry loop
+      break;
+      
+        } catch (e) {
+          retryCount++;
+          if (retryCount >= maxRetries) {
+            debugPrint("❌ Transaction failed after $maxRetries attempts: $e");
+            rethrow;
+          }
+          debugPrint("⚠️ Transaction attempt $retryCount failed, retrying...");
+          await Future.delayed(Duration(milliseconds: 100 * retryCount));
+        }
+      }
+      debugPrint("✅ SUCCESS: $task completed for child $childId");
+      debugPrint("   Document updated: $docId");
+      
+      // Small delay to ensure Firestore propagates before UI might refresh
+      await Future.delayed(const Duration(milliseconds: 200));
+      
     } catch (e) {
-      debugPrint("Error handling notification action: $e");
+      debugPrint("❌ ERROR handling notification action: $e");
+      debugPrint("   Task: $task, ChildId: $childId");
     }
   }
 
