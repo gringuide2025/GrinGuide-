@@ -246,8 +246,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                     const SizedBox(width: 8),
                     Image.asset(
-                      'assets/images/login logo.png',
-                      height: 14,
+                      'assets/images/SHK LOGO.png',
+                      height: 30,
                     ),
                   ],
                 ),

@@ -93,8 +93,7 @@ async function run(scheduleTime) {
                 childId: childId,  // CRITICAL: Pass childId so action knows which child!
                 foodItem: selectedFood.name,
                 page: "/dashboard"
-            },
-            android_channel_id: 'sound_chime'  // ✅ WITH SOUND!
+            }
         };
 
         // Use precise scheduling with send_after

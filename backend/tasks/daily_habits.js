@@ -113,8 +113,7 @@ async function run(type, scheduleTime, targetUid, force = false) {
                 task: config.task,
                 childId: childId, // Important: Pass childId so action knows which child!
                 page: "/dashboard",
-            },
-            android_channel_id: 'sound_chime'  // ✅ FIX: Add notification sound!
+            }
         };
 
         // Use precise scheduling with send_after instead of delayed_option

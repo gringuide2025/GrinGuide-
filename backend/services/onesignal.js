@@ -109,7 +109,6 @@ async function sendWithSoundSegments(basePayload) {
         p.filters = [
             { "field": "tag", "key": "notification_sound", "relation": "=", "value": sound }
         ];
-        p.android_channel_id = sound; // Crucial: Plays the sound!
 
         // Remove included_segments if we use filters
         delete p.included_segments;
@@ -132,8 +131,6 @@ async function sendWithSoundSegments(basePayload) {
     pDefault.filters = [
         { "field": "tag", "key": "notification_sound", "relation": "not_exists" }
     ];
-    // Re-add default sound logic
-    pDefault.android_channel_id = 'sound_chime';
     delete pDefault.included_segments;
 
     try {

@@ -41,6 +41,7 @@ class _ParentEditScreenState extends ConsumerState<ParentEditScreen> {
         FirebaseAuth.instance.currentUser?.email ?? '',
         '',
       );
+      ref.invalidate(parentProfileProvider);
       if (mounted) context.pop();
   }
 

@@ -138,7 +138,15 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
       },
       child: Scaffold(
       appBar: AppBar(
-        title: const Text("GrinGuide"),
+        title: childrenAsync.when(
+          data: (children) {
+             if (children.isEmpty) return const Text("GrinGuide");
+             final active = children.firstWhere((c) => c.id == _selectedChildId, orElse: () => children.first);
+             return Text("GrinGuide - ${active.defaultEmoji} ${active.name}");
+          },
+          loading: () => const Text("GrinGuide"),
+          error: (_,__) => const Text("GrinGuide"),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.bar_chart),
