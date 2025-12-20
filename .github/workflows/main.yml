@@ -95,10 +95,10 @@ jobs:
             
             # Morning notifications (7:00 AM, 8:00 AM, 8:05 AM, 8:10 AM)
             echo "🌞 Scheduling Morning Routine (7:00 AM IST)..."
-            node scheduler.js --task=habits --type=morning_routine
+            node scheduler.js --task=habits --type=morning_routine --time="7:00 AM"
             
             echo "🥗 Scheduling Daily Food (8:00 AM IST)..."
-            node scheduler.js --task=food
+            node scheduler.js --task=food --time="8:00 AM"
             
             echo "💉 Scheduling Vaccine Reminders (8:05 AM IST)..."
             node scheduler.js --task=personal --category=vaccine
@@ -116,7 +116,7 @@ jobs:
             
             # Night notification (9:00 PM)
             echo "🌙 Scheduling Night Routine (9:00 PM IST)..."
-            node scheduler.js --task=habits --type=night_routine
+            node scheduler.js --task=habits --type=night_routine --time="9:00 PM"
             
             echo "✅ All notifications scheduled successfully!"
           fi

@@ -16,13 +16,13 @@ async function run() {
     try {
         switch (taskName) {
             case 'habits':
-                // Usage: node scheduler.js --task=habits --type=brush_morning [--force=true]
-                await habitsTask.run(args.type, null, targetUid, args.force === 'true' || args.force === true);
+                // Usage: node scheduler.js --task=habits --type=morning_routine --time="7:00 AM"
+                await habitsTask.run(args.type, args.time, targetUid, args.force === 'true' || args.force === true);
                 break;
 
             case 'food':
-                // Usage: node scheduler.js --task=food
-                await foodTask.run();
+                // Usage: node scheduler.js --task=food --time="8:00 AM"
+                await foodTask.run(args.time);
                 break;
 
             case 'personal':
