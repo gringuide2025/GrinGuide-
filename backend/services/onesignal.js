@@ -84,8 +84,7 @@ async function sendToUser(userId, title, body) {
     const basePayload = {
         include_external_user_ids: [userId],
         headings: { "en": title },
-        contents: { "en": body },
-        android_channel_id: 'sound_chime' // Default channel
+        contents: { "en": body }
     };
     return sendNotification(basePayload);
 }
