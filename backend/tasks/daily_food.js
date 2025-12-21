@@ -7,10 +7,10 @@ const oneSignal = require('../services/onesignal');
 function calculateDeliveryTime(scheduleTime) {
     if (!scheduleTime) return null;
 
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
+    const now = new Date();
+    const delivery = new Date();
 
-    // Parse time like "8:00 AM"
+    // Parse time like "8:00 AM" or "9:00 PM"
     const [time, period] = scheduleTime.split(' ');
     let [hours, minutes] = time.split(':').map(Number);
 
@@ -18,20 +18,18 @@ function calculateDeliveryTime(scheduleTime) {
     if (period === 'PM' && hours !== 12) hours += 12;
     if (period === 'AM' && hours === 12) hours = 0;
 
-    // Convert IST to UTC (IST = UTC + 5:30)
-    hours -= 5;
-    minutes -= 30;
-    if (minutes < 0) {
-        minutes += 60;
-        hours -= 1;
-    }
-    if (hours < 0) {
-        hours += 24;
-        tomorrow.setDate(tomorrow.getDate() - 1);
+    // Set proposed time in IST
+    delivery.setHours(hours, minutes, 0, 0);
+
+    // If the time has already passed today, schedule for tomorrow
+    if (delivery < now) {
+        delivery.setDate(delivery.getDate() + 1);
     }
 
-    tomorrow.setUTCHours(hours, minutes, 0, 0);
-    return tomorrow;
+    // Convert IST to UTC (IST is UTC + 5:30)
+    const utcTime = new Date(delivery.getTime() - (5.5 * 60 * 60 * 1000));
+
+    return utcTime;
 }
 
 async function run(scheduleTime) {
@@ -101,8 +99,12 @@ async function run(scheduleTime) {
             const deliveryTime = calculateDeliveryTime(scheduleTime);
             if (deliveryTime) {
                 payload.send_after = deliveryTime.toISOString();
-                console.log(`   📅 Scheduled for: ${deliveryTime.toISOString()} (${scheduleTime} IST)`);
+                console.log(`   📅 [DEBUG] Setting send_after: ${payload.send_after} (IST Input: ${scheduleTime})`);
+            } else {
+                console.warn(`   ⚠️ [DEBUG] calculateDeliveryTime returned null for ${scheduleTime}`);
             }
+        } else {
+            console.log(`   🚀 [DEBUG] No scheduleTime provided, sending IMMEDIATELY`);
         }
 
         // Send via OneSignal
