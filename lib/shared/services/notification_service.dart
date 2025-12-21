@@ -171,12 +171,17 @@ class NotificationService {
   }
 
   Future<void> handleDoneActionMap(Map<String, dynamic> data) async {
+    String? childId;
+    String? task;
+    String? docId;
+    
     try {
       debugPrint("🔔 Notification Action Received");
       debugPrint("   Data: $data");
       
-      String? childId = data['childId'];
-      final String? task = data['task']; 
+      childId = data['childId'];
+      task = data['task']; 
+      final String? parentId = data['parentId'];
 
       if (task == null) {
         debugPrint("❌ Cannot mark done: Task missing in payload.");
@@ -190,12 +195,13 @@ class NotificationService {
         return;
       }
       
-      debugPrint("✓ Processing action for child: $childId, task: $task");
+      debugPrint("✓ Processing action for child: $childId, task: $task, parentId: $parentId");
 
       final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
-      final docId = '${childId}_$today';
+      docId = '${childId}_$today';
       
       final docRef = FirebaseFirestore.instance.collection('daily_checklist').doc(docId);
+      final logRef = FirebaseFirestore.instance.collection('children').doc(childId).collection('daily_logs').doc(today);
       
       // Use transaction with retry for better reliability
       int retryCount = 0;
@@ -243,13 +249,16 @@ class NotificationService {
            return; // Exit transaction/daily logic
         } else {
           // Legacy individual tasks
-          updateData = {task: true};
+          if (task != null) {
+            updateData = {task!: true};
+          }
         }
         
         if (!snapshot.exists) {
            // Create new daily checklist if not exists (only for daily tasks)
            transaction.set(docRef, {
              'childId': childId,
+             'parentId': parentId ?? '', // CRITICAL: Use parentId for security rules
              'date': today,
              ...updateData,
              // Init defaults for other fields
@@ -263,6 +272,21 @@ class NotificationService {
         } else {
            transaction.update(docRef, updateData);
         }
+
+        // Also update the daily_logs subcollection for consistency (used by reports)
+        final logUpdate = {
+          'date': today,
+          'childId': childId,
+          'brushedMorning': updateData['brushMorning'] ?? false,
+          'brushedNight': updateData['brushNight'] ?? false,
+          'flossedMorning': updateData['flossMorning'] ?? false,
+          'flossedNight': updateData['flossNight'] ?? false,
+          'ateHealthy': updateData['healthyFood'] ?? false,
+        };
+        // Remove nulls so we only update what was changed in updateData logic or keep defaults
+        logUpdate.removeWhere((key, value) => updateData[key] == null && !['date', 'childId'].contains(key));
+        
+        transaction.set(logRef, logUpdate, SetOptions(merge: true));
       });
       
       // If transaction succeeded, break the retry loop

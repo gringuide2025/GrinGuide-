@@ -89,6 +89,7 @@ async function run(scheduleTime) {
             data: {
                 task: "healthyFood",
                 childId: childId,  // CRITICAL: Pass childId so action knows which child!
+                parentId: parentId, // Added for security rules
                 foodItem: selectedFood.name,
                 page: "/dashboard"
             }

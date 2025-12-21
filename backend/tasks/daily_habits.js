@@ -110,6 +110,7 @@ async function run(type, scheduleTime, targetUid, force = false) {
             data: {
                 task: config.task,
                 childId: childId, // Important: Pass childId so action knows which child!
+                parentId: parentId, // Added for security rules & direct access
                 page: "/dashboard",
             }
         };

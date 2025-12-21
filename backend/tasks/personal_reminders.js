@@ -90,6 +90,7 @@ async function run() {
                             task: 'vaccine',
                             docId: doc.id,
                             childId: data.childId,
+                            parentId: parentId,
                             vaccineName: data.vaccineName
                         }
                     });
@@ -169,6 +170,7 @@ async function run() {
                         data: {
                             task: 'dental',
                             docId: doc.id,
+                            parentId: parentId,
                             childId: data.childId
                         }
                     });
