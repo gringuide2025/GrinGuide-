@@ -3,33 +3,33 @@ const path = require('path');
 const { init } = require('../services/firebase');
 const oneSignal = require('../services/onesignal');
 
-// Helper function to calculate tomorrow's delivery time
 function calculateDeliveryTime(scheduleTime) {
     if (!scheduleTime) return null;
 
+    // 1. Get current time in IST
     const now = new Date();
-    const delivery = new Date();
+    const istOffset = 5.5 * 60 * 60 * 1000;
+    const nowIst = new Date(now.getTime() + istOffset);
 
-    // Parse time like "8:00 AM" or "9:00 PM"
+    // 2. Parse input time (e.g., "8:00 AM" or "9:00 PM")
     const [time, period] = scheduleTime.split(' ');
     let [hours, minutes] = time.split(':').map(Number);
-
-    // Convert to 24-hour format
     if (period === 'PM' && hours !== 12) hours += 12;
     if (period === 'AM' && hours === 12) hours = 0;
 
-    // Set proposed time in IST
-    delivery.setHours(hours, minutes, 0, 0);
+    // 3. Create target time in IST (starting today)
+    const targetIst = new Date(nowIst.getTime());
+    targetIst.setUTCHours(hours, minutes, 0, 0);
 
-    // If the time has already passed today, schedule for tomorrow
-    if (delivery < now) {
-        delivery.setDate(delivery.getDate() + 1);
+    // 4. If target is in the past, move to tomorrow
+    if (targetIst < nowIst) {
+        targetIst.setUTCDate(targetIst.getUTCDate() + 1);
     }
 
-    // Convert IST to UTC (IST is UTC + 5:30)
-    const utcTime = new Date(delivery.getTime() - (5.5 * 60 * 60 * 1000));
+    // 5. Convert target IST back to real UTC for OneSignal
+    const finalUtc = new Date(targetIst.getTime() - istOffset);
 
-    return utcTime;
+    return finalUtc;
 }
 
 async function run(scheduleTime) {
