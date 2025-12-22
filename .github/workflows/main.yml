@@ -21,6 +21,7 @@ on:
           - 'vaccine'
           - 'dental'
           - 'weekly_report'
+          - 'update_alert'
 
 jobs:
   schedule_notifications:
@@ -88,6 +89,10 @@ jobs:
           elif [[ "$MANUAL" == "weekly_report" ]]; then
             echo "📢 Manual: Scheduling Weekly Report..."
             node scheduler.js --task=weekly
+          
+          elif [[ "$MANUAL" == "update_alert" ]]; then
+            echo "📢 Manual: Sending Version 9 Update Alert..."
+            node broadcast_update.js
           
           else
             # FULL DAILY SCHEDULE (default)
