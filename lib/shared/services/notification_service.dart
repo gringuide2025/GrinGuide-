@@ -67,6 +67,10 @@ class NotificationService {
     final String timeZoneName = await FlutterTimezone.getLocalTimezone();
     tz.setLocalLocation(tz.getLocation(timeZoneName));
 
+    // CRITICAL: Cancel all pending local notifications from old app versions
+    // This stops the "phantom" notifications from Version 7.
+    await flutterLocalNotificationsPlugin.cancelAll();
+
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/launcher_icon'); 
 

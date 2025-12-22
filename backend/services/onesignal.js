@@ -52,7 +52,17 @@ async function sendNotification(payload) {
 
     try {
         const response = await axios.post(API_URL, payload, { headers });
-        console.log(`✅ Push Sent (Scheduled: ${payload.delivery_time_of_day || 'Now'}): ID=${response.data.id}, Recipients=${response.data.recipients}`);
+
+        let logMsg = `✅ Push Sent. ID=${response.data.id}, Recipients=${response.data.recipients}`;
+        if (payload.delayed_option === 'timezone') {
+            logMsg += ` (Scheduled: ${payload.delivery_time_of_day} Local Time)`;
+        } else if (payload.send_after) {
+            logMsg += ` (Scheduled UTC: ${payload.send_after})`;
+        } else {
+            logMsg += ` (Sent: IMMEDIATELY)`;
+        }
+
+        console.log(logMsg);
         if (response.data.errors) {
             console.warn("⚠️ OneSignal Response Warnings:", response.data.errors);
         }

@@ -115,15 +115,12 @@ async function run(type, scheduleTime, targetUid, force = false) {
             }
         };
 
-        // Use precise scheduling with send_after instead of delayed_option
+        // Use OneSignal's built-in timezone-aware scheduling
+        // This is more robust than manual UTC math for daily habits.
         if (scheduleTime) {
-            const deliveryTime = calculateDeliveryTime(scheduleTime);
-            if (deliveryTime) {
-                payload.send_after = deliveryTime.toISOString();
-                console.log(`   📅 [DEBUG] Setting send_after: ${payload.send_after} (IST Input: ${scheduleTime})`);
-            } else {
-                console.warn(`   ⚠️ [DEBUG] calculateDeliveryTime returned null for ${scheduleTime}`);
-            }
+            payload.delayed_option = "timezone";
+            payload.delivery_time_of_day = scheduleTime;
+            console.log(`   📅 [DEBUG] Scheduled for ${scheduleTime} (User's Local Time)`);
         } else {
             console.log(`   🚀 [DEBUG] No scheduleTime provided, sending IMMEDIATELY`);
         }
