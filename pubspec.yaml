@@ -105,7 +105,28 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/images/stories/
     - assets/audio/
+    - assets/audio/stories/tommy/English/
+    - assets/audio/stories/tommy/Tamil/
+    - assets/audio/stories/sparkle/English/
+    - assets/audio/stories/sparkle/Tamil/
+    - assets/audio/stories/floss/English/
+    - assets/audio/stories/floss/Tamil/
+    - assets/audio/stories/cavity/English/
+    - assets/audio/stories/cavity/Tamil/
+    - assets/audio/stories/carrot/English/
+    - assets/audio/stories/carrot/Tamil/
+    - assets/audio/stories/ben/English/
+    - assets/audio/stories/ben/Tamil/
+    - assets/audio/stories/habit/English/
+    - assets/audio/stories/habit/Tamil/
+    - assets/audio/stories/habit/English/
+    - assets/audio/stories/habit/Tamil/
+    - assets/audio/stories/choco/English/
+    - assets/audio/stories/choco/Tamil/
+    - assets/audio/stories/five/English/
+    - assets/audio/stories/five/Tamil/
     - assets/data/
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -21,6 +21,9 @@ import '../features/chatbot/chatbot_screen.dart';
 import '../features/settings/terms_screen.dart';
 import '../features/settings/privacy_screen.dart';
 import '../features/settings/support_screen.dart';
+import '../features/dashboard/story_player_screen.dart';
+import '../features/dashboard/stories_list_screen.dart';
+import '../features/dashboard/models/story_model.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -141,6 +144,22 @@ final router = GoRouter(
         GoRoute(
           path: '/chatbot',
           builder: (context, state) => const ChatbotScreen(),
+        ),
+        GoRoute(
+          path: '/stories',
+          builder: (context, state) {
+            final child = state.extra as ChildModel;
+            return StoriesListScreen(child: child);
+          },
+        ),
+        GoRoute(
+          path: '/story-player',
+          builder: (context, state) {
+            final extra = state.extra as Map<String, dynamic>;
+            final story = extra['story'] as StoryModel;
+            final child = extra['child'] as ChildModel;
+            return StoryPlayerScreen(story: story, child: child);
+          },
         ),
       ],
     ),

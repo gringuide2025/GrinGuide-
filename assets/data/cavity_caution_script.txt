@@ -1,0 +1,19 @@
+[SCENE 1]
+English: Welcome to the Sweet Forest! It’s full of chocolates, candies, and sticky treats. They look delicious, don’t they?
+Tamil: மிட்டாய் காட்டிற்கு உங்களை வரவேற்கிறோம்! இங்கே சாக்லேட்டுகள், மிட்டாய்கள் மற்றும் ஒட்டும் தின்பண்டங்கள் நிறைந்துள்ளன. அவை சுவையாகத் தெரிகின்றன அல்லவா?
+
+[SCENE 2]
+English: But wait! When we leave the sugar on our teeth, the "Driller Monsters" appear. They love to eat the leftovers.
+Tamil: ஆனால் சற்று பொறுங்கள்! நமது பற்களில் சர்க்கரையை அப்படியே விட்டுவிட்டால், 'துளை போடும் அரக்கர்கள்' (Driller Monsters) தோன்றுவார்கள். மீதமுள்ள உணவை உண்ண அவர்கள் விரும்புகிறார்கள்.
+
+[SCENE 3]
+English: Look! They are starting to dig tiny black holes called cavities. Ouch! That’s going to hurt later.
+Tamil: பாருங்கள்! அவர்கள் பற்களில் கருப்பான சிறிய துளைகளைத் தோண்டத் தொடங்குகிறார்கள். ஐயோ! இது பிறகு வலியை உண்டாக்கும்.
+
+[SCENE 4]
+English: Quick! We need the "Shield of Foam" (toothpaste) and the "Scrubbing Hero." Let's wash those drillers away before they finish!
+Tamil: சீக்கிரம்! நமக்கு நுரை கவசம் (பற்பசை) மற்றும் துலக்கும் மாவீரன் தேவை. அவர்கள் துளையிட்டு முடிப்பதற்குள் அந்த அரக்கர்களைக் கழுவி விரட்டுவோம்!
+
+[SCENE 5]
+English: Great job! No more monsters, and no more holes. Remember: enjoy your sweets, but always brush them away!
+Tamil: சிறப்பான வேலை! இனி அரக்கர்களும் இல்லை, துளைகளும் இல்லை. நினைவில் கொள்ளுங்கள்: மிட்டாய்களைச் சாப்பிடுங்கள், ஆனால் எப்போதும் பற்களைத் துலக்க மறக்காதீர்கள்!

@@ -1,6 +1,7 @@
 const { init } = require('../services/firebase');
 const oneSignal = require('../services/onesignal');
 const moment = require('moment');
+const { formatTimeForOneSignal } = require('../utils/time_utils');
 
 async function run() {
     const admin = init();
@@ -85,7 +86,7 @@ async function run() {
                         ],
                         // Schedule for 8:05 AM User's Time
                         delayed_option: "timezone",
-                        delivery_time_of_day: "8:05 AM",
+                        delivery_time_of_day: formatTimeForOneSignal("8:05 AM"),
                         data: {
                             task: 'vaccine',
                             docId: doc.id,
@@ -166,7 +167,7 @@ async function run() {
                         ],
                         // Schedule for 8:10 AM User's Time
                         delayed_option: "timezone",
-                        delivery_time_of_day: "8:10 AM",
+                        delivery_time_of_day: formatTimeForOneSignal("8:10 AM"),
                         data: {
                             task: 'dental',
                             docId: doc.id,

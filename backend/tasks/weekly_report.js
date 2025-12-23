@@ -1,5 +1,6 @@
 const oneSignal = require('../services/onesignal');
 const moment = require('moment');
+const { formatTimeForOneSignal } = require('../utils/time_utils');
 
 async function run(scheduleTime) {
     // Only run on Sunday (0)
@@ -26,7 +27,7 @@ async function run(scheduleTime) {
 
     if (scheduleTime) {
         payload.delayed_option = "timezone";
-        payload.delivery_time_of_day = scheduleTime;
+        payload.delivery_time_of_day = formatTimeForOneSignal(scheduleTime);
     }
 
     try {

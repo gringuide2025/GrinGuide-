@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import '../../shared/services/notification_service.dart';
+import '../../shared/utils/date_input_formatter.dart';
 import '../profile/models/child_model.dart';
 import 'models/dental_appointment_model.dart';
 import 'eruption_chart_screen.dart';
@@ -307,6 +309,9 @@ class _DentalBodyState extends ConsumerState<DentalBody> {
   void _showAddAppointmentDialog(BuildContext context, [DentalAppointmentModel? existing]) {
     final doctorController = TextEditingController(text: existing?.doctorName);
     final purposeController = TextEditingController(text: existing?.purpose);
+    final dateController = TextEditingController(
+      text: existing != null ? DateFormat('dd/MM/yyyy').format(existing.appointmentDate) : ""
+    );
     DateTime selectedDate = existing?.appointmentDate ?? DateTime.now().add(const Duration(days: 1));
 
     showDialog(
@@ -320,32 +325,55 @@ class _DentalBodyState extends ConsumerState<DentalBody> {
               children: [
                 TextField(controller: doctorController, decoration: const InputDecoration(labelText: "Doctor Name")),
                 TextField(controller: purposeController, decoration: const InputDecoration(labelText: "Purpose")),
-                const SizedBox(height: 10),
-                ListTile(
-                  title: Text(DateFormat.yMMMd().format(selectedDate)),
-                  trailing: const Icon(Icons.calendar_today),
-                  onTap: () async {
-                    final d = await showDatePicker(
-                      context: context, 
-                      initialDate: selectedDate, 
-                      firstDate: DateTime.now().subtract(const Duration(days: 365)), // Allow past for corrections
-                      lastDate: DateTime.now().add(const Duration(days: 365*5))
-                    );
-                    if(d!=null) setDialogState(() => selectedDate = d);
-                  },
-                )
+                TextField(
+                  controller: dateController,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    DateInputFormatter(),
+                  ],
+                  decoration: InputDecoration(
+                    labelText: "Date (DD/MM/YYYY)",
+                    hintText: "DD/MM/YYYY",
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.calendar_today),
+                      onPressed: () async {
+                        final d = await showDatePicker(
+                          context: context, 
+                          initialDate: selectedDate, 
+                          firstDate: DateTime.now().subtract(const Duration(days: 365)),
+                          lastDate: DateTime.now().add(const Duration(days: 365*5))
+                        );
+                        if(d != null) {
+                          setDialogState(() {
+                            selectedDate = d;
+                            dateController.text = DateFormat('dd/MM/yyyy').format(d);
+                          });
+                        }
+                      },
+                    ),
+                  ),
+                ),
               ],
             ),
             actions: [
               TextButton(onPressed: () => context.pop(), child: const Text("Cancel")),
               ElevatedButton(
                 onPressed: () {
+                   DateTime? finalDate;
+                   try {
+                     finalDate = DateFormat('dd/MM/yyyy').parse(dateController.text);
+                   } catch (e) {
+                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Invalid Date Format! Use DD/MM/YYYY")));
+                     return;
+                   }
+
                    final appt = DentalAppointmentModel(
                      id: existing?.id ?? const Uuid().v4(),
                      childId: widget.child.id,
                      doctorName: doctorController.text,
                      purpose: purposeController.text,
-                     appointmentDate: selectedDate,
+                     appointmentDate: finalDate,
                      isDone: existing?.isDone ?? false,
                      notes: existing?.notes,
                      parentId: widget.child.parentId,

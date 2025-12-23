@@ -2,6 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const { init } = require('../services/firebase');
 const oneSignal = require('../services/onesignal');
+const { formatTimeForOneSignal } = require('../utils/time_utils');
+
+
 
 function calculateDeliveryTime(scheduleTime) {
     if (!scheduleTime) return null;
@@ -12,10 +15,8 @@ function calculateDeliveryTime(scheduleTime) {
     const nowIst = new Date(now.getTime() + istOffset);
 
     // 2. Parse input time (e.g., "8:00 AM" or "9:00 PM")
-    const [time, period] = scheduleTime.split(' ');
-    let [hours, minutes] = time.split(':').map(Number);
-    if (period === 'PM' && hours !== 12) hours += 12;
-    if (period === 'AM' && hours === 12) hours = 0;
+    const formatted = formatTimeForOneSignal(scheduleTime);
+    const [hours, minutes] = formatted.split(':').map(Number);
 
     // 3. Create target time in IST (starting today)
     const targetIst = new Date(nowIst.getTime());
@@ -98,8 +99,8 @@ async function run(scheduleTime) {
         // Use OneSignal's built-in timezone-aware scheduling
         if (scheduleTime) {
             payload.delayed_option = "timezone";
-            payload.delivery_time_of_day = scheduleTime;
-            console.log(`   📅 [DEBUG] Scheduled for ${scheduleTime} (User's Local Time)`);
+            payload.delivery_time_of_day = formatTimeForOneSignal(scheduleTime);
+            console.log(`   📅 [DEBUG] Scheduled for ${payload.delivery_time_of_day} (User's Local Time)`);
         } else {
             console.log(`   🚀 [DEBUG] No scheduleTime provided, sending IMMEDIATELY`);
         }

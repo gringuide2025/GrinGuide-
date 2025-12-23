@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/services.dart';
+import '../../shared/utils/date_input_formatter.dart';
 import 'models/child_model.dart';
 import 'profile_controller.dart';
 
@@ -17,6 +19,7 @@ class _ChildEditScreenState extends ConsumerState<ChildEditScreen> {
   final _nameController = TextEditingController();
   final _heightController = TextEditingController();
   final _weightController = TextEditingController();
+  final _dobController = TextEditingController();
   DateTime? _dob;
   String _gender = 'boy'; // Default gender
   bool _isSaving = false;
@@ -29,6 +32,7 @@ class _ChildEditScreenState extends ConsumerState<ChildEditScreen> {
       _heightController.text = widget.child!.height.toString();
       _weightController.text = widget.child!.weight.toString();
       _dob = widget.child!.dob;
+      _dobController.text = DateFormat('dd/MM/yyyy').format(_dob!);
       _gender = widget.child!.gender;
     }
   }
@@ -38,11 +42,20 @@ class _ChildEditScreenState extends ConsumerState<ChildEditScreen> {
     _nameController.dispose();
     _heightController.dispose();
     _weightController.dispose();
+    _dobController.dispose();
     super.dispose();
   }
 
   Future<void> _save() async {
-    if (_nameController.text.isEmpty || _dob == null || _isSaving) return;
+    if (_nameController.text.isEmpty || _dobController.text.isEmpty || _isSaving) return;
+    
+    DateTime? finalDob;
+    try {
+      finalDob = DateFormat('dd/MM/yyyy').parse(_dobController.text);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Invalid Date! Use DD/MM/YYYY")));
+      return;
+    }
     
     setState(() => _isSaving = true);
     try {
@@ -54,7 +67,7 @@ class _ChildEditScreenState extends ConsumerState<ChildEditScreen> {
       // Add
       await ref.read(profileControllerProvider.notifier).addChild(
         name: name,
-        dob: _dob!,
+        dob: finalDob,
         height: height,
         weight: weight,
         gender: _gender,
@@ -65,7 +78,7 @@ class _ChildEditScreenState extends ConsumerState<ChildEditScreen> {
         id: widget.child!.id,
         parentId: widget.child!.parentId,
         name: name,
-        dob: _dob!,
+        dob: finalDob,
         height: height,
         weight: weight,
         currentPhotoUrl: widget.child!.profilePhotoUrl,
@@ -161,19 +174,34 @@ class _ChildEditScreenState extends ConsumerState<ChildEditScreen> {
               decoration: const InputDecoration(labelText: "Child Name", prefixIcon: Icon(Icons.person)),
             ),
             const SizedBox(height: 16),
-            ListTile(
-              title: Text(_dob == null ? "Select Date of Birth" : "DOB: ${DateFormat.yMMMd().format(_dob!)}"),
-              trailing: const Icon(Icons.calendar_today),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12), side: const BorderSide(color: Colors.grey)),
-              onTap: () async {
-                final date = await showDatePicker(
-                  context: context,
-                  initialDate: _dob ?? DateTime.now(),
-                  firstDate: DateTime(2000),
-                  lastDate: DateTime.now(),
-                );
-                if (date != null) setState(() => _dob = date);
-              },
+            TextFormField(
+              controller: _dobController,
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                DateInputFormatter(),
+              ],
+              decoration: InputDecoration(
+                labelText: "Date of Birth (DD/MM/YYYY)",
+                prefixIcon: const Icon(Icons.calendar_today),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.calendar_month),
+                  onPressed: () async {
+                    final date = await showDatePicker(
+                      context: context,
+                      initialDate: _dob ?? DateTime.now(),
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime.now(),
+                    );
+                    if (date != null) {
+                      setState(() {
+                        _dob = date;
+                        _dobController.text = DateFormat('dd/MM/yyyy').format(date);
+                      });
+                    }
+                  },
+                ),
+              ),
             ),
             const SizedBox(height: 16),
             Row(

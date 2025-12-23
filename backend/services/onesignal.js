@@ -1,5 +1,6 @@
 const config = require('../config');
 const axios = require('axios');
+const { formatTimeForOneSignal } = require('../utils/time_utils');
 
 // Run initial validation
 config.validate();
@@ -193,7 +194,7 @@ async function broadcastDailyFood(foodName, foodBenefit, scheduleTime) {
 
     if (scheduleTime) {
         payload.delayed_option = "timezone";
-        payload.delivery_time_of_day = scheduleTime;
+        payload.delivery_time_of_day = formatTimeForOneSignal(scheduleTime);
     }
 
     return sendWithSoundSegments(payload);

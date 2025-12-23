@@ -1,5 +1,6 @@
 const oneSignal = require('../services/onesignal');
 const { init } = require('../services/firebase');
+const { formatTimeForOneSignal } = require('../utils/time_utils');
 
 const MESSAGES = {
     morning_routine: {
@@ -16,6 +17,8 @@ const MESSAGES = {
     brush_morning: { title: "Morning Brush ☀️", baseBody: "Time to shine!", task: "brushMorning" }
 };
 
+
+
 function calculateDeliveryTime(scheduleTime) {
     if (!scheduleTime) return null;
 
@@ -25,10 +28,8 @@ function calculateDeliveryTime(scheduleTime) {
     const nowIst = new Date(now.getTime() + istOffset);
 
     // 2. Parse input time (e.g., "7:00 AM" or "9:00 PM")
-    const [time, period] = scheduleTime.split(' ');
-    let [hours, minutes] = time.split(':').map(Number);
-    if (period === 'PM' && hours !== 12) hours += 12;
-    if (period === 'AM' && hours === 12) hours = 0;
+    const formatted = formatTimeForOneSignal(scheduleTime);
+    const [hours, minutes] = formatted.split(':').map(Number);
 
     // 3. Create target time in IST (starting today)
     const targetIst = new Date(nowIst.getTime());
@@ -119,8 +120,8 @@ async function run(type, scheduleTime, targetUid, force = false) {
         // This is more robust than manual UTC math for daily habits.
         if (scheduleTime) {
             payload.delayed_option = "timezone";
-            payload.delivery_time_of_day = scheduleTime;
-            console.log(`   📅 [DEBUG] Scheduled for ${scheduleTime} (User's Local Time)`);
+            payload.delivery_time_of_day = formatTimeForOneSignal(scheduleTime);
+            console.log(`   📅 [DEBUG] Scheduled for ${payload.delivery_time_of_day} (User's Local Time)`);
         } else {
             console.log(`   🚀 [DEBUG] No scheduleTime provided, sending IMMEDIATELY`);
         }

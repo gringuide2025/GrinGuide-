@@ -25,6 +25,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import 'vaccine_repository.dart';
 import 'models/vaccine_model.dart';
+// import 'models/story_model.dart';
 
 class DashboardScreen extends ConsumerStatefulWidget {
   const DashboardScreen({super.key});
@@ -192,8 +193,18 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
               },
             ),
           IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () => context.push('/settings'),
+            icon: const Icon(Icons.auto_stories),
+            tooltip: 'GrinStories',
+            onPressed: () {
+              final children = childrenAsync.valueOrNull;
+              if (children != null && children.isNotEmpty) {
+                  final activeChild = children.firstWhere(
+                    (c) => c.id == _selectedChildId, 
+                    orElse: () => children.first
+                  );
+                  context.push('/stories', extra: activeChild);
+              }
+            },
           ),
         ],
       ),

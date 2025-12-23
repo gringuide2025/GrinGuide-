@@ -1,0 +1,27 @@
+[SCENE 1]
+English: Welcome to Sparkle City! A beautiful land where every tooth shines like a star. Meet Sparkle, the bravest tooth in the city.
+Tamil: மின்னும் நகரத்திற்கு உங்களை வரவேற்கிறோம்! ஒவ்வொரு பல்லும் நட்சத்திரத்தைப் போல ஜொலிக்கும் அழகான தேசம். இந்த நகரத்தின் துணிச்சலான பல்லான ‘ஸ்பார்கிள்’-ஐச் சந்தியுங்கள்.
+
+[SCENE 2]
+English: Oh no! The Sticky Sugar Monsters have arrived. They are covering the city in yellow slime and sticky goo!
+Tamil: ஐயோ! ஒட்டும் சர்க்கரை அரக்கர்கள் வந்துவிட்டனர். அவர்கள் நகரம் முழுவதும் மஞ்சள் நிற அழுக்கையும் ஒட்டும் கழிவுகளையும் பரப்புகிறார்கள்!
+
+[SCENE 3]
+English: Sparkle is losing his shine! He feels weak. The Sugar Monsters are laughing because they think they have won.
+Tamil: ஸ்பார்கிள் தனது ஜொலிப்பை இழக்கிறான்! அவன் பலவீனமாக உணர்கிறான். தாங்கள் வெற்றி பெற்றுவிட்டதாக நினைத்து சர்க்கரை அரக்கர்கள் சிரிக்கிறார்கள்.
+
+[SCENE 4]
+English: But look! A giant magic toothbrush falls from the sky. It’s the "Brush of Power"! Sparkle needs a hero to pick it up.
+Tamil: ஆனால் பாருங்கள்! வானத்திலிருந்து ஒரு ராட்சத மந்திர பல் துலக்கி விழுகிறது. அதுதான் 'சக்திவாய்ந்த துலக்கி'! அதை எடுக்க ஸ்பார்கிளுக்கு ஒரு மாவீரன் தேவை.
+
+[SCENE 5]
+English: That hero is YOU! Take the brush and move it up and down. Feel the minty bubbles blasting the monsters away!
+Tamil: அந்த மாவீரன் நீங்கள்தான்! துலக்கியை எடுத்து மேலே மற்றும் கீழே நகர்த்துங்கள். புதினா குமிழ்கள் அரக்கர்களைத் தூக்கி எறிவதை உணருங்கள்!
+
+[SCENE 6]
+English: Scrub-a-dub-dub! The monsters are running away. "We hate clean teeth!" they scream as they disappear.
+Tamil: நன்கு தேயுங்கள்! அரக்கர்கள் ஓடுகிறார்கள். "சுத்தமான பற்களைக் கண்டால் எங்களுக்குப் பிடிக்காது!" என்று அலறிக்கொண்டே அவர்கள் மறைகிறார்கள்.
+
+[SCENE 7]
+English: Look at that shine! Sparkle City is safe again. Thanks to you, every tooth is sparkling bright!
+Tamil: அந்த ஜொலிப்பைப் பாருங்கள்! மின்னும் நகரம் மீண்டும் பாதுகாப்பாக உள்ளது. உங்களுக்கு நன்றி, ஒவ்வொரு பல்லும் பிரகாசமாக மின்னுகிறது!

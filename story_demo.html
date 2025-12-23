@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tommy Story Preview</title>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Comic Sans MS', cursive;
+            color: white;
+            overflow: hidden;
+        }
+
+        #scene-container {
+            position: relative;
+            width: 80%;
+            height: 70vh;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
+            overflow: hidden;
+        }
+
+        .scene {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .active {
+            opacity: 1;
+        }
+
+        #caption-box {
+            width: 80%;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            min-height: 80px;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        #progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 5px;
+            background: cyan;
+            transition: width 0.1s linear;
+            width: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="scene-container">
+        <div id="scene1" class="scene active"></div>
+        <div id="scene2" class="scene"></div>
+        <div id="scene3" class="scene"></div>
+        <div id="scene4" class="scene"></div>
+        <div id="scene5" class="scene"></div>
+        <div id="scene6" class="scene"></div>
+        <div id="scene7" class="scene"></div>
+        <div id="progress"></div>
+    </div>
+    <div id="caption-box" id="caption">Loading...</div>
+
+    <script>
+        const scenes = [
+            { img: "file:///C:/Users/Sabari/.gemini/antigravity/brain/7a03952d-566c-4c18-b4a9-0022ff362df7/tommy_scene1_meet_tommy_1766480650520.png", text: "Hello! Meet Tommy. Tommy is a happy little boy who loves to play all day." },
+            { img: "file:///C:/Users/Sabari/.gemini/antigravity/brain/7a03952d-566c-4c18-b4a9-0022ff362df7/tommy_scene2_avoids_brushing_1766480678875.png", text: "One night, Tommy wanted to sleep without brushing his teeth." },
+            { img: "file:///C:/Users/Sabari/.gemini/antigravity/brain/7a03952d-566c-4c18-b4a9-0022ff362df7/tommy_scene3_talking_toothbrush_1766480707156.png", text: "Suddenly, the toothbrush spoke! “Hi Tommy! I’m Mr. Brush. Come on, pick me up and let's go for a ride to hunt some sugar monsters!”" },
+            { img: "file:///C:/Users/Sabari/.gemini/antigravity/brain/7a03952d-566c-4c18-b4a9-0022ff362df7/tommy_scene4_brushing_begins_1766480736657.png", text: "Tommy smiled and started brushing his teeth. Up and down… Round and round!" },
+            { img: "file:///C:/Users/Sabari/.gemini/antigravity/brain/7a03952d-566c-4c18-b4a9-0022ff362df7/tommy_scene5_germs_run_away_1766480761984.png", text: "The naughty germs ran away shouting, “Oh no! Clean teeth!”" },
+            { img: "file:///C:/Users/Sabari/.gemini/antigravity/brain/7a03952d-566c-4c18-b4a9-0022ff362df7/tommy_scene6_shiny_teeth_1766480794179.png", text: "After two minutes, Tommy’s teeth were shiny and clean. “Great job!”" },
+            { img: "file:///C:/Users/Sabari/.gemini/antigravity/brain/7a03952d-566c-4c18-b4a9-0022ff362df7/tommy_scene7_habit_1766480819890.png", text: "From that day on, Tommy brushed every morning and every night!" }
+        ];
+
+        let current = 0;
+        const duration = 5000; // 5 seconds per scene
+
+        function update() {
+            const divs = document.querySelectorAll('.scene');
+            const caption = document.getElementById('caption-box');
+            const bar = document.getElementById('progress');
+
+            divs.forEach((d, i) => {
+                d.classList.toggle('active', i === current);
+                if (i === current) d.style.backgroundImage = `url('${scenes[i].img}')`;
+            });
+
+            caption.innerText = scenes[current].text;
+
+            // Reset and animate progress bar
+            bar.style.transition = 'none';
+            bar.style.width = '0%';
+            setTimeout(() => {
+                bar.style.transition = `width ${duration}ms linear`;
+                bar.style.width = '100%';
+            }, 10);
+
+            current = (current + 1) % scenes.length;
+        }
+
+        update();
+        setInterval(update, duration);
+    </script>
+</body>
+
+</html>
