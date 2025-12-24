@@ -26,4 +26,13 @@ function formatTimeForOneSignal(scheduleTime) {
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:00`;
 }
 
-module.exports = { formatTimeForOneSignal };
+/**
+ * Returns a Date object adjusted to IST (+5:30)
+ */
+function getISTDate() {
+    const now = new Date();
+    const istOffset = 5.5 * 60 * 60 * 1000;
+    return new Date(now.getTime() + istOffset);
+}
+
+module.exports = { formatTimeForOneSignal, getISTDate };

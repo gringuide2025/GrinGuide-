@@ -1,6 +1,6 @@
-const oneSignal = require('../services/onesignal');
 const { init } = require('../services/firebase');
-const { formatTimeForOneSignal } = require('../utils/time_utils');
+const oneSignal = require('../services/onesignal');
+const { formatTimeForOneSignal, getISTDate } = require('../utils/time_utils');
 
 const MESSAGES = {
     morning_routine: {
@@ -68,7 +68,8 @@ async function run(type, scheduleTime, targetUid, force = false) {
 
     // 3. Send Notification to each Child Individually
     let sentCount = 0;
-    const todayStr = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+    const istDate = getISTDate();
+    const todayStr = istDate.toISOString().split('T')[0]; // YYYY-MM-DD in IST
 
     for (const doc of kidsSnap.docs) {
         // ... (existing loop logic) ...

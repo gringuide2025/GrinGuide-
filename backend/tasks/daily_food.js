@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { init } = require('../services/firebase');
 const oneSignal = require('../services/onesignal');
-const { formatTimeForOneSignal } = require('../utils/time_utils');
+const { formatTimeForOneSignal, getISTDate } = require('../utils/time_utils');
 
 
 
@@ -43,7 +43,9 @@ async function run(scheduleTime) {
 
     // 2. Deterministic Selection
     // This MUST match the Flutter app logic: dayOfYear % count
-    const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+    const istNow = getISTDate();
+    const startOfYear = new Date(istNow.getFullYear(), 0, 0);
+    const dayOfYear = Math.floor((istNow - startOfYear) / 1000 / 60 / 60 / 24);
     const selectedFood = foods[dayOfYear % foods.length];
 
     console.log(`🥕 Selected Food: ${selectedFood.name}`);
@@ -55,7 +57,7 @@ async function run(scheduleTime) {
 
     // 4. Send Notification to each Child Individually
     let sentCount = 0;
-    const todayStr = new Date().toISOString().split('T')[0];
+    const todayStr = istNow.toISOString().split('T')[0];
 
     for (const doc of kidsSnap.docs) {
         const data = doc.data();

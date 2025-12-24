@@ -1,7 +1,7 @@
 const { init } = require('../services/firebase');
 const oneSignal = require('../services/onesignal');
 const moment = require('moment');
-const { formatTimeForOneSignal } = require('../utils/time_utils');
+const { formatTimeForOneSignal, getISTDate } = require('../utils/time_utils');
 
 async function run() {
     const admin = init();
@@ -11,7 +11,8 @@ async function run() {
     }
     const db = admin.firestore();
 
-    const today = moment().startOf('day');
+    const istDate = getISTDate();
+    const today = moment(istDate).startOf('day');
     const tomorrow = moment().add(1, 'days').startOf('day');
     const nextWeek = moment().add(7, 'days').startOf('day');
 
