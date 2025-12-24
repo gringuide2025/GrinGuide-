@@ -2,9 +2,10 @@ name: GrinGuide Daily Notifications
 
 on:
   schedule:
-    # Run ONCE daily at night (11:30 PM IST = 18:00 UTC)
-    # Pre-schedules ALL notifications for the next day
+    # 1. Run for Habits at 11:30 PM IST (18:00 UTC)
     - cron: '0 18 * * *'
+    # 2. Run for Food & Reminders at 12:30 AM IST (19:00 UTC)
+    - cron: '0 19 * * *'
   
   workflow_dispatch:
     inputs:
@@ -50,7 +51,7 @@ jobs:
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
         run: node check_workflow_lock.js --task=daily_scheduler
 
-      - name: Schedule Tomorrow's Notifications
+      - name: Execute Split Scheduler Tasks
         working-directory: ./backend
         env:
           ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
@@ -60,68 +61,35 @@ jobs:
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
         run: |
           MANUAL="${{ github.event.inputs.task_override }}"
-          DAY_OF_WEEK=$(date +%u)
+          HOUR_UTC=$(date -u +%H)
           
-          echo "🌙 Nightly Scheduler Running..."
-          echo "Current UTC Time: $(date -u)"
-          echo "Manual Override: $MANUAL"
+          echo "🔄 Running Scheduler..."
+          echo "Current UTC Hour: $HOUR_UTC"
           
-          if [[ "$MANUAL" == "morning_habits" ]]; then
-            echo "📢 Manual: Scheduling Morning Habits only..."
-            node scheduler.js --task=habits --type=morning_routine --time="7:00 AM"
-          
-          elif [[ "$MANUAL" == "night_habits" ]]; then
-            echo "📢 Manual: Scheduling Night Habits only..."
-            node scheduler.js --task=habits --type=night_routine --time="9:00 PM"
-          
-          elif [[ "$MANUAL" == "food" ]]; then
-            echo "📢 Manual: Scheduling Food only..."
-            node scheduler.js --task=food --time="8:00 AM"
-          
-          elif [[ "$MANUAL" == "vaccine" ]]; then
-            echo "📢 Manual: Scheduling Vaccines only..."
-            node scheduler.js --task=personal --category=vaccine
-          
-          elif [[ "$MANUAL" == "dental" ]]; then
-            echo "📢 Manual: Scheduling Dental only..."
-            node scheduler.js --task=personal --category=dental
-          
-          elif [[ "$MANUAL" == "weekly_report" ]]; then
-            echo "📢 Manual: Scheduling Weekly Report..."
-            node scheduler.js --task=weekly
-          
-          elif [[ "$MANUAL" == "update_alert" ]]; then
-            echo "📢 Manual: Sending Version 9 Update Alert..."
-            node broadcast_update.js
-          
-          else
-            # FULL DAILY SCHEDULE (default)
-            echo "📅 Scheduling ALL notifications for tomorrow..."
-            
-            # Morning notifications (7:00 AM, 8:00 AM, 8:05 AM, 8:10 AM)
-            echo "🌞 Scheduling Morning Routine (7:00 AM IST)..."
-            node scheduler.js --task=habits --type=morning_routine --time="7:00 AM"
-            
-            echo "🥗 Scheduling Daily Food (8:00 AM IST)..."
-            node scheduler.js --task=food --time="8:00 AM"
-            
-            echo "💉 Scheduling Vaccine Reminders (8:05 AM IST)..."
-            node scheduler.js --task=personal --category=vaccine
-            
-            echo "🦷 Scheduling Dental Reminders (8:10 AM IST)..."
-            node scheduler.js --task=personal --category=dental
-            
-            # Weekly report (only on Saturdays for Sunday delivery)
-            if [ $DAY_OF_WEEK -eq 6 ]; then
-              echo "📊 Scheduling Weekly Report (Sunday 10:00 AM IST)..."
-              node scheduler.js --task=weekly
-            else
-              echo "⏭️ Skipping Weekly Report (only runs Saturday night for Sunday delivery)"
+          if [[ "$MANUAL" != "" && "$MANUAL" != "all" ]]; then
+            echo "📢 Manual Override Detected: $MANUAL"
+            # Maintain existing manual triggers via scheduler.js
+            if [[ "$MANUAL" == "morning_habits" ]]; then node scheduler.js --task=habits --type=morning_routine --time="7:00 AM"
+            elif [[ "$MANUAL" == "night_habits" ]]; then node scheduler.js --task=habits --type=night_routine --time="9:00 PM"
+            elif [[ "$MANUAL" == "food" ]]; then node scheduler.js --task=food --time="8:00 AM"
+            elif [[ "$MANUAL" == "vaccine" ]]; then node scheduler.js --task=personal --category=vaccine
+            elif [[ "$MANUAL" == "dental" ]]; then node scheduler.js --task=personal --category=dental
+            elif [[ "$MANUAL" == "weekly_report" ]]; then node scheduler.js --task=weekly
+            elif [[ "$MANUAL" == "update_alert" ]]; then node broadcast_update.js
             fi
-            
-            # Night notification (9:00 PM)
-            echo "🌙 Scheduling Night Routine (9:00 PM IST)..."
-            node scheduler.js --task=habits --type=night_routine --time="9:00 PM"
-            
-            echo "✅ All notifications scheduled successfully!"
+          else
+            # AUTO SCHEDULE (Based on Time)
+            if [[ "$HOUR_UTC" == "18" ]]; then
+              echo "🌙 Trigger: 11:30 PM IST (Habits Only)"
+              node habits_master.js
+            elif [[ "$HOUR_UTC" == "19" ]]; then
+              echo "🥗 Trigger: 12:30 AM IST (Food & Reminders)"
+              node food_master.js
+              node reminders_master.js
+            else
+              echo "⚠️ Unknown Trigger Time ($HOUR_UTC UTC). Running ALL for safety."
+              node habits_master.js
+              node food_master.js
+              node reminders_master.js
+            fi
           fi
