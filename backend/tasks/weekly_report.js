@@ -1,13 +1,10 @@
-const oneSignal = require('../services/onesignal');
-const moment = require('moment');
-const { formatTimeForOneSignal } = require('../utils/time_utils');
+const { formatTimeForOneSignal, getISTDate } = require('../utils/time_utils');
 
 async function run(scheduleTime = "10:00 AM") {
     // Only run on Sunday (0) in IST
-    const istOffset = 5.5 * 60 * 60 * 1000;
-    const nowIst = new Date(new Date().getTime() + istOffset);
+    const istNow = getISTDate();
 
-    if (nowIst.getUTCDay() !== 0) {
+    if (istNow.getUTCDay() !== 0) {
         console.log("📅 Today is not Sunday in IST. Skipping Weekly Report notification.");
         return;
     }
