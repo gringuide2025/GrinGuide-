@@ -81,9 +81,13 @@ jobs:
             # AUTO SCHEDULE (Based on Time)
             if [[ "$HOUR_UTC" == "18" ]]; then
               echo "🌙 Trigger: 11:30 PM IST (Habits Only)"
+              echo "   -> Pre-scheduling Morning Routine (7:00 AM) & Night Routine (9:00 PM)"
               node habits_master.js
             elif [[ "$HOUR_UTC" == "19" ]]; then
               echo "🥗 Trigger: 12:30 AM IST (Food & Reminders)"
+              echo "   -> Scheduling Super Food (8:00 AM IST)"
+              echo "   -> Scheduling Vaccines (8:05 AM IST) & Dental (8:10 AM IST)"
+              echo "   -> Scheduling Weekly Report (10:00 AM IST - if Sunday)"
               node food_master.js
               node reminders_master.js
             else

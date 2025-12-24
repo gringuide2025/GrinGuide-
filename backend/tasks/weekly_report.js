@@ -2,15 +2,17 @@ const oneSignal = require('../services/onesignal');
 const moment = require('moment');
 const { formatTimeForOneSignal } = require('../utils/time_utils');
 
-async function run(scheduleTime) {
-    // Only run on Sunday (0)
-    const today = moment();
-    if (today.day() !== 0) {
-        console.log("📅 Today is not Sunday. Skipping Weekly Report notification.");
+async function run(scheduleTime = "10:00 AM") {
+    // Only run on Sunday (0) in IST
+    const istOffset = 5.5 * 60 * 60 * 1000;
+    const nowIst = new Date(new Date().getTime() + istOffset);
+
+    if (nowIst.getUTCDay() !== 0) {
+        console.log("📅 Today is not Sunday in IST. Skipping Weekly Report notification.");
         return;
     }
 
-    console.log(`📊 Today is Sunday. Scheduling Weekly Report for ${scheduleTime || 'Now'}.`);
+    console.log(`📊 Today is Sunday (IST). Scheduling Weekly Report for ${scheduleTime}.`);
 
     const payload = {
         included_segments: ["Total Subscriptions"],
