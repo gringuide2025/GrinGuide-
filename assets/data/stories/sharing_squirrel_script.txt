@@ -1,0 +1,39 @@
+[STORY_INFO]
+ID: sharing_squirrel_1
+Title: The Sharing Squirrel 🐿️
+Description: Nutty learns that sharing makes everything better!
+
+[SCENE 1]
+Image: sharing_1.png
+English: Nutty the Squirrel had a big pile of shiny acorns. He hugged them tight. 'Mine! All mine!' he said.
+Tamil: நட்டி என்ற அணில் ஒரு பெரிய பளபளப்பான அக்ரூட் பருப்புகளை வைத்திருந்தது. அது அவற்றை இறுக்கமாகக் கட்டியணைத்தது. 'என்னுடையது! எல்லாம் என்னுடையது!' என்றது.
+Audio_En: audio/stories/sharing/English/sharing_en_1.mp3
+Audio_Ta: audio/stories/sharing/Tamil/sharing_ta_1.mp3
+
+[SCENE 2]
+Image: sharing_2.png
+English: Little Bird asked, 'Can I have one please? I am hungry.' Nutty shook his head. 'No! Go away!'
+Tamil: சின்னப் பறவை கேட்டது, 'தயவுசெய்து எனக்கு ஒன்று கிடைக்குமா? எனக்கு பசிக்கிறது.' நட்டி மறுத்தது. 'இல்லை! போய்விடு!'
+Audio_En: audio/stories/sharing/English/sharing_en_2.mp3
+Audio_Ta: audio/stories/sharing/Tamil/sharing_ta_2.mp3
+
+[SCENE 3]
+Image: sharing_3.png
+English: Nutty sat alone. He had many nuts but no friends to play with. He felt sad and lonely.
+Tamil: நட்டி தனியாக அமர்ந்திருந்தது. அதனிடம் நிறைய பருப்புகள் இருந்தன, ஆனால் விளையாட நண்பர்கள் இல்லை. அது வருத்தமாகவும் தனிமையாகவும் உணர்ந்தது.
+Audio_En: audio/stories/sharing/English/sharing_en_3.mp3
+Audio_Ta: audio/stories/sharing/Tamil/sharing_ta_3.mp3
+
+[SCENE 4]
+Image: sharing_4.png
+English: He saw Little Bird crying. Nutty felt sorry. He gave her a big nut. 'Here, let's share!'
+Tamil: சின்னப் பறவை அழுவதைப் பார்த்தது. நட்டிக்கு வருத்தமாக இருந்தது. அது அவளுக்கு ஒரு பெரிய பருப்பைக் கொடுத்தது. 'இதோ, நாம் பகிர்ந்து கொள்வோம்!'
+Audio_En: audio/stories/sharing/English/sharing_en_4.mp3
+Audio_Ta: audio/stories/sharing/Tamil/sharing_ta_4.mp3
+
+[SCENE 5]
+Image: sharing_5.png
+English: Little Bird smiled. They played tag together. Nutty learned that sharing brings happiness and friends!
+Tamil: சின்னப் பறவை சிரித்தது. அவர்கள் ஒன்றாக விளையாடினார்கள். பகிர்வது மகிழ்ச்சியையும் நண்பர்களையும் தரும் என்று நட்டி கற்றுக்கொண்டது!
+Audio_En: audio/stories/sharing/English/sharing_en_5.mp3
+Audio_Ta: audio/stories/sharing/Tamil/sharing_ta_5.mp3

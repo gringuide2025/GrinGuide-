@@ -1,0 +1,39 @@
+[STORY_INFO]
+ID: brave_butterfly_1
+Title: The Brave Little Butterfly 🦋
+Description: Bella learns to believe in herself and fly high!
+
+[SCENE 1]
+Image: butterfly_1.png
+English: Bella the Butterfly was small. She was afraid to fly high. 'My wings are too tiny,' she said.
+Tamil: பெல்லா ஒரு சிறிய வண்ணத்துப்பூச்சி. அவளுக்கு உயரே பறக்க பயம். 'என் இறக்கைகள் மிகவும் சிறியவை,' என்று அவள் சொன்னாள்.
+Audio_En: audio/stories/butterfly/English/butterfly_en_1.mp3
+Audio_Ta: audio/stories/butterfly/Tamil/butterfly_ta_1.mp3
+
+[SCENE 2]
+Image: butterfly_2.png
+English: All her friends flew to the top of the big flower. 'Come up, Bella!' they called. Bella looked down.
+Tamil: அவளுடைய நண்பர்கள் அனைவரும் பெரிய பூவின் உச்சிக்கு பறந்து சென்றனர். 'மேலே வா, பெல்லா!' என்று அவர்கள் அழைத்தார்கள். பெல்லா கீழே பார்த்தாள்.
+Audio_En: audio/stories/butterfly/English/butterfly_en_2.mp3
+Audio_Ta: audio/stories/butterfly/Tamil/butterfly_ta_2.mp3
+
+[SCENE 3]
+Image: butterfly_3.png
+English: Mama Butterfly said, 'Believe in yourself, Bella. You are stronger than you think.' Bella took a deep breath.
+Tamil: அம்மா வண்ணத்துப்பூச்சி சொன்னார், 'உன்னை நம்பு, பெல்லா. நீ நினைப்பதை விட வலுவானவள்.' பெல்லா ஆழமாக மூச்சு விட்டாள்.
+Audio_En: audio/stories/butterfly/English/butterfly_en_3.mp3
+Audio_Ta: audio/stories/butterfly/Tamil/butterfly_ta_3.mp3
+
+[SCENE 4]
+Image: butterfly_4.png
+English: Flap, flap, flap! She tried hard. Slowly, she went up, up, up! She was flying!
+Tamil: பட பட பட! அவள் கடினமாக முயன்றாள். மெதுவாக, அவள் மேலே, மேலே, மேலே சென்றாள்! அவள் பறந்து கொண்டிருந்தாள்!
+Audio_En: audio/stories/butterfly/English/butterfly_en_4.mp3
+Audio_Ta: audio/stories/butterfly/Tamil/butterfly_ta_4.mp3
+
+[SCENE 5]
+Image: butterfly_5.png
+English: She reached the top! 'I did it!' Bella cheered. She learned that she can do anything if she tries.
+Tamil: அவள் உச்சியை அடைந்தாள்! 'நான் செய்துவிட்டேன்!' என்று பெல்லா உற்சாகப்படுத்தினாள். முயற்சி செய்தால் எதையும் செய்ய முடியும் என்று அவள் கற்றுக்கொண்டாள்.
+Audio_En: audio/stories/butterfly/English/butterfly_en_5.mp3
+Audio_Ta: audio/stories/butterfly/Tamil/butterfly_ta_5.mp3

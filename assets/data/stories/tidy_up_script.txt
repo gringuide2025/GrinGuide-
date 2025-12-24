@@ -1,0 +1,39 @@
+[STORY_INFO]
+ID: tidy_up_1
+Title: Tidy Up Time 🧸
+Description: Learning to clean up toys after playing!
+
+[SCENE 1]
+Image: tidy_1.png
+English: Leo the Lion loved to play. Blocks, cars, and balls were everywhere! The floor was covered in toys.
+Tamil: லியோ சிங்கத்திற்கு விளையாட மிகவும் பிடிக்கும். பொம்மைகள், கார்கள் மற்றும் பந்துகள் எங்கும் சிதறிக் கிடந்தன! தரை முழுவதும் பொம்மைகளால் நிரம்பியிருந்தது.
+Audio_En: audio/stories/tidy/English/tidy_en_1.mp3
+Audio_Ta: audio/stories/tidy/Tamil/tidy_ta_1.mp3
+
+[SCENE 2]
+Image: tidy_2.png
+English: Mommy Lion came in. 'Oh my! Who will clean this big mess?' Leo looked at his paws. 'Not me,' he thought.
+Tamil: அம்மா சிங்கம் உள்ளே வந்தார். 'ஐயோ! இந்த பெரிய குப்பையை யார் சுத்தம் செய்வார்கள்?' லியோ தன் பாதங்களைப் பார்த்தான். 'நான் இல்லை,' என்று நினைத்தான்.
+Audio_En: audio/stories/tidy/English/tidy_en_2.mp3
+Audio_Ta: audio/stories/tidy/Tamil/tidy_ta_2.mp3
+
+[SCENE 3]
+Image: tidy_3.png
+English: But then he tripped on a truck! Ouch! 'Okay,' Leo said. 'I will tidy up so we can be safe.'
+Tamil: ஆனால் அப்போது அவன் ஒரு லாரியின் மீது தடுக்கி விழுந்தான்! அம்மா! 'சரி,' லியோ சொன்னான். 'நாங்கள் பாதுகாப்பாக இருக்க நான் சுத்தம் செய்கிறேன்.'
+Audio_En: audio/stories/tidy/English/tidy_en_3.mp3
+Audio_Ta: audio/stories/tidy/Tamil/tidy_ta_3.mp3
+
+[SCENE 4]
+Image: tidy_4.png
+English: Pick up the blocks, one by one. Put them in the box, it is actually fun! Zoom go the cars into the garage.
+Tamil: கட்டைகளை ஒவ்வொன்றாக எடுங்கள். அவற்றை பெட்டியில் போடுங்கள், இது உண்மையில் வேடிக்கையாக இருக்கிறது! கார்கள் கேரேஜுக்குள் 'ஜூம்' என்று செல்கின்றன.
+Audio_En: audio/stories/tidy/English/tidy_en_4.mp3
+Audio_Ta: audio/stories/tidy/Tamil/tidy_ta_4.mp3
+
+[SCENE 5]
+Image: tidy_5.png
+English: Look! The room is clean and big. Leo smiles. 'Now I have space to dance!' Good job, Leo!
+Tamil: பார்! அறை சுத்தமாகவும் பெரியதாகவும் இருக்கிறது. லியோ சிரிக்கிறான். 'இப்போது எனக்கு நடனமாட இடம் இருக்கிறது!' நன்று லியோ!
+Audio_En: audio/stories/tidy/English/tidy_en_5.mp3
+Audio_Ta: audio/stories/tidy/Tamil/tidy_ta_5.mp3

@@ -121,12 +121,13 @@ flutter:
     - assets/audio/stories/ben/Tamil/
     - assets/audio/stories/habit/English/
     - assets/audio/stories/habit/Tamil/
-    - assets/audio/stories/habit/English/
-    - assets/audio/stories/habit/Tamil/
-    - assets/audio/stories/choco/English/
-    - assets/audio/stories/choco/Tamil/
-    - assets/audio/stories/five/English/
-    - assets/audio/stories/five/Tamil/
+    - assets/audio/stories/sharing/English/
+    - assets/audio/stories/sharing/Tamil/
+    - assets/audio/stories/tidy/English/
+    - assets/audio/stories/tidy/Tamil/
+    - assets/audio/stories/butterfly/English/
+    - assets/audio/stories/butterfly/Tamil/
+
     - assets/data/
 
   # An image asset can refer to one or more resolution-specific "variants", see

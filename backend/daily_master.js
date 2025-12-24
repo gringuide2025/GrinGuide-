@@ -1,3 +1,10 @@
+/**
+ * NOTE: For production, it is recommended to split this execution:
+ * 1. habits_master.js -> Run at 11:30 PM IST (Habits, Vaccines, Dental)
+ * 2. food_master.js   -> Run at 12:30 AM IST (Food, Vaccines, Dental)
+ * 
+ * This daily_master.js script remains for manual/full runs.
+ */
 const habitsTask = require('./tasks/daily_habits');
 const foodTask = require('./tasks/daily_food');
 const personalTask = require('./tasks/personal_reminders'); // Vaccines & Dental

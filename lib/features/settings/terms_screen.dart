@@ -21,40 +21,40 @@ class TermsScreen extends StatelessWidget {
               """
 GrinGuide – Terms & Conditions
 
-Last updated: December 19, 2025
+Last updated: December 24, 2025
 
 Please read these Terms & Conditions ("Terms") carefully before using the GrinGuide mobile application (the "App"). By downloading or using the App, you agree to be bound by these Terms.
 
 1. General Usage
 GrinGuide is a personal health companion designed to help track oral hygiene and development.
-- **Eligibility:** You must be at least 13 years old to manage your own account. Parents/Gardians must manage accounts for children.
-- **License:** We grant you a limited, non-exclusive, non-transferable license to use the App for personal, non-commercial purposes.
+- Eligibility: You must be at least 13 years old to manage your own account. Parents/Guardians must manage accounts for children.
+- GrinStories: The App includes an educational module ("GrinStories") consisting of illustrated stories and audio to promote positive dental habits.
+- License: We grant you a limited, non-exclusive, non-transferable license to use the App for personal, non-commercial purposes.
 
 2. Medical Disclaimer (Crucial)
-**The App and its Chatbot do NOT provide medical advice.**
-- **Information Only:** All content (including text, graphics, images, and Chatbot responses) is for informational purposes only.
-- **No Doctor-Patient Relationship:** Use of this App does not establish a doctor-patient relationship.
-- **Consult Professionals:** Always seek the advice of your dentist or physician with any questions regarding a medical condition. Never disregard professional medical advice because of something you have read on this App.
+The App and its Chatbot do NOT provide medical advice.
+- Information Only: All content is for informational purposes only.
+- No Doctor-Patient Relationship: Use of this App does not establish a doctor-patient relationship.
+- Consult Professionals: Always seek the advice of your dentist or physician with any questions regarding a medical condition. Never disregard professional medical advice because of something you have read on this App.
 
 3. User Accounts & Security
-- **Account Creation:** You may need to sign in using a Google Account.
-- **Responsibility:** You are responsible for maintaining the confidentiality of your login credentials. You accept responsibility for all activities that occur under your account.
-- **Data Accuracy:** You agree to provide accurate and current information (e.g., date of birth) to ensure App features work correctly.
+- Account Creation: You may need to sign in using a Google Account.
+- Responsibility: You are responsible for maintaining the confidentiality of your login credentials.
+- Data Accuracy: You agree to provide accurate and current information to ensure App features work correctly.
 
 4. Chatbot & Third-Party Services
-- **Automated Chatbot:** The chatbot retrieves information from a pre-defined database based on keywords. It does not "think" or provide custom medical analysis.
-- **Firebase:** We use Firebase for backend services. By using the App, you acknowledge that data processing occurs on Google's cloud infrastructure.
+- Automated Chatbot: The chatbot retrieves information from a pre-defined database based on keywords. It does not provide custom medical analysis.
+- Firebase: We use Firebase for backend services. By using the App, you acknowledge that data processing occurs on Google's cloud infrastructure.
 
 5. User Conduct
 You agree NOT to:
 - Use the App for any illegal purpose.
 - Attempt to reverse-engineer, decompile, or disassemble the App.
-- Harass, threaten, or infringe strictly upon the rights of others.
 - Upload viruses or malicious code.
 
 6. Intellectual Property
-- **App Content:** All rights, title, and interest in the App (excluding user-generated content) belong to GrinGuide.
-- **User Content:** You retain ownership of any data you enter into the App. By using the App, you grant us a license to store and display it solely for your use within the App.
+- App Content: All rights, title, and interest in the App, including but not limited to text, graphics, logos, and GrinStories audiovisual assets, belong to GrinGuide and its creators.
+- User Content: You retain ownership of any data you enter into the App. By using the App, you grant us a license to store and display it solely for your use within the App.
 
 7. Termination
 We reserve the right to suspend or terminate your access to the App immediately, without prior notice, for any violation of these Terms or for any other reason.
