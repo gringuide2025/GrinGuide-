@@ -2,10 +2,10 @@ name: GrinGuide Daily Notifications
 
 on:
   schedule:
-    # 1. Run for Habits at 11:30 PM IST (18:00 UTC)
-    - cron: '0 18 * * *'
-    # 2. Run for Food & Reminders at 12:30 AM IST (19:00 UTC)
-    - cron: '0 19 * * *'
+    # 1. Run for Habits at 11:45 PM IST (18:15 UTC)
+    - cron: '15 18 * * *'
+    # 2. Run for Food & Reminders at 12:45 AM IST (19:15 UTC)
+    - cron: '15 19 * * *'
   
   workflow_dispatch:
     inputs:
