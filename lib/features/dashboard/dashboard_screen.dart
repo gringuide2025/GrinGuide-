@@ -20,6 +20,7 @@ import 'insights_screen.dart';
 import 'report_screen.dart';
 import 'dart:convert';
 import '../../shared/services/notification_service.dart';
+import '../../shared/services/tutorial_service.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
@@ -40,12 +41,46 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
 
   late PageController _pageController;
 
+  // Tutorial Keys
+  final GlobalKey _reportKey = GlobalKey();
+  final GlobalKey _storiesKey = GlobalKey();
+  final GlobalKey _checklistKey = GlobalKey();
+  final GlobalKey _navKey = GlobalKey();
+
   @override
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _selectedIndex);
     _checkSessionExpiry();
     _registerOneSignalPlayerId();
+    
+    // Trigger Tutorial after first frame
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _runFeatureTour();
+    });
+  }
+
+  Future<void> _runFeatureTour() async {
+    final prefs = await SharedPreferences.getInstance();
+    // Check if user has seen v1.0.5 tour
+    final hasSeenTour = prefs.getBool('has_seen_tour_v1.0.5') ?? false;
+
+    if (!hasSeenTour && mounted) {
+      // Small delay to ensure UI is ready
+      await Future.delayed(const Duration(milliseconds: 500));
+      if (!mounted) return;
+
+      TutorialService.showDashboardTour(
+        context,
+        reportKey: _reportKey,
+        storiesKey: _storiesKey,
+        checklistKey: _checklistKey,
+        navKey: _navKey,
+        onFinish: () async {
+          await prefs.setBool('has_seen_tour_v1.0.5', true);
+        },
+      );
+    }
   }
 
   @override
@@ -150,6 +185,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
         ),
         actions: [
           IconButton(
+            key: _reportKey,
             icon: const Icon(Icons.bar_chart),
             tooltip: 'Weekly Report',
             onPressed: () {
@@ -193,6 +229,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
               },
             ),
           IconButton(
+            key: _storiesKey,
             icon: const Icon(Icons.auto_stories),
             tooltip: 'GrinStories',
             onPressed: () {
@@ -257,6 +294,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                                   : null,
                             ),
                            label: Text(child.name),
+                           key: index == 0 ? _checklistKey : null, // Target the first child's row
                            selected: isSelected,
                            onSelected: (selected) {
                              if (selected) {
@@ -294,6 +332,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
         error: (e, _) => Center(child: Text("Error: $e")),
       ),
       bottomNavigationBar: NavigationBar(
+        key: _navKey,
         selectedIndex: _selectedIndex,
         onDestinationSelected: (index) {
           setState(() => _selectedIndex = index);
