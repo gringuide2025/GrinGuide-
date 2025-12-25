@@ -26,8 +26,8 @@ async function run() {
                 break;
 
             case 'personal':
-                // Usage: node scheduler.js --task=personal
-                await personalTask.run();
+                // Usage: node scheduler.js --task=personal --category=vaccine
+                await personalTask.run(args.category);
                 break;
 
             case 'weekly':
