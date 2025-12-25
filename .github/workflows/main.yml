@@ -2,10 +2,8 @@ name: GrinGuide Daily Notifications
 
 on:
   schedule:
-    # 1. Run for Habits at 11:45 PM IST (18:15 UTC)
-    - cron: '15 18 * * *'
-    # 2. Run for Food & Reminders at 12:45 AM IST (19:15 UTC)
-    - cron: '15 19 * * *'
+    # 12:10 AM IST (18:40 UTC) - Unified Daily Scheduler
+    - cron: '40 18 * * *'
   
   workflow_dispatch:
     inputs:
@@ -51,7 +49,7 @@ jobs:
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
         run: node check_workflow_lock.js --task=daily_scheduler
 
-      - name: Execute Split Scheduler Tasks
+      - name: Execute Daily Master Scheduler
         working-directory: ./backend
         env:
           ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
@@ -61,14 +59,9 @@ jobs:
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
         run: |
           MANUAL="${{ github.event.inputs.task_override }}"
-          HOUR_UTC=$(date -u +%H)
-          
-          echo "🔄 Running Scheduler..."
-          echo "Current UTC Hour: $HOUR_UTC"
           
           if [[ "$MANUAL" != "" && "$MANUAL" != "all" ]]; then
             echo "📢 Manual Override Detected: $MANUAL"
-            # Maintain existing manual triggers via scheduler.js
             if [[ "$MANUAL" == "morning_habits" ]]; then node scheduler.js --task=habits --type=morning_routine --time="7:00 AM"
             elif [[ "$MANUAL" == "night_habits" ]]; then node scheduler.js --task=habits --type=night_routine --time="9:00 PM"
             elif [[ "$MANUAL" == "food" ]]; then node scheduler.js --task=food --time="8:00 AM"
@@ -78,22 +71,11 @@ jobs:
             elif [[ "$MANUAL" == "update_alert" ]]; then node broadcast_update.js
             fi
           else
-            # AUTO SCHEDULE (Based on Time)
-            if [[ "$HOUR_UTC" == "18" ]]; then
-              echo "🌙 Trigger: 11:30 PM IST (Habits Only)"
-              echo "   -> Pre-scheduling Morning Routine (7:00 AM) & Night Routine (9:00 PM)"
-              node habits_master.js
-            elif [[ "$HOUR_UTC" == "19" ]]; then
-              echo "🥗 Trigger: 12:30 AM IST (Food & Reminders)"
-              echo "   -> Scheduling Super Food (8:00 AM IST)"
-              echo "   -> Scheduling Vaccines (8:05 AM IST) & Dental (8:10 AM IST)"
-              echo "   -> Scheduling Weekly Report (10:00 AM IST - if Sunday)"
-              node food_master.js
-              node reminders_master.js
-            else
-              echo "⚠️ Unknown Trigger Time ($HOUR_UTC UTC). Running ALL for safety."
-              node habits_master.js
-              node food_master.js
-              node reminders_master.js
-            fi
+            echo "🚀 Executing Unified Master Schedule (12:10 AM IST)"
+            echo "   -> Morning Routine (7:00 AM IST)"
+            echo "   -> Super Food (8:00 AM IST)"
+            echo "   -> Vaccines/Dental (8:05/8:10 AM IST)"
+            echo "   -> Weekly Report (10:00 AM IST - Sundays)"
+            echo "   -> Night Routine (9:00 PM IST)"
+            node daily_master.js
           fi
