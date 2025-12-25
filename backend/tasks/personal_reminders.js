@@ -74,6 +74,9 @@ async function run(categoryFilter = null) {
                                     }
                                 });
 
+                                // Safety Delay
+                                await new Promise(resolve => setTimeout(resolve, 1000));
+
                                 await db.collection('vaccines').doc(doc.id).update({
                                     remindersSent: admin.firestore.FieldValue.arrayUnion(todayStr)
                                 });
@@ -149,6 +152,9 @@ async function run(categoryFilter = null) {
                                         childId: data.childId
                                     }
                                 });
+
+                                // Safety Delay
+                                await new Promise(resolve => setTimeout(resolve, 1000));
 
                                 await db.collection('dental_appointments').doc(doc.id).update({
                                     remindersSent: admin.firestore.FieldValue.arrayUnion(todayStr)
