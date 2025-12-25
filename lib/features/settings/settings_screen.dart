@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'settings_controller.dart';
 
-import 'package:audioplayers/audioplayers.dart';
+
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -11,66 +11,6 @@ class SettingsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsControllerProvider);
-    final controller = ref.read(settingsControllerProvider.notifier);
-    
-    final isDark = settings.themeMode == ThemeMode.dark;
-
-    // Helper to show selection sheet
-    void showSoundSelection() {
-      showModalBottomSheet(
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20))
-        ),
-        builder: (ctx) {
-          return Consumer(
-            builder: (context, ref, _) {
-              // We watch again to update checkmark
-              final currentSoundId = ref.watch(settingsControllerProvider).selectedSound;
-              
-              return Container(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text(
-                      "Choose Notification Sound",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 10),
-                    ...SettingsController.sounds.map((sound) {
-                      final isSelected = currentSoundId == sound['id'];
-                      return ListTile(
-                        leading: Text(sound['emoji']!, style: const TextStyle(fontSize: 24)),
-                        title: Text(sound['name']!),
-                        trailing: isSelected 
-                          ? const Icon(Icons.check_circle, color: Colors.green)
-                          : null,
-                        onTap: () async {
-                          // 1. Set Sound
-                          controller.setNotificationSound(sound['id']!);
-                          
-                          // 2. Play Preview
-                          // We use the assets copies for preview
-                          final player = AudioPlayer();
-                          // AudioPlayer expects path relative to assets/ for AssetSource? 
-                          // No, AssetSource('audio/sound.mp3')
-                          await player.play(AssetSource('audio/${sound['id']}.mp3'));
-                          
-                          // Close? No, let them keep it open to hear others.
-                          // But we need to refresh the UI (Consumer handles it).
-                        },
-                      );
-                    }).toList(), 
-                    const SizedBox(height: 20),
-                  ],
-                ),
-              );
-            }
-          );
-        }
-      );
-    }
 
     return PopScope(
       canPop: false,
@@ -93,18 +33,6 @@ class SettingsScreen extends ConsumerWidget {
               secondary: const Icon(Icons.notifications),
               value: settings.notificationsEnabled,
               onChanged: (val) => controller.toggleNotifications(val),
-            ),
-            ListTile(
-              title: const Text("Notification Sound"),
-              subtitle: Text(
-                SettingsController.sounds.firstWhere(
-                  (s) => s['id'] == settings.selectedSound,
-                  orElse: () => {'name': 'Default'}
-                )['name']!
-              ),
-              leading: const Icon(Icons.music_note),
-              trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-              onTap: showSoundSelection,
             ),
             const Divider(),
             ListTile(

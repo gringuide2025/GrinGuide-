@@ -41,15 +41,7 @@ async function sendNotification(payload) {
     if (!payload.data) payload.data = {};
     if (!payload.data.page) payload.data.page = "/dashboard";
 
-    // Safety: Only set android_channel_id if specifically requested or default to null (let OS decide)
-    // If 'sound_chime' doesn't exist on the DASHBOARD, this causes 400 Error.
-    // Better to strip it if not sure, or verify it exists.
-    // For now, let's omit it from the default payload to guarantee delivery.
-    // Specifying a non-existent channel ID is a fatal error in OneSignal.
-    if (!payload.android_channel_id) {
-        // payload.android_channel_id = "sound_chime"; // CAUSING 400 ERROR
-        // Removing explicit default mapping to prevent crash.
-    }
+    // Safety: No explicit android_channel_id to allow system default sound
 
     try {
         const response = await axios.post(API_URL, payload, { headers });
@@ -85,8 +77,7 @@ async function broadcast(title, body) {
     return sendNotification({
         included_segments: ["Total Subscriptions"],
         headings: { "en": title },
-        contents: { "en": body },
-        android_channel_id: 'sound_chime'
+        contents: { "en": body }
     });
 }
 
@@ -100,57 +91,6 @@ async function sendToUser(userId, title, body) {
     return sendNotification(basePayload);
 }
 
-// Helper to send targeted batches for sounds
-async function sendWithSoundSegments(basePayload) {
-    const sounds = ['sound_chime', 'sound_magic', 'sound_pop', 'sound_bird', 'sound_power'];
-    const results = [];
-
-    // 1. Send for each Custom Sound
-    for (const sound of sounds) {
-        // Clone payload
-        const p = { ...basePayload };
-        // Deep copy data/buttons/headings if needed, but shallow is okay for top level
-        // Ideally deep clone to be safe:
-        p.data = { ...basePayload.data };
-        if (basePayload.buttons) p.buttons = [...basePayload.buttons];
-        if (basePayload.headings) p.headings = { ...basePayload.headings };
-        if (basePayload.contents) p.contents = { ...basePayload.contents };
-
-        p.filters = [
-            { "field": "tag", "key": "notification_sound", "relation": "=", "value": sound }
-        ];
-
-        // Remove included_segments if we use filters
-        delete p.included_segments;
-
-        try {
-            const res = await sendNotification(p);
-            results.push(res);
-        } catch (e) {
-            console.error(`Failed to send batch for ${sound}`, e.message);
-        }
-    }
-
-    // 2. Default Batch (Everyone Else)
-    const pDefault = { ...basePayload };
-    pDefault.data = { ...basePayload.data };
-    if (basePayload.buttons) pDefault.buttons = [...basePayload.buttons];
-    if (basePayload.headings) pDefault.headings = { ...basePayload.headings };
-    if (basePayload.contents) pDefault.contents = { ...basePayload.contents };
-
-    pDefault.filters = [
-        { "field": "tag", "key": "notification_sound", "relation": "not_exists" }
-    ];
-    delete pDefault.included_segments;
-
-    try {
-        const res = await sendNotification(pDefault);
-        results.push(res);
-    } catch (e) { console.error("Failed default batch", e.message); }
-
-    return results;
-}
-
 async function broadcastWithButtons(title, body, taskType) {
     const taskMap = {
         'brush_morning': 'brushMorning',
@@ -159,8 +99,8 @@ async function broadcastWithButtons(title, body, taskType) {
         'floss_night': 'flossNight'
     };
 
-    const basePayload = {
-        included_segments: ["Total Subscriptions"], // Will be removed by helper
+    return sendNotification({
+        included_segments: ["Total Subscriptions"],
         headings: { "en": title },
         contents: { "en": body },
         buttons: [
@@ -171,9 +111,7 @@ async function broadcastWithButtons(title, body, taskType) {
             task: taskMap[taskType] || taskType,
             page: "/dashboard"
         }
-    };
-
-    return sendWithSoundSegments(basePayload);
+    });
 }
 
 async function broadcastDailyFood(foodName, foodBenefit, scheduleTime) {
@@ -197,7 +135,7 @@ async function broadcastDailyFood(foodName, foodBenefit, scheduleTime) {
         payload.delivery_time_of_day = formatTimeForOneSignal(scheduleTime);
     }
 
-    return sendWithSoundSegments(payload);
+    return sendNotification(payload);
 }
 
 module.exports = { sendNotification, broadcast, sendToUser, broadcastWithButtons, broadcastDailyFood };
