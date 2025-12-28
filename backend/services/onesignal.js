@@ -16,20 +16,23 @@ async function sendNotification(payload) {
     // 1. Strip whitespace and quotes (common copy-paste errors)
     const cleanKey = config.oneSignal.restKey.trim().replace(/^['"]|['"]$/g, '');
 
-    // 2. Validate Key Format (Basic check)
-    // OneSignal Keys are typically 48 chars (Legacy) or start with os_ (New)
-    // But for REST API, we MUST use 'Basic' per documentation requirements.
+    // 2. Validate Key Format & Determine Scheme
+    // New Keys (os_v2_app_...) use Bearer. Legacy keys use Basic.
+    let authScheme = 'Basic';
+    if (cleanKey.startsWith('os_v2_app')) {
+        authScheme = 'Bearer';
+    }
 
     // Diagnostic info (NEVER Log full key)
     const keyPrefix = cleanKey.substring(0, 5);
     const keyLength = cleanKey.length;
 
     console.log(`📡 Preparing Push (ID: ${payload.app_id || config.oneSignal.appId})`);
-    console.log(`🔑 Auth Debug: Prefix=${keyPrefix}... Length=${keyLength} Scheme=Basic`);
+    console.log(`🔑 Auth Debug: Prefix=${keyPrefix}... Length=${keyLength} Scheme=${authScheme}`);
 
     const headers = {
         "Content-Type": "application/json; charset=utf-8",
-        "Authorization": `Basic ${cleanKey}`
+        "Authorization": `${authScheme} ${cleanKey}`
     };
 
     // Add App ID if not present

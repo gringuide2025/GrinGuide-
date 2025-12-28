@@ -1,4 +1,5 @@
 const { formatTimeForOneSignal, getISTDate } = require('../utils/time_utils');
+const oneSignal = require('../services/onesignal');
 
 async function run(scheduleTime = "10:00 AM") {
     // Only run on Sunday (0) in IST
