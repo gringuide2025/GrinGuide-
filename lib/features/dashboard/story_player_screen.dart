@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'models/story_model.dart';
 import '../profile/models/child_model.dart';
 
@@ -20,30 +19,39 @@ class StoryPlayerScreen extends StatefulWidget {
 }
 
 class _StoryPlayerScreenState extends State<StoryPlayerScreen> {
-  late AudioPlayer _audioPlayer;
   int _currentSceneIndex = 0;
   bool _isTamil = true; // Default to Tamil based on user preference
   bool _isPlaying = false;
+  late AudioPlayer _audioPlayer;
 
   @override
   void initState() {
     super.initState();
     _audioPlayer = AudioPlayer();
-    _playCurrentScene();
-    
     _audioPlayer.onPlayerComplete.listen((event) {
-      if (_currentSceneIndex < widget.story.scenes.length - 1) {
+      _onAudioComplete();
+    });
+    
+    // Start playing first scene
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _playCurrentScene();
+    });
+  }
+
+  void _onAudioComplete() {
+    if (_currentSceneIndex < widget.story.scenes.length - 1) {
+      if (mounted) {
         setState(() {
           _currentSceneIndex++;
         });
         _playCurrentScene();
-      } else {
-        setState(() {
-          _isPlaying = false;
-        });
+      }
+    } else {
+      if (mounted) {
+        setState(() => _isPlaying = false);
         _showStoryEndDialog();
       }
-    });
+    }
   }
 
   @override
@@ -55,15 +63,22 @@ class _StoryPlayerScreenState extends State<StoryPlayerScreen> {
   Future<void> _playCurrentScene() async {
     final scene = widget.story.scenes[_currentSceneIndex];
     final audioPath = _isTamil ? scene.tamilAudio : scene.englishAudio;
-    
+
+    debugPrint("🎵 Attempting to play audio: $audioPath");
+
     try {
       await _audioPlayer.stop();
-      await _audioPlayer.play(AssetSource(audioPath));
-      setState(() {
-        _isPlaying = true;
-      });
+      setState(() => _isPlaying = true);
+      
+      // AssetSource starts from 'assets/' folder level
+      // Using setSource + resume for more control/debug
+      await _audioPlayer.setSource(AssetSource(audioPath));
+      await _audioPlayer.resume();
+      
+      debugPrint("✅ Audio started playing");
     } catch (e) {
-      debugPrint("❌ Audio playback error: $e");
+      debugPrint("❌ Error playing audio ($audioPath): $e");
+      setState(() => _isPlaying = false);
     }
   }
 
@@ -106,18 +121,19 @@ class _StoryPlayerScreenState extends State<StoryPlayerScreen> {
     final subtitle = _isTamil ? scene.tamilText : scene.englishText;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(widget.story.title),
+        title: Text(widget.story.title, style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black87, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
+        leading: BackButton(color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black87),
         actions: [
           TextButton(
             onPressed: _toggleLanguage,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: Colors.white24,
+                color: Colors.black45, // Simi-transparent dark for better contrast
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
@@ -128,42 +144,59 @@ class _StoryPlayerScreenState extends State<StoryPlayerScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Theme.of(context).primaryColor.withOpacity(0.05),
+              Theme.of(context).scaffoldBackgroundColor,
+            ],
+          ),
+        ),
+        child: Column(
+          children: [
+            const SizedBox(height: 100),
           Expanded(
-            child: Stack(
+            child: Column(
               children: [
-                Center(
-                  child: Hero(
-                    tag: 'story_${widget.story.id}',
-                    child: Image.asset(
-                      scene.imagePath,
-                      fit: BoxFit.contain,
-                      width: double.infinity,
+                Expanded(
+                  child: Center(
+                    child: Hero(
+                      tag: 'story_${widget.story.id}',
+                      child: Image.asset(
+                        scene.imagePath,
+                        fit: BoxFit.contain,
+                        width: double.infinity,
+                      ),
                     ),
                   ),
                 ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    padding: const EdgeInsets.all(24),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                        colors: [Colors.black.withOpacity(0.8), Colors.transparent],
-                      ),
-                    ),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    // Adaptive background: Darker in Dark Mode, White with shadow in Light Mode
+                    color: Theme.of(context).brightness == Brightness.dark 
+                        ? Colors.black54 
+                        : Colors.white.withOpacity(0.9),
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: Theme.of(context).brightness == Brightness.light 
+                        ? [BoxShadow(color: Colors.black12, blurRadius: 8, offset: const Offset(0, 4))] 
+                        : null,
+                  ),
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  child: SingleChildScrollView(
                     child: Text(
                       subtitle,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
+                      style: TextStyle(
+                        // Adaptive Text: White in Dark Mode, Black in Light Mode
+                        color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black87, 
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        shadows: [Shadow(blurRadius: 10, color: Colors.black)],
+                        height: 1.3,
                       ),
                     ),
                   ),
@@ -177,7 +210,9 @@ class _StoryPlayerScreenState extends State<StoryPlayerScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.skip_previous, color: Colors.white, size: 36),
+                  icon: Icon(Icons.skip_previous, 
+                    color: Theme.of(context).brightness == Brightness.dark ? Colors.white70 : Colors.black87, 
+                    size: 40),
                   onPressed: _currentSceneIndex > 0 
                     ? () {
                         setState(() => _currentSceneIndex--);
@@ -186,18 +221,29 @@ class _StoryPlayerScreenState extends State<StoryPlayerScreen> {
                     : null,
                 ),
                 IconButton(
-                  icon: Icon(_isPlaying ? Icons.pause_circle : Icons.play_circle, color: Colors.white, size: 64),
+                  icon: Icon(
+                    _isPlaying ? Icons.pause_circle_filled : Icons.play_circle_filled,
+                    color: Colors.orange,
+                    size: 64,
+                  ),
                   onPressed: () {
                     if (_isPlaying) {
                       _audioPlayer.pause();
+                      setState(() => _isPlaying = false);
                     } else {
-                      _audioPlayer.resume();
+                      if (_audioPlayer.state == PlayerState.paused) {
+                        _audioPlayer.resume();
+                        setState(() => _isPlaying = true);
+                      } else {
+                        _playCurrentScene();
+                      }
                     }
-                    setState(() => _isPlaying = !_isPlaying);
                   },
                 ),
                 IconButton(
-                  icon: const Icon(Icons.skip_next, color: Colors.white, size: 36),
+                  icon: Icon(Icons.skip_next, 
+                    color: Theme.of(context).brightness == Brightness.dark ? Colors.white70 : Colors.black87, 
+                    size: 40),
                   onPressed: _currentSceneIndex < widget.story.scenes.length - 1 
                     ? () {
                         setState(() => _currentSceneIndex++);
@@ -211,6 +257,7 @@ class _StoryPlayerScreenState extends State<StoryPlayerScreen> {
           const SizedBox(height: 20),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
 }

@@ -108,3 +108,11 @@ class ProfileRepository {
     return localImage.path;
   }
 }
+
+final childrenProvider = StreamProvider<List<ChildModel>>((ref) {
+  return ref.watch(profileRepositoryProvider).getChildren();
+});
+
+final parentProvider = FutureProvider<ParentModel?>((ref) {
+  return ref.watch(profileRepositoryProvider).getParentProfile();
+});

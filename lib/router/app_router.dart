@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../features/auth/login_screen.dart';
 import '../features/auth/signup_screen.dart';
 import '../features/dashboard/dashboard_screen.dart';
+import '../features/dashboard/v2_dashboard_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../features/profile/parent_edit_screen.dart';
 import '../features/profile/child_edit_screen.dart';
@@ -49,17 +50,24 @@ final router = GoRouter(
         // Determine title based on current path
         String title = 'GrinGuide';
         final location = state.uri.toString();
+
         if (location.contains('dashboard')) title = 'Dashboard';
         if (location.contains('profile')) title = 'Profile';
         if (location.contains('reports')) title = 'Weekly Reports';
         if (location.contains('settings')) title = 'Settings';
         
-        return MainLayout(title: title, child: child);
+        bool hideAppBar = false;
+        if (state.matchedLocation.startsWith('/dashboard') || 
+            state.matchedLocation.startsWith('/insights')) {
+          hideAppBar = true;
+        }
+
+        return MainLayout(title: title, child: child, hideAppBar: hideAppBar);
       },
       routes: [
         GoRoute(
           path: '/dashboard',
-          builder: (context, state) => const DashboardScreen(),
+          builder: (context, state) => const V2DashboardScreen(),
           routes: [
              GoRoute(
               path: 'vaccines',

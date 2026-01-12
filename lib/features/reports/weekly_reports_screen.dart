@@ -18,27 +18,36 @@ class WeeklyReportsScreen extends ConsumerWidget {
         if (didPop) return;
         context.go('/dashboard');
       },
-      child: Scaffold(
-        appBar: AppBar(title: const Text("Weekly Reports")),
-        body: childrenAsync.when(
-          data: (children) {
-            if (children.isEmpty) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                     const Text("No children profiles found."),
-                     const SizedBox(height: 10),
-                     ElevatedButton(
-                       onPressed: () => context.go('/profile/add-child'), 
-                       child: const Text("Add Child")
-                     )
-                  ],
-                ),
-              );
-            }
+      child: childrenAsync.when(
+        data: (children) {
+          if (children.isEmpty) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                   const Text("No children profiles found."),
+                   const SizedBox(height: 10),
+                   ElevatedButton(
+                     onPressed: () => context.go('/profile/add-child'), 
+                     child: const Text("Add Child")
+                   )
+                ],
+              ),
+            );
+          }
   
-            return ListView.builder(
+          return Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Theme.of(context).primaryColor.withOpacity(0.05),
+                  Theme.of(context).scaffoldBackgroundColor,
+                ],
+              ),
+            ),
+            child: ListView.builder(
               padding: const EdgeInsets.all(16),
               itemCount: children.length,
               itemBuilder: (context, index) {
@@ -62,11 +71,11 @@ class WeeklyReportsScreen extends ConsumerWidget {
                   ),
                 );
               },
-            );
-          },
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (e, st) => Center(child: Text("Error: $e")),
-        ),
+            ),
+          );
+        },
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (e, st) => Center(child: Text("Error: $e")),
       ),
     );
   }

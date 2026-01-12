@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EruptionChartScreen extends StatefulWidget {
   const EruptionChartScreen({super.key});
@@ -10,6 +11,37 @@ class EruptionChartScreen extends StatefulWidget {
 class _EruptionChartScreenState extends State<EruptionChartScreen> {
   // 0 = Primary, 1 = Permanent
   int _tabIndex = 0;
+  Set<String> _eruptedTeeth = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _loadEruptedTeeth();
+  }
+
+  Future<void> _loadEruptedTeeth() async {
+    final prefs = await SharedPreferences.getInstance();
+    final list = prefs.getStringList('erupted_teeth') ?? [];
+    setState(() {
+      _eruptedTeeth = list.toSet();
+    });
+  }
+
+  Future<void> _saveEruptedTeeth() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList('erupted_teeth', _eruptedTeeth.toList());
+  }
+
+  void _toggleErupted(String toothName) {
+    setState(() {
+      if (_eruptedTeeth.contains(toothName)) {
+        _eruptedTeeth.remove(toothName);
+      } else {
+        _eruptedTeeth.add(toothName);
+      }
+    });
+    _saveEruptedTeeth();
+  }
 
   final List<Map<String, String>> primaryUpper = [
     {'name': 'Central Incisor', 'erupt': '8-12 mos'},
@@ -51,69 +83,138 @@ class _EruptionChartScreenState extends State<EruptionChartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Eruption Chart 🦷"),
-      ),
-      body: Column(
-        children: [
-          // Toggle
-          Container(
-            margin: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.grey.shade200,
-              borderRadius: BorderRadius.circular(25),
-            ),
-            child: Row(
-              children: [
-                _buildTab("Baby Teeth", 0),
-                _buildTab("Adult Teeth", 1),
-              ],
-            ),
+      extendBodyBehindAppBar: true,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Theme.of(context).primaryColor.withOpacity(0.05),
+              Theme.of(context).scaffoldBackgroundColor,
+            ],
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 80),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Display tooth diagram image
-                  Card(
-                    elevation: 2,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.asset(
-                        _tabIndex == 0 
-                          ? 'assets/images/baby_teeth_diagram.png'
-                          : 'assets/images/permanent_teeth_diagram.png',
-                        fit: BoxFit.contain,
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: Text('Image not available'),
-                          );
-                        },
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Custom Premium Header
+              Container(
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).padding.top + 10, 
+                  bottom: 15
+                ),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).cardColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: isDark ? Colors.transparent : Colors.black.withOpacity(0.03),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.arrow_back_rounded, color: Theme.of(context).iconTheme.color),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        "Eruption Chart 🦷",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w900,
+                          color: Theme.of(context).primaryColor,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              
+              // Toggle
+              Container(
+                margin: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: isDark ? Colors.white.withOpacity(0.05) : Colors.grey.shade200,
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: Row(
+                  children: [
+                    _buildTab("Baby Teeth", 0),
+                    _buildTab("Adult Teeth", 1),
+                  ],
+                ),
+              ),
+
+              // Content Area
+              Container(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Display tooth diagram image
+                    Card(
+                      elevation: 1,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: Container(
+                          height: 360, 
+                          width: double.infinity,
+                          color: isDark ? Colors.white.withOpacity(0.02) : Colors.white,
+                          child: InteractiveViewer(
+                            minScale: 1.0,
+                            maxScale: 3.0,
+                            child: Center(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.asset(
+                                    'assets/images/teeth_chart.png',
+                                    filterQuality: FilterQuality.high,
+                                    height: 320, 
+                                  ),
+                                  const Text("Pinch to zoom chart", style: TextStyle(fontSize: 10, color: Colors.grey)),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 24),
-                  const Divider(),
-                  const SizedBox(height: 16),
-                  Text(
-                    "Detailed Information",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.purple.shade700),
-                  ),
-                  const SizedBox(height: 16),
-                  _buildSectionHeader("Upper Jaw (Top)"),
-                  _buildTable(_tabIndex == 0 ? primaryUpper : permanentUpper),
-                  const SizedBox(height: 24),
-                  _buildSectionHeader("Lower Jaw (Bottom)"),
-                  _buildTable(_tabIndex == 0 ? primaryLower : permanentLower),
-                ],
+                    const SizedBox(height: 24),
+                    
+                    Text(
+                      "Detailed Information",
+                      style: TextStyle(
+                        fontSize: 22, 
+                        fontWeight: FontWeight.w900, 
+                        color: Theme.of(context).primaryColor,
+                        letterSpacing: -0.2,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    _buildSectionHeader("Upper Jaw (Top)"),
+                    _buildTable(_tabIndex == 0 ? primaryUpper : permanentUpper),
+                    const SizedBox(height: 24),
+                    _buildSectionHeader("Lower Jaw (Bottom)"),
+                    _buildTable(_tabIndex == 0 ? primaryLower : permanentLower),
+                    const SizedBox(height: 80), // Padding for bottom
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -123,31 +224,43 @@ class _EruptionChartScreenState extends State<EruptionChartScreen> {
     return Expanded(
       child: GestureDetector(
         onTap: () => setState(() => _tabIndex = index),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          decoration: BoxDecoration(
-            color: isSelected ? Colors.purple : Colors.transparent,
-            borderRadius: BorderRadius.circular(25),
-          ),
-          alignment: Alignment.center,
-          child: Text(
-            text,
-            style: TextStyle(
-              color: isSelected ? Colors.white : Colors.grey.shade700,
-              fontWeight: FontWeight.bold,
-            ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        decoration: BoxDecoration(
+          boxShadow: isSelected ? [BoxShadow(color: Theme.of(context).primaryColor.withOpacity(0.3), blurRadius: 10, offset: const Offset(0, 4))] : null,
+          gradient: isSelected 
+            ? LinearGradient(colors: [Theme.of(context).primaryColor, Theme.of(context).primaryColor.withBlue(255)]) 
+            : null,
+          color: isSelected ? null : Colors.transparent,
+          borderRadius: BorderRadius.circular(25),
+        ),
+        alignment: Alignment.center,
+        child: Text(
+          text,
+          style: TextStyle(
+            color: isSelected ? Colors.white : (Theme.of(context).brightness == Brightness.dark ? Colors.grey : Colors.grey.shade700),
+            fontWeight: FontWeight.w800,
           ),
         ),
+      ),
       ),
     );
   }
 
   Widget _buildSectionHeader(String title) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Text(
-        title, 
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.purple)
+      padding: const EdgeInsets.only(bottom: 12, top: 4),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Theme.of(context).primaryColor.withOpacity(0.2)),
+        ),
+        child: Text(
+          title, 
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.black, color: Theme.of(context).primaryColor, letterSpacing: 0.5)
+        ),
       ),
     );
   }
@@ -163,21 +276,32 @@ class _EruptionChartScreenState extends State<EruptionChartScreen> {
           columnWidths: const {
             0: FlexColumnWidth(2),
             1: FlexColumnWidth(1.2),
+            2: FlexColumnWidth(0.8),
           },
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: [
-            const TableRow(
-              decoration: BoxDecoration(color: Color(0xFFF3E5F5)),
+            TableRow(
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor.withOpacity(0.1),
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+              ),
               children: [
                 Padding(padding: EdgeInsets.all(8.0), child: Text("Tooth", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87))),
                 Padding(padding: EdgeInsets.all(8.0), child: Text("Erupts", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87))),
+                Padding(padding: EdgeInsets.all(8.0), child: Text("Got it?", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87))),
               ],
             ),
             ...data.map((item) {
+              final isErupted = _eruptedTeeth.contains(item['name']!);
               return TableRow(
                 children: [
                   Padding(padding: const EdgeInsets.all(8.0), child: Text(item['name']!)),
                   Padding(padding: const EdgeInsets.all(8.0), child: Text(item['erupt']!, style: const TextStyle(color: Colors.green))),
+                  Checkbox(
+                    value: isErupted,
+                    onChanged: (_) => _toggleErupted(item['name']!),
+                    activeColor: Colors.purple,
+                  ),
                 ],
               );
             }),

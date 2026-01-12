@@ -1,34 +1,54 @@
 import 'package:flutter/services.dart';
 
 class DateInputFormatter extends TextInputFormatter {
+
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final newText = newValue.text;
-    
-    // If we're deleting, just return the new value
-    if (oldValue.text.length > newValue.text.length) {
+    var text = newValue.text;
+
+    // Handle backspace properly
+    if (oldValue.text.length > text.length) {
       return newValue;
     }
 
+    // Clean input (remove non-digits)
     var buffer = StringBuffer();
-    for (int i = 0; i < newText.length; i++) {
-      if (newText[i] == '/') continue; // Ignore existing slashes
-      buffer.write(newText[i]);
-      
-      final length = buffer.length;
-      if ((length == 2 || length == 5) && i != newText.length - 1) {
-        buffer.write('/');
+    for (int i = 0; i < text.length; i++) {
+      if (int.tryParse(text[i]) != null) {
+        buffer.write(text[i]);
       }
     }
 
-    final string = buffer.toString();
-    // Cap at 10 chars (DD/MM/YYYY)
-    final finalString = string.length > 10 ? string.substring(0, 10) : string;
+    var cleanText = buffer.toString();
+    var formattedText = "";
+
+    // DD/MM/YYYY Logic
+    for (int i = 0; i < cleanText.length; i++) {
+        formattedText += cleanText[i];
+        
+        // Add slash after DD (2 chars)
+        if (i == 1) {
+            formattedText += "/";
+        }
+        // Add slash after MM (4 chars total digits)
+        else if (i == 3) {
+            formattedText += "/";
+        }
+    }
     
+    // Prevent trailing slash if user is just typing headers
+    // Actually, we WANT trailing slash so they know to type next number.
+    // But if formatting resulted in "12/", it's good.
+    
+    // Safety cap
+    if (formattedText.length > 10) {
+        formattedText = formattedText.substring(0, 10);
+    }
+
     return newValue.copyWith(
-      text: finalString,
-      selection: TextSelection.collapsed(offset: finalString.length),
+      text: formattedText,
+      selection: TextSelection.collapsed(offset: formattedText.length),
     );
   }
 }

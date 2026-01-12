@@ -1,9 +1,8 @@
 import 'dart:async';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:audioplayers/audioplayers.dart';
 import '../profile/models/child_model.dart';
-import '../../shared/utils/image_helper.dart';
 
 class TimerScreen extends StatefulWidget {
   final ChildModel? child;
@@ -18,6 +17,8 @@ class _TimerScreenState extends State<TimerScreen> with SingleTickerProviderStat
   int _secondsRemaining = _totalSeconds;
   Timer? _timer;
   bool _isActive = false;
+  
+  // Audio
   final AudioPlayer _audioPlayer = AudioPlayer();
   
   // Animation
@@ -27,6 +28,10 @@ class _TimerScreenState extends State<TimerScreen> with SingleTickerProviderStat
   @override
   void initState() {
     super.initState();
+    
+    // Set audio to loop
+    _audioPlayer.setReleaseMode(ReleaseMode.loop);
+    
     // Brushing Animation (Left <-> Right) -- SLOWER SPEED (1200ms)
     _animController = AnimationController(
        duration: const Duration(milliseconds: 1200),
@@ -49,11 +54,8 @@ class _TimerScreenState extends State<TimerScreen> with SingleTickerProviderStat
     if (_timer != null) return;
     setState(() => _isActive = true);
     
-    // Play Music (Slow Melody Lullaby)
-    _audioPlayer.setReleaseMode(ReleaseMode.loop);
-    _audioPlayer.play(UrlSource('https://www.orangefreesounds.com/wp-content/uploads/2015/05/Soothing-music-for-kids.mp3')).catchError((e) {
-      debugPrint("Error playing audio: $e");
-    });
+    // Play Audio
+    _audioPlayer.play(AssetSource('audio/brushing_song.mp3'));
 
     // Play Animation
     if (!_animController.isAnimating) {
@@ -73,13 +75,14 @@ class _TimerScreenState extends State<TimerScreen> with SingleTickerProviderStat
   void _stopTimer() {
     _timer?.cancel();
     _timer = null;
-    _audioPlayer.stop();
     _animController.stop();
+    _audioPlayer.pause();
     setState(() => _isActive = false);
   }
 
   void _resetTimer() {
     _stopTimer();
+    _audioPlayer.stop();
     setState(() => _secondsRemaining = _totalSeconds);
     _animController.reset();
   }
@@ -106,8 +109,8 @@ class _TimerScreenState extends State<TimerScreen> with SingleTickerProviderStat
   @override
   void dispose() {
     _timer?.cancel();
-    _audioPlayer.dispose();
     _animController.dispose();
+    _audioPlayer.dispose();
     super.dispose();
   }
 
@@ -138,10 +141,20 @@ class _TimerScreenState extends State<TimerScreen> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(widget.child != null ? "${widget.child!.name}'s Timer" : "Brushing Timer 🦷"),
+        title: Text(
+          widget.child != null ? "${widget.child!.name}'s Timer" : "Brushing Timer 🦷",
+          style: TextStyle(
+            color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black87,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
+          color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black87,
           onPressed: () {
              _stopTimer();
              context.pop();
@@ -150,7 +163,18 @@ class _TimerScreenState extends State<TimerScreen> with SingleTickerProviderStat
       ),
       body: Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(24),
+        height: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Theme.of(context).primaryColor.withOpacity(0.05),
+              Theme.of(context).scaffoldBackgroundColor,
+            ],
+          ),
+        ),
+        padding: const EdgeInsets.fromLTRB(24, 100, 24, 24),
         child: Column(
           children: [
             // Video Area
@@ -161,10 +185,15 @@ class _TimerScreenState extends State<TimerScreen> with SingleTickerProviderStat
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [
-                        Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
-                        Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.3),
-                      ],
+                      colors: Theme.of(context).brightness == Brightness.dark 
+                          ? [
+                              Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
+                              Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.3),
+                            ]
+                          : [
+                              Colors.blue.shade100,
+                              Colors.purple.shade100,
+                            ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
@@ -217,7 +246,12 @@ class _TimerScreenState extends State<TimerScreen> with SingleTickerProviderStat
                         ? "Brush in circles! 🔄" 
                         : "Ready to brush? Let's go!",
                       key: ValueKey(_isActive),
-                      style: const TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
+                      style: TextStyle(
+                        fontSize: 20, 
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.w600,
+                        color: Theme.of(context).brightness == Brightness.dark ? Colors.white70 : Colors.black87,
+                      ),
                     ),
                   ),
                   const Spacer(),

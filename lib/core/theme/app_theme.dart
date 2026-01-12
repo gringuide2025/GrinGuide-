@@ -90,4 +90,33 @@ class AppTheme {
       ),
     ),
   );
+
+  // v2 Design Constants
+  static const double borderRadius = 24.0;
+  static const double glassOpacity = 0.1;
+  static const double glassBlur = 15.0;
+
+  static const List<Color> primaryGradient = [Color(0xFF64B5F6), Color(0xFF81C784)];
+  static const List<Color> accentGradient = [Color(0xFFFFB74D), Color(0xFFFF8A65)];
+  static const List<Color> rainbowGradient = [
+    Color(0xFFFF8A80),
+    Color(0xFFFFD180),
+    Color(0xFFFFFF8D),
+    Color(0xFFB9F6CA),
+    Color(0xFF80D8FF),
+    Color(0xFF82B1FF),
+    Color(0xFFB388FF),
+  ];
+
+  static BoxDecoration glassDecoration(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return BoxDecoration(
+      color: (isDark ? Colors.white : Colors.black).withOpacity(glassOpacity),
+      borderRadius: BorderRadius.circular(borderRadius),
+      border: Border.all(
+        color: (isDark ? Colors.white : Colors.black).withOpacity(0.05),
+        width: 1,
+      ),
+    );
+  }
 }

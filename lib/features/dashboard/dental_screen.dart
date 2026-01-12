@@ -4,8 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/services.dart';
-import '../../shared/services/notification_service.dart';
 import '../../shared/utils/date_input_formatter.dart';
 import '../profile/models/child_model.dart';
 import 'models/dental_appointment_model.dart';
@@ -167,7 +165,9 @@ class _DentalBodyState extends ConsumerState<DentalBody> {
 
     // Ensure next default appointment exists
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(dentalRepositoryProvider).ensureNextDefaultAppointment(widget.child);
+      if (mounted) {
+        ref.read(dentalRepositoryProvider).ensureNextDefaultAppointment(widget.child);
+      }
     });
 
     return Scaffold( // Internal scaffold for FAB? Or just Column with FAB overlay?
@@ -329,7 +329,6 @@ class _DentalBodyState extends ConsumerState<DentalBody> {
                   controller: dateController,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
-                    FilteringTextInputFormatter.digitsOnly,
                     DateInputFormatter(),
                   ],
                   decoration: InputDecoration(

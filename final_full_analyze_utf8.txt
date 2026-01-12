@@ -1,0 +1,81 @@
+﻿Analyzing GrinGuide...                                          
+
+   info - Don't use 'BuildContext's across async gaps, guarded by an unrelated 'mounted' check - lib\features\auth\login_screen.dart:135:33 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps, guarded by an unrelated 'mounted' check - lib\features\auth\login_screen.dart:136:40 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps, guarded by an unrelated 'mounted' check - lib\features\auth\login_screen.dart:141:39 - use_build_context_synchronously
+warning - The declaration '_getRepoResponse' isn't referenced - lib\features\chatbot\chatbot_screen.dart:64:11 - unused_element
+warning - The value of the local variable 'logDocId' isn't used - lib\features\dashboard\dashboard_repository.dart:44:11 - unused_local_variable
+   info - Statements in a for should be enclosed in a block - lib\features\dashboard\dashboard_screen.dart:147:29 - curly_braces_in_flow_control_structures
+   info - 'onPopInvoked' is deprecated and shouldn't be used. Use onPopInvokedWithResult instead. This feature was deprecated after v3.22.0-12.0.pre - lib\features\dashboard\dashboard_screen.dart:166:7 - deprecated_member_use
+   info - Unnecessary use of multiple underscores - lib\features\dashboard\dashboard_screen.dart:184:21 - unnecessary_underscores
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\dashboard\dashboard_screen.dart:276:57 - deprecated_member_use
+warning - The declaration '_buildBody' isn't referenced - lib\features\dashboard\dashboard_screen.dart:356:10 - unused_element
+   info - 'Table.fromTextArray' is deprecated and shouldn't be used. Use TableHelper.fromTextArray() instead - lib\features\dashboard\dashboard_screen.dart:382:15 - deprecated_member_use
+warning - The declaration '_openMapUrl' isn't referenced - lib\features\dashboard\dashboard_screen.dart:415:16 - unused_element
+   info - 'desiredAccuracy' is deprecated and shouldn't be used. use settings parameter with AndroidSettings, AppleSettings, WebSettings, or LocationSettings - lib\features\dashboard\dashboard_screen.dart:632:9 - deprecated_member_use
+warning - Unused import: '../../shared/services/notification_service.dart' - lib\features\dashboard\dental_screen.dart:8:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\dashboard\dental_screen.dart:269:77 - deprecated_member_use
+warning - Unused import: 'models/dental_topic_model.dart' - lib\features\dashboard\insight_detail_screen.dart:4:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\dashboard\report_screen.dart:87:100 - deprecated_member_use
+   info - 'Table.fromTextArray' is deprecated and shouldn't be used. Use TableHelper.fromTextArray() instead - lib\features\dashboard\report_screen.dart:241:15 - deprecated_member_use
+   info - 'Table.fromTextArray' is deprecated and shouldn't be used. Use TableHelper.fromTextArray() instead - lib\features\dashboard\report_screen.dart:268:17 - deprecated_member_use
+   info - 'Table.fromTextArray' is deprecated and shouldn't be used. Use TableHelper.fromTextArray() instead - lib\features\dashboard\report_screen.dart:293:17 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\dashboard\report_screen.dart:343:33 - deprecated_member_use
+warning - Unused import: '../profile/profile_controller.dart' - lib\features\dashboard\stories_list_screen.dart:6:8 - unused_import
+warning - Unused import: 'package:flutter_riverpod/flutter_riverpod.dart' - lib\features\dashboard\story_player_screen.dart:2:8 - unused_import
+   info - The private field _isPlaying could be 'final' - lib\features\dashboard\story_player_screen.dart:24:8 - prefer_final_fields
+warning - The value of the field '_isPlaying' isn't used - lib\features\dashboard\story_player_screen.dart:24:8 - unused_field
+warning - The declaration '_showStoryEndDialog' isn't referenced - lib\features\dashboard\story_player_screen.dart:48:8 - unused_element
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\dashboard\story_player_screen.dart:127:47 - deprecated_member_use
+warning - Unused import: '../../shared/services/notification_service.dart' - lib\features\dashboard\vaccine_repository.dart:4:8 - unused_import
+   info - 'Table.fromTextArray' is deprecated and shouldn't be used. Use TableHelper.fromTextArray() instead - lib\features\dashboard\vaccine_screen.dart:57:15 - deprecated_member_use
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:137:36 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:138:34 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:139:35 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:140:35 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:141:35 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:142:35 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:143:35 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:144:35 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:145:35 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\features\dashboard\vaccine_screen.dart:146:19 - curly_braces_in_flow_control_structures
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\dashboard\vaccine_screen.dart:150:48 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\dashboard\vaccine_screen.dart:156:64 - deprecated_member_use
+warning - Unused import: 'package:firebase_auth/firebase_auth.dart' - lib\features\profile\profile_screen.dart:5:8 - unused_import
+warning - Unused import: 'models/child_model.dart' - lib\features\profile\profile_screen.dart:6:8 - unused_import
+warning - Unused import: '../../shared/utils/image_helper.dart' - lib\features\profile\profile_screen.dart:8:8 - unused_import
+   info - 'onPopInvoked' is deprecated and shouldn't be used. Use onPopInvokedWithResult instead. This feature was deprecated after v3.22.0-12.0.pre - lib\features\profile\profile_screen.dart:26:7 - deprecated_member_use
+   info - Unnecessary use of multiple underscores - lib\features\profile\profile_screen.dart:103:29 - unnecessary_underscores
+   info - 'onPopInvoked' is deprecated and shouldn't be used. Use onPopInvokedWithResult instead. This feature was deprecated after v3.22.0-12.0.pre - lib\features\reports\weekly_reports_screen.dart:17:7 - deprecated_member_use
+  error - Expected a method, getter, setter or operator declaration - lib\features\settings\settings_controller.dart:92:1 - expected_executable
+   info - 'onPopInvoked' is deprecated and shouldn't be used. Use onPopInvokedWithResult instead. This feature was deprecated after v3.22.0-12.0.pre - lib\features\settings\settings_screen.dart:19:7 - deprecated_member_use
+  error - The method 'deleteAccount' isn't defined for the type 'SettingsController' - lib\features\settings\settings_screen.dart:86:39 - undefined_method
+warning - Unused import: '../../shared/utils/image_helper.dart' - lib\features\timer\timer_screen.dart:5:8 - unused_import
+warning - The declaration '_getToothEmoji' isn't referenced - lib\features\timer\timer_screen.dart:111:10 - unused_element
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\timer\timer_screen.dart:156:72 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\timer\timer_screen.dart:157:74 - deprecated_member_use
+warning - Unused import: 'package:firebase_auth/firebase_auth.dart' - lib\shared\services\notification_service.dart:4:8 - unused_import
+warning - The value of the local variable 'doneAction' isn't used - lib\shared\services\notification_service.dart:78:37 - unused_local_variable
+warning - The value of the local variable 'notDoneAction' isn't used - lib\shared\services\notification_service.dart:84:37 - unused_local_variable
+warning - The '!' will have no effect because the receiver can't be null - lib\shared\services\notification_service.dart:234:31 - unnecessary_non_null_assertion
+warning - The declaration '_nextInstanceOfDay' isn't referenced - lib\shared\services\notification_service.dart:338:17 - unused_element
+
+flutter : 59 issues 
+found. (ran in 33.2s)
+At line:1 char:1
++ flutter analyze 
+--no-pub > 
+final_full_analyze.txt 
+2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~
+    + CategoryInfo        
+  :     NotSpecified: (59 
+issues f    ound. (ran in 
+33.2s):Strin    g) [], 
+RemoteException
+    + 
+FullyQualifiedErrorId :   
+  NativeCommandError
+ 

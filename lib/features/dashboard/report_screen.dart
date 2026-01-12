@@ -7,8 +7,6 @@ import 'dashboard_repository.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
-import 'vaccine_repository.dart';
-import 'dental_screen.dart'; 
 
 class ReportScreen extends ConsumerStatefulWidget {
   final ChildModel child;
@@ -22,93 +20,147 @@ class _ReportScreenState extends ConsumerState<ReportScreen> {
   @override
   Widget build(BuildContext context) {
     final logsAsync = ref.watch(weeklyLogsProvider(widget.child.id));
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("${widget.child.name}'s Report"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.share),
-            tooltip: 'Export PDF',
-            onPressed: () => _exportPdf(logsAsync.valueOrNull ?? []),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Theme.of(context).primaryColor.withOpacity(0.05),
+              Theme.of(context).scaffoldBackgroundColor,
+            ],
           ),
-        ],
-      ),
-      body: logsAsync.when(
-        data: (logs) {
-          if (logs.isEmpty) {
-            return const Center(child: Text("No data for this week yet. Start your habits!"));
-          }
-          
-          int totalBrushed = 0;
-          int totalFlossed = 0;
-          int totalHealthy = 0;
-          
-          for(var log in logs) {
-            if(log['brushedMorning'] == true) totalBrushed++;
-            if(log['brushedNight'] == true) totalBrushed++;
-            
-            if(log['flossedMorning'] == true) totalFlossed++;
-            if(log['flossedNight'] == true) totalFlossed++;
-            
-            if(log['ateHealthy'] == true) totalHealthy++;
-          }
-
-          // Max possible for 7 days
-          // Brush: 2 * 7 = 14
-          // Floss: 2 * 7 = 14
-          // Healthy: 1 * 7 = 7
-          // But logs might be less than 7 if just started.
-          // We'll just show raw counts for now or % based on days logged?
-          // User asked for "progress should be shown".
-          
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildSummaryCard(totalBrushed, totalFlossed, totalHealthy),
-                const SizedBox(height: 20),
-                Text("Last 7 Days", style: Theme.of(context).textTheme.titleLarge),
-                const SizedBox(height: 10),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: logs.length,
-                  itemBuilder: (context, index) {
-                    final log = logs[index];
-                    final date = DateTime.parse(log['date']);
-                    final isFullDay = (log['brushedMorning'] && log['flossedMorning'] && 
-                                     log['ateHealthy'] && 
-                                     log['brushedNight'] && log['flossedNight']);
-                                     
-                    return Card(
-                      color: isFullDay 
-                        ? (Theme.of(context).brightness == Brightness.dark ? Colors.green.shade900.withOpacity(0.3) : Colors.green.shade50) 
-                        : null,
-                      child: ListTile(
-                        leading: Text(DateFormat.E().format(date), style: const TextStyle(fontWeight: FontWeight.bold)), // Mon, Tue
-                        title: Text(DateFormat.MMMd().format(date)),
-                        subtitle: Row(
-                          children: [
-                            if(log['brushedMorning']) const Text("☀️🦷 "),
-                            if(log['flossedMorning']) const Text("☀️🧵 "),
-                            if(log['ateHealthy']) const Text("🍎 "),
-                            if(log['brushedNight']) const Text("🌙🦷 "),
-                            if(log['flossedNight']) const Text("🌙🧵 "),
-                          ],
+        ),
+        child: Column(
+          children: [
+            // Custom Premium Header
+            Container(
+              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 10, bottom: 15),
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: isDark ? Colors.transparent : Colors.black.withOpacity(0.03),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back_rounded, color: Theme.of(context).iconTheme.color),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                    const SizedBox(width: 4),
+                    Expanded(
+                      child: Text(
+                        "${widget.child.name}'s Report",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w900,
+                          color: Theme.of(context).textTheme.titleLarge?.color,
+                          letterSpacing: -0.5,
                         ),
-                        trailing: isFullDay ? const Icon(Icons.star, color: Colors.amber) : null,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    );
-                  },
-                )
-              ],
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.share_rounded, color: Colors.blue),
+                      tooltip: 'Export PDF',
+                      onPressed: () => _exportPdf(logsAsync.valueOrNull ?? []),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          );
-        },
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, st) => Center(child: Text("Error loading report: $e")),
+            
+            Expanded(
+              child: logsAsync.when(
+                data: (logs) {
+                  if (logs.isEmpty) {
+                    return const Center(child: Text("No data for this week yet. Start your habits!"));
+                  }
+            
+            int totalBrushed = 0;
+            int totalFlossed = 0;
+            int totalHealthy = 0;
+            
+            for(var log in logs) {
+              if(log['brushedMorning'] == true) totalBrushed++;
+              if(log['brushedNight'] == true) totalBrushed++;
+              
+              if(log['flossedMorning'] == true) totalFlossed++;
+              if(log['flossedNight'] == true) totalFlossed++;
+              
+              if(log['ateHealthy'] == true) totalHealthy++;
+            }
+  
+            // Max possible for 7 days
+            // Brush: 2 * 7 = 14
+            // Floss: 2 * 7 = 14
+            // Healthy: 1 * 7 = 7
+            // But logs might be less than 7 if just started.
+            // We'll just show raw counts for now or % based on days logged?
+            // User asked for "progress should be shown".
+            
+            return SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildSummaryCard(totalBrushed, totalFlossed, totalHealthy),
+                  const SizedBox(height: 20),
+                  Text("Last 7 Days", style: Theme.of(context).textTheme.titleLarge),
+                  const SizedBox(height: 10),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: logs.length,
+                    itemBuilder: (context, index) {
+                      final log = logs[index];
+                      final date = DateTime.parse(log['date']);
+                      final isFullDay = (log['brushedMorning'] && log['flossedMorning'] && 
+                                       log['ateHealthy'] && 
+                                       log['brushedNight'] && log['flossedNight']);
+                                       
+                      return Card(
+                        color: isFullDay 
+                          ? (Theme.of(context).brightness == Brightness.dark ? Colors.green.shade900.withOpacity(0.3) : Colors.green.shade50) 
+                          : null,
+                        child: ListTile(
+                          leading: Text(DateFormat.E().format(date), style: const TextStyle(fontWeight: FontWeight.bold)), // Mon, Tue
+                          title: Text(DateFormat.MMMd().format(date)),
+                          subtitle: Row(
+                            children: [
+                              if(log['brushedMorning']) const Text("☀️🦷 "),
+                              if(log['flossedMorning']) const Text("☀️🧵 "),
+                              if(log['ateHealthy']) const Text("🍎 "),
+                              if(log['brushedNight']) const Text("🌙🦷 "),
+                              if(log['flossedNight']) const Text("🌙🧵 "),
+                            ],
+                          ),
+                          trailing: isFullDay ? const Icon(Icons.star, color: Colors.amber) : null,
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
+            );
+          },
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (e, st) => Center(child: Text("Error loading report: $e")),
+        ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -216,20 +268,18 @@ class _ReportScreenState extends ConsumerState<ReportScreen> {
 
 
   Future<void> _exportPdf(List<Map<String, dynamic>> logs) async {
-    // 1. Fetch Vaccine & Dental Data
-    // We use .first to get the current snapshot of the stream
-    final vaccines = await ref.read(vaccineRepositoryProvider).getVaccines(widget.child.id, widget.child.parentId).first;
-    final appointments = await ref.read(dentalRepositoryProvider).getAppointments(widget.child.id, widget.child.parentId).first;
-
+    // 1. Fetch Data - Only Logs needed for Weekly Report
+    // Removed Vaccine and Dental fetching as per user request to keep this report focused.
+    
     final pdf = pw.Document();
     
     pdf.addPage(
-      pw.MultiPage( // Use MultiPage to handle long lists
+      pw.MultiPage(
         build: (pw.Context context) {
           return [
               pw.Header(
                 level: 0,
-                child: pw.Text("GrinGuide Health Report", style: pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold)),
+                child: pw.Text("GrinGuide Weekly Report", style: pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold)),
               ),
               pw.SizedBox(height: 10),
               pw.Text("Child Name: ${widget.child.name}", style: const pw.TextStyle(fontSize: 18)),
@@ -238,32 +288,8 @@ class _ReportScreenState extends ConsumerState<ReportScreen> {
               
               // 1. Weekly Logs
               pw.Header(level: 1, child: pw.Text("Weekly Habits Progress")),
-              pw.Table.fromTextArray(
-                context: context,
-                border: pw.TableBorder.all(),
-                headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
-                headerDecoration: const pw.BoxDecoration(color: PdfColors.grey300),
-                data: <List<String>>[
-                  <String>['Date', 'Brushed (AM)', 'Flossed (AM)', 'Healthy Food', 'Brushed (PM)', 'Flossed (PM)'],
-                  ...logs.map((log) {
-                      final date = DateTime.parse(log['date']);
-                      return [
-                        DateFormat('MM-dd').format(date),
-                        log['brushedMorning'] ? 'Yes' : 'No',
-                        log['flossedMorning'] ? 'Yes' : 'No',
-                        log['ateHealthy'] ? 'Yes' : 'No',
-                        log['brushedNight'] ? 'Yes' : 'No',
-                        log['flossedNight'] ? 'Yes' : 'No',
-                      ];
-                  }),
-                ],
-              ),
-              pw.SizedBox(height: 20),
-
-              // 2. Vaccination Records
-              pw.Header(level: 1, child: pw.Text("Vaccination History")),
-              if (vaccines.isEmpty)
-                pw.Paragraph(text: "No vaccination records found.")
+              if (logs.isEmpty)
+                pw.Paragraph(text: "No habits logged for this week yet.")
               else
                 pw.Table.fromTextArray(
                   context: context,
@@ -271,50 +297,29 @@ class _ReportScreenState extends ConsumerState<ReportScreen> {
                   headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
                   headerDecoration: const pw.BoxDecoration(color: PdfColors.grey300),
                   data: <List<String>>[
-                    <String>['Vaccine', 'Scheduled', 'Doctor', 'Status', 'Date Given'],
-                    ...vaccines.map((v) {
-                      return [
-                        v.vaccineName,
-                        DateFormat('yyyy-MM-dd').format(v.scheduledDate),
-                        v.doctorName ?? '-',
-                        v.isDone ? 'Done' : 'Pending',
-                        v.actualDate != null ? DateFormat('yyyy-MM-dd').format(v.actualDate!) : '-',
-                      ];
+                    <String>['Date', 'Brushed (AM)', 'Flossed (AM)', 'Healthy Food', 'Brushed (PM)', 'Flossed (PM)'],
+                    ...logs.map((log) {
+                        final date = DateTime.parse(log['date']);
+                        return [
+                          DateFormat('MM-dd').format(date),
+                          log['brushedMorning'] ? 'Yes' : 'No',
+                          log['flossedMorning'] ? 'Yes' : 'No',
+                          log['ateHealthy'] ? 'Yes' : 'No',
+                          log['brushedNight'] ? 'Yes' : 'No',
+                          log['flossedNight'] ? 'Yes' : 'No',
+                        ];
                     }),
                   ],
                 ),
               pw.SizedBox(height: 20),
 
-              // 3. Dental Appointments
-              pw.Header(level: 1, child: pw.Text("Dental Appointments")),
-              if (appointments.isEmpty)
-                pw.Paragraph(text: "No dental appointments found.")
-              else
-                pw.Table.fromTextArray(
-                  context: context,
-                  border: pw.TableBorder.all(),
-                  headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
-                  headerDecoration: const pw.BoxDecoration(color: PdfColors.grey300),
-                  data: <List<String>>[
-                    <String>['Doctor/Clinic', 'Purpose', 'Date', 'Time'],
-                    ...appointments.map((a) {
-                      return [
-                        a.doctorName,
-                        a.purpose,
-                        DateFormat('yyyy-MM-dd').format(a.appointmentDate),
-                        DateFormat.jm().format(a.appointmentDate),
-                      ];
-                    }),
-                  ],
-                ),
-              pw.SizedBox(height: 20),
               pw.Paragraph(text: "Keep up the great work! Consistent habits lead to a healthy smile."),
           ];
         },
       ),
     );
 
-    await Printing.sharePdf(bytes: await pdf.save(), filename: 'grin_guide_report.pdf');
+    await Printing.sharePdf(bytes: await pdf.save(), filename: 'grin_guide_weekly_report.pdf');
   }
 }
 

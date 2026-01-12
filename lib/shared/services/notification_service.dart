@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -107,8 +106,6 @@ class NotificationService {
 
 
     // System default sounds are used.
-  }
-
     // OneSignal Click Listener
     OneSignal.Notifications.addClickListener((event) async {
       final actionId = event.result.actionId;
@@ -117,31 +114,21 @@ class NotificationService {
       debugPrint("OneSignal Action Clicked: $actionId, Data: $data");
 
       if (actionId == 'done' && data != null) {
-        // Handle the database update
         await handleDoneActionMap(data);
-
-        // Show feedback if possible (requires context, but we are in a top-level listener)
-        // Since we lack context here easily, we just proceed to close.
-        // Actually, we can't show SnackBar without context.
-        // Using SystemNavigator.pop() to simulate "Background Action" behavior as requested.
-        // We add a small delay to ensure the DB write might have flushed/user sees a glimpse.
         await Future.delayed(const Duration(milliseconds: 500)); 
         SystemNavigator.pop();
       } else if (actionId == 'reschedule' && data != null) {
-        // Navigate to the respective screen
         try {
-          // We need to fetch the child first to pass as argument
           String? childId = data['childId'];
           if (childId == null) return;
 
           final childSnapshot = await FirebaseFirestore.instance.collection('children').doc(childId).get();
           if (childSnapshot.exists) {
-            final child = ChildModel.fromMap(childSnapshot.data()!); // Needs import
+            final child = ChildModel.fromMap(childSnapshot.data()!);
             
-            // Navigate based on task
             final String? task = data['task'];
             if (task == 'vaccine') {
-               router.push('/dashboard/vaccines', extra: child); // Needs router import
+               router.push('/dashboard/vaccines', extra: child);
             } else if (task == 'dental') {
                router.push('/dashboard/dental', extra: child);
             }
@@ -243,7 +230,7 @@ class NotificationService {
         } else {
           // Legacy individual tasks
           if (task != null) {
-            updateData = {task!: true};
+            updateData = {task: true};
           }
         }
         

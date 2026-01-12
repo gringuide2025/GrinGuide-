@@ -67,11 +67,16 @@ class DentalAwarenessRepository {
   }
 
   List<String> getSubjects() {
-    return _allTopics.map((t) => t.subject).toSet().toList();
+    return _allTopics.map((t) => t.categoryKey).toSet().toList();
+  }
+  
+  List<DentalTopicModel> getTopicsByCategory(String categoryKey) {
+    return _allTopics.where((t) => t.categoryKey == categoryKey).toList();
   }
 
+  @Deprecated('Use getTopicsByCategory')
   List<DentalTopicModel> getTopicsBySubject(String subject) {
-    return _allTopics.where((t) => t.subject == subject).toList();
+    return _allTopics.where((t) => t.categoryKey == subject || t.subject == subject).toList();
   }
 
   List<DentalTopicModel> search(String query) {

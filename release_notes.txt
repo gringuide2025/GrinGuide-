@@ -1,0 +1,18 @@
+<en-US>
+🎉 What's New in GrinGuide v1.0.7
+
+✅ Vaccine PDF Export!
+- Generate a professional health report of your child's vaccination history.
+- Share neatly formatted reports with your pediatrician or healthcare provider.
+- Organized by visit age (At Birth, 6 Weeks, etc.) for better clarity.
+
+✅ Dashboard Enhancements
+- Restored the Vaccine PDF export directly from the Vaccine tab.
+- Improved layout for easier access to health records.
+
+✅ Improvements
+- Minor bug fixes and performance optimizations.
+- Smoother navigation experience.
+
+Thank you for using GrinGuide! Keep smiling! 🦷✨
+</en-US>

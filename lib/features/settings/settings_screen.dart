@@ -3,14 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'settings_controller.dart';
 
-
-
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsControllerProvider);
+    final controller = ref.read(settingsControllerProvider.notifier);
+    final isDark = settings.themeMode == ThemeMode.dark;
 
     return PopScope(
       canPop: false,
@@ -21,6 +21,7 @@ class SettingsScreen extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(title: const Text("Settings")),
         body: ListView(
+          padding: const EdgeInsets.symmetric(vertical: 8),
           children: [
             SwitchListTile(
               title: const Text("Dark Mode"),
@@ -38,25 +39,25 @@ class SettingsScreen extends ConsumerWidget {
             ListTile(
               leading: const Icon(Icons.help),
               title: const Text("Help & Support"),
-              onTap: () => context.go('/settings/support'),
+              onTap: () => context.push('/settings/support'),
             ),
             ListTile(
               leading: const Icon(Icons.mail),
               title: const Text("Contact Us"),
-              onTap: () => context.go('/settings/support'),
+              onTap: () => context.push('/settings/support'),
             ),
             ListTile(
               leading: const Icon(Icons.info),
               title: const Text("Terms & Conditions"),
-              onTap: () => context.go('/settings/terms'),
+              onTap: () => context.push('/settings/terms'),
             ),
             ListTile(
               leading: const Icon(Icons.privacy_tip),
               title: const Text("Privacy Policy"),
-              onTap: () => context.go('/settings/privacy'),
+              onTap: () => context.push('/settings/privacy'),
             ),
             const Divider(),
-             ListTile(
+            ListTile(
               leading: const Icon(Icons.delete_forever, color: Colors.red),
               title: const Text("Delete Account", style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
               onTap: () async {
@@ -78,15 +79,7 @@ class SettingsScreen extends ConsumerWidget {
 
                 if (confirm == true && context.mounted) {
                    try {
-                     // 1. Delete from Firebase
-                     // Ideally we should delete Firestore data first using a Cloud Function or here manually
-                     // For MVP compliance, deleting Auth user is the primary step.
                      await controller.deleteAccount();
-                     
-                     if (context.mounted) {
-                       context.go('/login');
-                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Account deleted successfully.")));
-                     }
                    } catch (e) {
                      if (context.mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error: Re-login required to delete account. $e")));
@@ -97,7 +90,7 @@ class SettingsScreen extends ConsumerWidget {
             ),
             const Padding(
               padding: EdgeInsets.all(16.0),
-              child: Text("Version 1.0.4+7", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey)),
+              child: Text("Version 1.0.5", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey)),
             ),
           ],
         ),

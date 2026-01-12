@@ -7,7 +7,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 final settingsControllerProvider = StateNotifierProvider<SettingsController, SettingsState>((ref) {
   return SettingsController();
 });
-
+class SettingsState {
+  final ThemeMode themeMode;
+  final Locale locale;
   final bool notificationsEnabled;
   // Sound preference removed - using system default
 
@@ -30,6 +32,7 @@ final settingsControllerProvider = StateNotifierProvider<SettingsController, Set
   }
 }
 
+class SettingsController extends StateNotifier<SettingsState> {
   SettingsController() : super(SettingsState(
     themeMode: ThemeMode.system, 
     locale: const Locale('en'), 
@@ -76,14 +79,10 @@ final settingsControllerProvider = StateNotifierProvider<SettingsController, Set
     }
   }
 
-    // Sound preference removed - using system default
-  }
-
   Future<void> deleteAccount() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       await user.delete();
-      // Auth state change will trigger in main, but UI handles navigation too.
     }
   }
 }

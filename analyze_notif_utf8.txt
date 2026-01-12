@@ -1,0 +1,26 @@
+﻿Analyzing notification_service.dart...                          
+
+warning - Unused import: 'package:firebase_auth/firebase_auth.dart' - lib\shared\services\notification_service.dart:4:8 - unused_import
+warning - The value of the local variable 'doneAction' isn't used - lib\shared\services\notification_service.dart:78:37 - unused_local_variable
+warning - The value of the local variable 'notDoneAction' isn't used - lib\shared\services\notification_service.dart:84:37 - unused_local_variable
+warning - The '!' will have no effect because the receiver can't be null - lib\shared\services\notification_service.dart:234:31 - unnecessary_non_null_assertion
+warning - The declaration '_nextInstanceOfDay' isn't referenced - lib\shared\services\notification_service.dart:338:17 - unused_element
+
+flutter : 5 issues found. 
+(ran in 7.1s)
+At line:1 char:1
++ flutter analyze lib\shar
+ed\services\notification_s
+ervice.dart --no-pu ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (5  
+   issues found. (ran i   
+ n 7.1s):String) [], R    
+emoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 

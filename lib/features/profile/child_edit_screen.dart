@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter/services.dart';
 import '../../shared/utils/date_input_formatter.dart';
 import 'models/child_model.dart';
 import 'profile_controller.dart';
@@ -177,10 +176,9 @@ class _ChildEditScreenState extends ConsumerState<ChildEditScreen> {
             TextFormField(
               controller: _dobController,
               keyboardType: TextInputType.number,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-                DateInputFormatter(),
-              ],
+                inputFormatters: [
+                  DateInputFormatter(),
+                ],
               decoration: InputDecoration(
                 labelText: "Date of Birth (DD/MM/YYYY)",
                 prefixIcon: const Icon(Icons.calendar_today),

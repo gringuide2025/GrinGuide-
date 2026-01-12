@@ -1,0 +1,133 @@
+﻿Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.64 (1.3.65 available)
+  audioplayers 5.2.1 (6.5.1 available)
+  audioplayers_android 4.0.3 (5.2.1 available)
+  audioplayers_darwin 5.0.2 (6.3.0 available)
+  audioplayers_linux 3.1.0 (4.2.1 available)
+  audioplayers_platform_interface 6.1.0 (7.1.1 available)
+  audioplayers_web 4.1.0 (5.1.1 available)
+  audioplayers_windows 3.1.0 (4.2.1 available)
+  characters 1.4.0 (1.4.1 available)
+  cloud_firestore 6.1.0 (6.1.1 available)
+  cloud_firestore_platform_interface 7.0.4 (7.0.5 available)
+  cloud_firestore_web 5.1.0 (5.1.1 available)
+  firebase_auth 6.1.2 (6.1.3 available)
+  firebase_auth_platform_interface 8.1.4 (8.1.5 available)
+  firebase_auth_web 6.1.0 (6.1.1 available)
+  firebase_core 4.2.1 (4.3.0 available)
+  firebase_core_web 3.3.0 (3.3.1 available)
+  flutter_launcher_icons 0.13.1 (0.14.4 available)
+  flutter_local_notifications 18.0.1 (19.5.0 available)
+  flutter_local_notifications_linux 5.0.0 (6.0.0 available)
+  flutter_local_notifications_platform_interface 8.0.0 (9.1.0 available)
+  flutter_riverpod 2.6.1 (3.1.0 available)
+  flutter_timezone 3.0.1 (5.0.1 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.7 available)
+  google_sign_in_ios 5.9.0 (6.2.4 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.0 available)
+  image 4.5.4 (4.7.2 available)
+  js 0.6.7 (0.7.2 available)
+  matcher 0.12.17 (0.12.18 available)
+  material_color_utilities 0.11.1 (0.13.0 available)
+  onesignal_flutter 5.3.4 (5.3.5 available)
+  package_info_plus 8.3.1 (9.0.0 available)
+  riverpod 2.6.1 (3.1.0 available)
+  syncfusion_flutter_core 31.2.18 (32.1.21 available)
+  syncfusion_flutter_pdf 31.2.18 (32.1.21 available)
+  syncfusion_flutter_pdfviewer 31.2.18 (32.1.21 available)
+  syncfusion_flutter_signaturepad 31.2.18 (32.1.21 available)
+  syncfusion_pdfviewer_linux 31.2.18 (32.1.21 available)
+  syncfusion_pdfviewer_macos 31.2.18 (32.1.21 available)
+  syncfusion_pdfviewer_platform_interface 31.2.18 (32.1.21 available)
+  syncfusion_pdfviewer_web 31.2.18 (32.1.21 available)
+  syncfusion_pdfviewer_windows 31.2.18 (32.1.21 available)
+  test_api 0.7.7 (0.7.8 available)
+Got dependencies!
+45 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Launching lib\main.dart on sdk gphone16k x86 64 in debug mode...
+Running Gradle task 'assembleDebug'...                          
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+[=========                              ] 25%                                   
+[=========                              ] 25% Fetch remote repository...        
+[=======================================] 100% Fetch remote repository...       
+
+flutter : lib/features/das
+hboard/vaccine_screen.dart
+:192:88: Error: Member 
+not found: 'black'.
+At line:1 char:1
++ flutter run -d 
+emulator-5554 > 
+build_failure_log.txt 
+2>&1; type build ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (l  
+  ib/features/da...foun   
+ d: 'black'.:String) [    
+], RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+                    
+style: const 
+TextStyle(color: 
+Colors.white, fontWeight: 
+FontWeight.black, 
+fontSize: 16),
+                          
+                          
+                          
+         ^^^^^
+Target 
+kernel_snapshot_program 
+failed: Exception
+
+
+FAILURE: Build failed 
+with an exception.
+
+* What went wrong:
+Execution failed for task 
+':app:compileFlutterBuildD
+ebug'.
+> Process 'command 'E:\flu
+tter\flutter\bin\flutter.b
+at'' finished with 
+non-zero exit value 1
+
+* Try:
+> Run with --stacktrace 
+option to get the stack 
+trace.
+> Run with --info or 
+--debug option to get 
+more log output.
+> Run with --scan to get 
+full insights.
+> Get more help at 
+https://help.gradle.org.
+
+BUILD FAILED in 54s
+Running Gradle task 'assembleDebug'...                             61.5s
+Error: Gradle task 
+assembleDebug failed with 
+exit code 1

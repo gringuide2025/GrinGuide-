@@ -1,5 +1,6 @@
 class DentalTopicModel {
   final String subject;
+  final String categoryKey; // key for CategoryMeta mapping
   final String topic;
   final List<String> displayQuestions;
   final List<String> searchPhrases;
@@ -13,6 +14,7 @@ class DentalTopicModel {
 
   DentalTopicModel({
     required this.subject,
+    required this.categoryKey,
     required this.topic,
     required this.displayQuestions,
     required this.searchPhrases,
@@ -28,6 +30,7 @@ class DentalTopicModel {
   factory DentalTopicModel.fromJson(Map<String, dynamic> json) {
     return DentalTopicModel(
       subject: json['subject'] ?? 'General',
+      categoryKey: json['subject'] ?? 'General',
       topic: json['topic'] ?? '',
       displayQuestions: List<String>.from(json['display_questions'] ?? []),
       searchPhrases: List<String>.from(json['search_phrases'] ?? []),
@@ -70,6 +73,7 @@ class DentalTopicModel {
 
     return DentalTopicModel(
       subject: readableSubject,
+      categoryKey: subjectId,
       topic: enItem['q'] ?? '',
       displayQuestions: [enItem['q'] ?? ''],
       searchPhrases: _generatePhrases(enItem['q'] ?? ''),

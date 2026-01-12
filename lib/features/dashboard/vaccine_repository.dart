@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../shared/services/notification_service.dart';
 import '../profile/models/child_model.dart';
 import 'models/vaccine_model.dart';
 
